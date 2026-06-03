@@ -15,8 +15,8 @@
 
     /* ---------- landing-local type scale & rhythm ---------- */
     :root{
-      --b-band-pad: 84px;         /* vertical breathing room per band — generous, not empty */
-      --b-band-pad-sm: 64px;
+      --b-band-pad: 68px;         /* consistent section rhythm — calm, not cavernous */
+      --b-band-pad-sm: 52px;
       --b-radius-frame: 18px;
       --b-shadow-card: 0 1px 2px rgba(28,43,29,.05), 0 8px 28px -12px rgba(28,43,29,.18);
       --b-shadow-card-hover: 0 2px 4px rgba(28,43,29,.06), 0 24px 56px -20px rgba(28,43,29,.34);
@@ -31,9 +31,8 @@
 
     /* ---------- BANDS ---------- */
     .band{ position: relative; padding-block: var(--b-band-pad); }
-    /* sub-nav links jump to these — keep the heading clear of the sticky top-nav + sub-nav stack */
-    main > section[id]{ scroll-margin-top: 138px; }
-    @media (max-width: 860px){ main > section[id]{ scroll-margin-top: 84px; } }
+    /* top-nav anchors jump to these — clear the single sticky top-nav (68px) */
+    main > section[id]{ scroll-margin-top: 84px; }
     .band-oat{ background: var(--oat-100); }
     .band-white{ background: var(--card); }
     .band-soft{ background: var(--oat-200); }
@@ -105,33 +104,9 @@
     }
 
     /* ============================================================
-       STICKY SUB-NAV (slim, in-page)
-       ============================================================ */
-    .subnav{
-      position: sticky; top: 68px; z-index: 35;
-      /* SOLID opaque surface so section headings / content never bleed through */
-      background: var(--oat-100);
-      border-bottom: 1px solid var(--b-hair);
-      box-shadow: 0 6px 20px -14px rgba(28,43,29,.45);
-      opacity: 0; transform: translateY(-6px); pointer-events: none;
-      transition: opacity .35s var(--b-ease), transform .35s var(--b-ease);
-    }
-    .subnav.show{ opacity: 1; transform: none; pointer-events: auto; }
-    .subnav-inner{ height: 52px; display:flex; align-items:center; justify-content:space-between; gap: 16px; }
-    .subnav-links{ display:flex; align-items:center; gap: 4px; min-width:0; overflow:hidden; }
-    .subnav-links a{
-      font-size: .82rem; font-weight: 500; color: var(--muted);
-      padding: 7px 13px; border-radius: var(--r-pill); white-space: nowrap;
-      transition: color .15s, background .15s;
-    }
-    .subnav-links a:hover{ color: var(--forest-700); background: var(--forest-050); }
-    .subnav .btn{ flex-shrink:0; }
-    @media (max-width: 860px){ .subnav{ display:none; } }
-
-    /* ============================================================
        1 · HERO  (dark band, gradient-mesh glow)
        ============================================================ */
-    .hero{ padding-block: 120px 132px; }
+    .hero{ padding-block: 96px 100px; }
     .hero-grid{
       display:grid; grid-template-columns: minmax(0,1.08fr) minmax(0,.92fr);
       gap: 64px; align-items: center;
@@ -282,7 +257,7 @@
     /* ============================================================
        2 · THE SHIFT
        ============================================================ */
-    .compare-grid{ display:grid; grid-template-columns: 1fr auto 1fr; gap: 26px; align-items:stretch; margin-top: 52px; }
+    .compare-grid{ display:grid; grid-template-columns: 1fr auto 1fr; gap: 26px; align-items:stretch; margin-top: 40px; }
     .compare-card{ padding: 32px 30px; display:flex; flex-direction:column; }
     .compare-card .cc-label{
       font-size:.7rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
@@ -299,31 +274,24 @@
       font-size:.72rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
       color: var(--error-600); background: var(--error-bg); padding:5px 12px; border-radius: var(--r-pill); margin-top:12px;
     }
-    .stat-block{ margin-top: 58px; text-align:center; max-width: 64ch; margin-inline:auto; }
+    .stat-block{ margin-top: 44px; text-align:center; max-width: 60ch; margin-inline:auto; }
     .stat-line{
-      font-family: var(--serif); font-size: clamp(1.7rem, 3.2vw, 2.5rem); line-height:1.28;
+      font-family: var(--serif); font-size: clamp(1.5rem, 2.6vw, 2.1rem); line-height:1.32;
       color: var(--neutral-900); margin:0;
     }
     .stat-line .hl{ color: var(--forest-600); }
-    .stat-source{ margin: 14px auto 0; max-width: 56ch; font-size:.76rem; color: var(--muted); font-style:italic; }
 
     /* ============================================================
-       3 · WHY US — BENTO grid (mixed cell sizes)
+       3 · WHY US — clean 2×2 grid (4 core differentiators)
        ============================================================ */
     .bento{
-      display:grid; grid-template-columns: repeat(6, 1fr); gap: 18px; margin-top: 8px;
-      /* rows size to their own content (cards in a row still stretch even) — no forced cross-row voids */
-      grid-auto-rows: auto; align-items: stretch;
+      display:grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 8px;
+      align-items: stretch;
     }
-    .why-card{ display:flex; flex-direction:column; gap:16px; padding: 28px 30px; justify-content:flex-start; }
-    .why-card h3{ font-size:1.32rem; line-height:1.16; }
+    .why-card{ display:flex; flex-direction:column; gap:14px; padding: 26px 28px; justify-content:flex-start; }
+    .why-card h3{ font-size:1.3rem; line-height:1.16; }
     .why-card p{ color: var(--muted); font-size:.92rem; margin:0; line-height:1.6; }
-    /* span pattern: 2 wide leaders + 4 standard = visually deliberate bento */
-    .why-card.feat{ grid-column: span 4; background: linear-gradient(160deg, var(--forest-050), var(--card) 62%); }
-    .why-card.std{ grid-column: span 2; }
-    .why-card.wide{ grid-column: span 3; }
-    .why-card .b-tile{ width:52px; height:52px; }
-    .why-card.feat h3{ font-size:1.5rem; }
+    .why-card .b-tile{ width:48px; height:48px; }
     .why-card .wc-corner{
       position:absolute; top:24px; right:26px; font-family: var(--mono); font-size:.72rem;
       color: var(--forest-300); letter-spacing:.04em;
@@ -424,15 +392,19 @@
        PROOF
        ============================================================ */
     .proof-wrap{ display:grid; grid-template-columns: minmax(0,1.04fr) minmax(0,.96fr); gap: 44px; align-items:center; }
+    .proof-tag{
+      display:inline-flex; align-items:center; gap:8px; margin-bottom:18px;
+      font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      color: var(--warning-600); background: var(--warning-bg); padding:6px 13px; border-radius: var(--r-pill);
+    }
     .proof-band{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px; }
-    .proof-tile{ padding:24px 20px; text-align:center; }
-    .proof-tile .pt-label{ font-size:.78rem; color: var(--muted); margin-bottom:14px; min-height:2.4em; display:flex; align-items:center; justify-content:center; }
+    .proof-tile{ padding:22px 18px; text-align:center; }
+    .proof-tile .pt-label{ font-size:.78rem; color: var(--muted); margin-bottom:12px; min-height:2.4em; display:flex; align-items:center; justify-content:center; }
     .proof-tile .pt-flow{ display:flex; align-items:baseline; justify-content:center; gap:9px; }
-    .proof-tile .pt-before{ font-family: var(--serif); font-size:1.5rem; color: var(--muted); }
+    .proof-tile .pt-before{ font-family: var(--serif); font-size:1.4rem; color: var(--muted); }
     .proof-tile .pt-arrow{ color: var(--forest-300); }
-    .proof-tile .pt-after{ font-family: var(--serif); font-size:2.2rem; line-height:1; color: var(--forest-600); font-weight:400; }
-    .proof-who{ margin:24px 0 4px; font-size:.92rem; font-weight:600; color: var(--neutral-900); }
-    .proof-caption{ margin:0; font-size:.76rem; color: var(--muted); font-style:italic; }
+    .proof-tile .pt-after{ font-family: var(--serif); font-size:2rem; line-height:1; color: var(--forest-600); font-weight:400; }
+    .proof-who{ margin:18px 0 0; font-size:.88rem; color: var(--muted); }
 
     .proof-mock{ padding:22px; }
     .proof-mock-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px; flex-wrap:wrap; }
@@ -497,36 +469,35 @@
     .ws-keyword p{ color: var(--forest-300); font-size:.9rem; line-height:1.6; margin:0; }
 
     /* ============================================================
-       SCENE SECTIONS (compliance / lifecycle) — copy + illustrative visual
+       SAFE & ONGOING — merged compliance + lifecycle band
+       header on top · two point groups + one illustrative visual
        ============================================================ */
-    .scene-wrap{ display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 52px; align-items:center; }
-    .scene-wrap.reverse .scene-media{ order:-1; }
-    .scene-points{ list-style:none; padding:0; margin: 26px 0 0; display:flex; flex-direction:column; gap:18px; }
-    .scene-points li{ display:flex; gap:14px; align-items:flex-start; }
+    .safe-wrap{ display:grid; grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr); gap: 52px; align-items:start; margin-top: 8px; }
+    .safe-groups{ display:grid; grid-template-columns: 1fr 1fr; gap: 36px 40px; }
+    .safe-group .sg-head{
+      font-family: var(--sans); font-weight:700; font-size:.74rem; letter-spacing:.1em; text-transform:uppercase;
+      color: var(--forest-700); margin-bottom:18px; display:flex; align-items:center; gap:8px;
+    }
+    .safe-group .sg-head svg{ color: var(--forest-600); flex-shrink:0; }
+    .scene-points{ list-style:none; padding:0; margin: 0; display:flex; flex-direction:column; gap:16px; }
+    .scene-points li{ display:flex; gap:12px; align-items:flex-start; }
     .scene-points .sp-tick{
-      width:26px; height:26px; border-radius:8px; flex-shrink:0; margin-top:2px;
+      width:24px; height:24px; border-radius:7px; flex-shrink:0; margin-top:2px;
       display:grid; place-items:center; background: var(--forest-050); border:1px solid var(--forest-100); color: var(--forest-600);
     }
-    .scene-points .sp-body strong{ display:block; font-size:1rem; color: var(--neutral-900); margin-bottom:3px; }
-    .scene-points .sp-body span{ color: var(--muted); font-size:.9rem; line-height:1.55; }
+    .scene-points .sp-body strong{ display:block; font-size:.95rem; color: var(--neutral-900); margin-bottom:3px; }
+    .scene-points .sp-body span{ color: var(--muted); font-size:.88rem; line-height:1.5; }
     .scene-media{
       border-radius: var(--b-radius-frame); overflow:hidden; position:relative;
-      border:1px solid var(--b-hair); box-shadow: var(--b-shadow-card); aspect-ratio: 4 / 3;
+      border:1px solid var(--b-hair); box-shadow: var(--b-shadow-card); aspect-ratio: 4 / 5;
     }
     .scene-media img{ width:100%; height:100%; object-fit:cover; display:block; }
-
-    /* proof illustrative visual */
-    .proof-scene{
-      margin-top:20px; border-radius: var(--r-card); overflow:hidden; position:relative;
-      border:1px solid var(--b-hair); aspect-ratio: 16 / 9;
-    }
-    .proof-scene img{ width:100%; height:100%; object-fit:cover; display:block; }
 
     /* ============================================================
        6 · PRICING
        ============================================================ */
     .price-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 22px; align-items:stretch; }
-    .price-card{ display:flex; flex-direction:column; padding: 34px 30px; }
+    .price-card{ display:flex; flex-direction:column; padding: 30px 28px; }
     .price-card.featured{
       background: var(--forest-600); color: var(--oat-100); border-color: var(--forest-600);
       box-shadow: 0 30px 70px -30px rgba(28,43,29,.6), var(--sh-brand);
@@ -535,7 +506,7 @@
     .price-card.featured.lift:hover{ transform: translateY(-12px); }
     .price-card.featured .pc-tagline,.price-card.featured .pc-per{ color: var(--forest-100); }
     .price-name{ font-size:.92rem; font-weight:600; letter-spacing:.02em; }
-    .price-amount{ font-family: var(--serif); font-size:3.3rem; line-height:1; margin:14px 0 2px; }
+    .price-amount{ font-family: var(--serif); font-size:2.9rem; line-height:1; margin:12px 0 2px; }
     .price-card.featured .price-amount{ color: var(--oat-100); }
     .pc-per{ font-size:.9rem; color: var(--muted); font-weight:500; }
     .pc-tagline{ font-size:.9rem; color: var(--muted); margin:6px 0 24px; }
@@ -550,16 +521,11 @@
     .pc-features li.pc-feature-note{ color: var(--forest-100); font-style:italic; }
     .price-card:not(.featured) .pc-features li.pc-feature-note{ color: var(--muted); }
     .price-boundary{
-      margin: 30px auto 0; text-align:center; max-width: 64ch; font-size:.92rem; line-height:1.6; color: var(--muted);
+      margin: 26px auto 0; text-align:center; max-width: 64ch; font-size:.9rem; line-height:1.55; color: var(--muted);
     }
     .price-boundary strong{ color: var(--neutral-900); font-weight:600; }
-    .price-upgrade{
-      margin: 18px auto 0; text-align:center; max-width: 60ch; font-size:.92rem; font-weight:600; line-height:1.5;
-      color: var(--forest-700); display:flex; align-items:flex-start; justify-content:center; gap:9px;
-    }
-    .price-upgrade svg{ color: var(--forest-600); flex-shrink:0; margin-top:3px; }
     .price-trust{
-      margin: 22px auto 0; text-align:center; max-width:48ch; font-size:.88rem; font-weight:500; color: var(--muted);
+      margin: 14px auto 0; text-align:center; max-width:48ch; font-size:.86rem; font-weight:500; color: var(--muted);
       display:flex; align-items:center; justify-content:center; gap:8px;
     }
     .price-trust svg{ color: var(--forest-600); flex-shrink:0; }
@@ -596,29 +562,24 @@
        ============================================================ */
     @media (max-width: 1024px){
       .hero-grid{ gap: 48px; }
-      .why-card.feat{ grid-column: span 6; }
-      .why-card.wide{ grid-column: span 3; }
-      .why-card.std{ grid-column: span 3; }
     }
     @media (max-width: 980px){
-      :root{ --b-band-pad: 68px; }
-      .hero{ padding-block: 92px 96px; }
+      :root{ --b-band-pad: 60px; }
+      .hero{ padding-block: 80px 84px; }
       .hero-grid{ grid-template-columns: 1fr; gap: 44px; }
       .rufus-stage{ max-width: 460px; }
       .sample-wrap{ grid-template-columns: 1fr; gap: 36px; }
       .ws-grid{ grid-template-columns: 1fr; gap: 36px; }
       .ws-visual{ order:-1; }
-      .scene-wrap{ grid-template-columns: 1fr; gap: 32px; }
-      .scene-wrap.reverse .scene-media,.scene-media{ order:-1; }
+      .safe-wrap{ grid-template-columns: 1fr; gap: 32px; }
+      .safe-wrap .scene-media{ order:-1; aspect-ratio: 16 / 9; }
       .how-flow{ grid-template-columns: repeat(2,1fr); gap: 36px 24px; }
       .how-flow::before{ display:none; }
       .proof-wrap{ grid-template-columns: 1fr; gap: 36px; }
-      .bento{ grid-template-columns: repeat(4,1fr); }
-      .why-card.feat,.why-card.wide,.why-card.std{ grid-column: span 2; }
     }
     @media (max-width: 768px){
       .bento{ grid-template-columns: 1fr; }
-      .why-card.feat,.why-card.wide,.why-card.std{ grid-column: span 1; }
+      .safe-groups{ grid-template-columns: 1fr; gap: 32px; }
       .price-grid{ grid-template-columns: 1fr; }
       .price-card.featured{ transform:none; }
       .compare-grid{ grid-template-columns: 1fr; }
@@ -639,23 +600,6 @@
 <body class="has-atmos">
   <div id="nav"></div>
 
-  <!-- slim sticky in-page sub-nav (revealed after hero) -->
-  <div class="subnav" id="subnav">
-    <div class="container subnav-inner">
-      <nav class="subnav-links" aria-label="Section navigation">
-        <a href="#shift">The shift</a>
-        <a href="#why">Why Luckee</a>
-        <a href="#how">How it works</a>
-        <a href="#workspace">Fix them</a>
-        <a href="#sample">Sample report</a>
-        <a href="#proof">Proof</a>
-        <a href="#compliance">Safe &amp; ongoing</a>
-        <a href="#pricing">Pricing</a>
-      </nav>
-      <a class="btn btn-primary btn-sm" href="audit.html">Audit free</a>
-    </div>
-  </div>
-
   <main>
     <!-- ============================ 1 · HERO ============================ -->
     <section class="band band-dark hero" id="top">
@@ -668,10 +612,9 @@
             <span class="hero-eyebrow b-reveal"><span class="pulse"></span>In-platform SEO → GEO</span>
             <h1 class="b-reveal">See what Alexa for Shopping <em>(formerly Rufus)</em> can't answer.</h1>
             <p class="hero-sub b-reveal">
-              Find the buyer questions your Amazon listing can't answer for
-              <strong>Alexa for Shopping, COSMO and shoppers</strong> — and get fixes you can paste
-              straight into <strong>Title, Bullets, A+ and Search Terms.</strong> When the page never
-              says, Alexa answers <em>“I'm not sure”</em> and the shopper buys elsewhere.
+              Shoppers now ask Amazon's AI assistant before they buy. If your listing can't answer,
+              it recommends someone else. Luckee finds the buyer questions you're missing —
+              and writes the fixes you can drop into your listing.
             </p>
 
             <form class="audit-start b-reveal" id="audit-start" action="audit.html" method="get">
@@ -685,8 +628,8 @@
               </select>
               <span class="as-divider"></span>
               <button class="btn btn-on-dark" type="submit">
-                Get my free Alexa &amp; COSMO score
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                Get my free audit
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </button>
             </form>
 
@@ -772,8 +715,8 @@
         <div class="sec-head b-reveal">
           <span class="eyebrow">The shift</span>
           <h2>Your listing looks great. But can it <span class="ser-accent">talk back?</span></h2>
-          <p class="lede muted">A beautiful PDP wins the scroll. An <em>answerable</em> one wins the agent —
-            and increasingly the agent decides before the shopper ever sees your page.</p>
+          <p class="lede muted">A beautiful page wins the scroll. An <em>answerable</em> one wins the AI
+            assistant — which increasingly decides before the shopper ever sees your page.</p>
         </div>
 
         <div class="compare-grid b-stagger">
@@ -783,27 +726,27 @@
               Listing looks great
             </span>
             <h3 class="serif">Polished &amp; on-brand</h3>
-            <p>Crisp images, benefit-led bullets, a rich A+ page. Everything a human eye expects.</p>
+            <p>Crisp images, benefit-led bullets, a rich A+ page — everything a human eye expects.</p>
           </div>
 
           <div class="compare-arrow">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            <span class="ca-pill">CVR drops</span>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <span class="ca-pill">Sale lost</span>
           </div>
 
           <div class="e-card lift compare-card cc-bad">
             <span class="cc-label">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
               Alexa can't answer
             </span>
             <h3 class="serif">“I'm not sure…”</h3>
-            <p>Ask about hair type, heat or what's in the box and the agent stalls — because the page never says.</p>
+            <p>Ask about hair type, heat or what's in the box and the assistant stalls — because the page never says.</p>
           </div>
         </div>
 
         <div class="stat-block b-reveal">
-          <p class="stat-line" id="stat-line"></p>
-          <p class="stat-source" id="stat-source"></p>
+          <p class="stat-line">More shoppers now let Amazon's AI shortlist for them. A page that can't answer
+            their questions <span class="hl">quietly loses the sale.</span></p>
         </div>
       </div>
     </section>
@@ -815,7 +758,7 @@
         <div class="sec-head b-reveal" style="margin-top:0">
           <span class="eyebrow">Why Luckee</span>
           <h2>Not another keyword tool. An <span class="ser-accent">answerability engine.</span></h2>
-          <p class="lede muted">Six things we do that generic AI rewriters and SEO checkers don't.</p>
+          <p class="lede muted">Four things we do that generic AI rewriters and SEO checkers don't.</p>
         </div>
         <div class="bento b-stagger" id="why-grid"></div>
       </div>
@@ -949,20 +892,16 @@
         <div class="sec-head center b-reveal">
           <span class="eyebrow">What you'll see</span>
           <h2>From AI-invisible to <span class="ser-accent">AI-recommended.</span></h2>
-          <p class="lede muted">A projected, illustrative picture of the before → after you can expect once
-            the gaps are closed — not a guaranteed result.</p>
+          <p class="lede muted">A projected, illustrative picture of the before → after once the gaps are
+            closed — not a guaranteed result.</p>
         </div>
 
         <div class="proof-wrap">
-          <!-- metric band -->
+          <!-- compact projected-metric row -->
           <div class="b-reveal">
+            <span class="proof-tag">Projected · illustrative sample</span>
             <div class="proof-band" id="proof-band"></div>
             <p class="proof-who" id="proof-who"></p>
-            <p class="proof-caption" id="proof-caption"></p>
-            <div class="proof-scene">
-              <img src="assets/scene-alexa.png" alt="Illustration of Alexa for Shopping confidently answering a buyer question on an optimized Amazon listing" loading="lazy">
-              <span class="scene-tag">Illustrative</span>
-            </div>
           </div>
 
           <!-- Alexa before/after illustrative mock -->
@@ -977,7 +916,7 @@
               <div class="mc-bubble mc-user">Is this good for thick hair?</div>
               <div class="mc-bubble mc-rufus mc-rufus-bad">
                 <span class="mc-flag mc-flag-bad">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
                   Can't answer
                 </span>
                 I'm not sure — this listing doesn't say which hair types it's designed for.
@@ -989,7 +928,7 @@
               <div class="mc-bubble mc-user">Is this good for thick hair?</div>
               <div class="mc-bubble mc-rufus mc-rufus-good">
                 <span class="mc-flag mc-flag-good">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
                   Answered
                 </span>
                 Yes — it's designed for thick, fine and wavy hair.
@@ -1000,28 +939,37 @@
       </div>
     </section>
 
-    <!-- ============================ COMPLIANCE ============================ -->
+    <!-- ============================ SAFE & ONGOING (merged) ============================ -->
     <section class="band band-white" id="compliance">
       <hr class="band-rule">
       <div class="container" style="padding-top:0">
-        <div class="scene-wrap">
-          <div class="b-reveal" id="compliance-copy"></div>
+        <div class="sec-head b-reveal" style="margin-top:0">
+          <span class="eyebrow">Safe &amp; ongoing</span>
+          <h2>Built to be safe — and to <span class="ser-accent">keep working.</span></h2>
+          <p class="lede muted">Every fix is checked against Amazon's rules before you publish, and the audit
+            re-runs so your listing keeps answering as your catalog grows.</p>
+        </div>
+
+        <div class="safe-wrap">
+          <div class="safe-groups b-reveal">
+            <div class="safe-group">
+              <div class="sg-head">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+                Safe for Amazon
+              </div>
+              <ul class="scene-points" id="compliance-points"></ul>
+            </div>
+            <div class="safe-group">
+              <div class="sg-head">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-6.5 2.8L3 8"/><path d="M3 3v5h5"/></svg>
+                Keeps working
+              </div>
+              <ul class="scene-points" id="lifecycle-points"></ul>
+            </div>
+          </div>
+
           <div class="scene-media b-reveal">
             <img src="assets/scene-compliance.png" alt="Illustration of an Amazon listing optimization passing compliance and claim-substantiation checks" loading="lazy">
-            <span class="scene-tag">Illustrative</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================ LIFECYCLE ============================ -->
-    <section class="band band-soft" id="lifecycle">
-      <div class="seam seam-top seam-white-down"></div>
-      <div class="container">
-        <div class="scene-wrap reverse">
-          <div class="b-reveal" id="lifecycle-copy"></div>
-          <div class="scene-media b-reveal">
-            <img src="assets/scene-portfolio.png" alt="Illustration of re-auditing listings over time and tracking version history across many ASINs" loading="lazy">
             <span class="scene-tag">Illustrative</span>
           </div>
         </div>
@@ -1072,8 +1020,8 @@
           </select>
           <span class="as-divider"></span>
           <button class="btn btn-on-dark" type="submit">
-            Get my free Alexa &amp; COSMO score
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            Get my free audit
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
         </form>
         <p class="final-cta-sub">No card to start · cancel anytime · no % of your sales.</p>
@@ -1110,12 +1058,7 @@
 
       /* ---- hero dual-optimization reassurance pill ---- */
       document.querySelector('#hero-dualopt span').innerHTML =
-        '<strong>Win Alexa &amp; COSMO</strong>' +
-        L.esc(D.landingCopy.dualOpt.replace(/^Win Alexa & COSMO\s*—?\s*/i, ' — '));
-
-      /* ---- 2 · sourced stat line + source caption ---- */
-      document.getElementById('stat-line').textContent = D.landingCopy.sourcedStat.text;
-      document.getElementById('stat-source').textContent = D.landingCopy.sourcedStat.source;
+        '<strong>Optimizes for Amazon AI</strong> without losing your existing keyword ranking.';
 
       /* ---- hero audit start → audit.html with chosen ASIN (both hero + final CTA) ---- */
       function wireAudit(formId, asinId, mktId) {
@@ -1131,20 +1074,10 @@
       wireAudit('audit-start', 'hero-asin', 'hero-mkt');
       wireAudit('audit-start-2', 'hero-asin-2', 'hero-mkt-2');
 
-      /* ---- 3 · WHY US cards (bento) ---- */
-      // 4 differentiators from data + 2 trust/transparency cards (page-local, not in data.js)
-      const whyExtra = [
-        { icon: 'real-ai', title: 'Real AI, not a GPT wrapper',
-          body: 'We cite the actual extracted evidence and the Alexa for Shopping / COSMO signals behind every fix — you can see the reasoning, not a black box.' },
-        { icon: 'compliant', title: 'Amazon-TOS compliant, authenticity-safe',
-          body: 'We never invent specs, flag claims that need substantiation, and check field limits — so an optimization never gets your listing suppressed.' }
-      ];
-      // bento span pattern → deliberate mixed-size grid (6-col base)
-      const SPANS = ['feat', 'std', 'wide', 'std', 'std', 'wide'];
-      const corner = ['01', '02', '03', '04', '05', '06'];
-      document.getElementById('why-grid').innerHTML = D.differentiators.concat(whyExtra).map((d, i) => `
-        <div class="e-card lift why-card ${SPANS[i] || 'std'}">
-          <span class="wc-corner mono">${corner[i] || ''}</span>
+      /* ---- 3 · WHY US — the 4 core differentiators (clean 2×2) ---- */
+      document.getElementById('why-grid').innerHTML = D.differentiators.map((d, i) => `
+        <div class="e-card lift why-card">
+          <span class="wc-corner mono">0${i + 1}</span>
           <span class="b-tile">${icon(d.icon)}</span>
           <h3 class="serif">${L.esc(d.title)}</h3>
           <p>${L.esc(d.body)}</p>
@@ -1186,8 +1119,7 @@
             <span class="pt-after serif">${L.esc(m.after)}</span>
           </div>
         </div>`).join('');
-      document.getElementById('proof-who').textContent = 'Results from ' + cp.who;
-      document.getElementById('proof-caption').textContent = cp.label;
+      document.getElementById('proof-who').textContent = 'Illustrative sample modeled on ' + cp.who + ' — not a guaranteed result.';
 
       /* ---- 4 · HOW IT WORKS steps ---- */
       document.getElementById('how-flow').innerHTML = D.howItWorks.map(s => `
@@ -1250,6 +1182,9 @@
       const RECURRING_NOTE = 'Includes monitoring & re-audits';
       document.getElementById('price-grid').innerHTML = D.pricing.map(p => {
         const features = p.featured ? p.features.concat([RECURRING_NOTE]) : p.features;
+        // ONE primary CTA label for the "start an audit" action; paid tiers keep their own CTA.
+        const isFree = p.price === '$0';
+        const cta = isFree ? 'Get my free audit' : p.cta;
         return `
         <div class="e-card lift price-card${p.featured ? ' featured' : ''}">
           ${p.featured ? '<span class="pc-badge">Most popular</span>' : ''}
@@ -1259,29 +1194,27 @@
           <ul class="pc-features">
             ${features.map(f => `<li${f === RECURRING_NOTE ? ' class="pc-feature-note"' : ''}>${CHECK}<span>${L.esc(f)}</span></li>`).join('')}
           </ul>
-          <a class="btn ${p.featured ? 'btn-on-dark' : 'btn-outline'} btn-block" href="audit.html">${L.esc(p.cta)}</a>
+          <a class="btn ${p.featured ? 'btn-on-dark' : 'btn-outline'} btn-block" href="audit.html">${L.esc(cta)}</a>
         </div>`;
       }).join('');
 
-      /* ---- COMPLIANCE + LIFECYCLE scene sections (eyebrow + title + point list) ---- */
-      function renderScene(targetId, data) {
+      /* ---- SAFE & ONGOING (merged) — render point lists ---- */
+      // The 2 trust points moved out of Why-Us live here as compliance points (page-local).
+      const trustPoints = [
+        { t: 'Real AI, not a GPT wrapper', d: 'Every fix cites the actual extracted evidence and the Alexa for Shopping / COSMO signals behind it — you see the reasoning, not a black box.' },
+        { t: 'Amazon-TOS compliant, authenticity-safe', d: 'We never invent specs and check field limits, so an optimization never gets your listing suppressed.' }
+      ];
+      function renderPoints(targetId, points) {
         const el = document.getElementById(targetId);
-        if (!el || !data) return;
-        el.innerHTML = `
-          <div class="sec-head" style="max-width:none">
-            <span class="eyebrow">${L.esc(data.eyebrow)}</span>
-            <h2>${L.esc(data.title)}</h2>
-          </div>
-          <ul class="scene-points">
-            ${(data.points || []).map(pt => `
-              <li>
-                <span class="sp-tick">${CHECK}</span>
-                <span class="sp-body"><strong>${L.esc(pt.t)}</strong><span>${L.esc(pt.d)}</span></span>
-              </li>`).join('')}
-          </ul>`;
+        if (!el) return;
+        el.innerHTML = (points || []).map(pt => `
+          <li>
+            <span class="sp-tick">${CHECK}</span>
+            <span class="sp-body"><strong>${L.esc(pt.t)}</strong><span>${L.esc(pt.d)}</span></span>
+          </li>`).join('');
       }
-      renderScene('compliance-copy', D.compliance);
-      renderScene('lifecycle-copy', D.lifecycle);
+      renderPoints('compliance-points', D.compliance.points.concat(trustPoints));
+      renderPoints('lifecycle-points', D.lifecycle.points);
 
       /* ---- scroll-reveal (landing-local; respects reduced-motion via CSS) ---- */
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1300,16 +1233,6 @@
         // safety: never leave content hidden if the observer doesn't fire (idle user, static capture) —
         // reveal anything still un-triggered after 1.3s
         setTimeout(() => revealEls.forEach(el => el.classList.add('in')), 1300);
-      }
-
-      /* ---- sticky sub-nav: show after hero scrolls past ---- */
-      const subnav = document.getElementById('subnav');
-      const hero = document.getElementById('top');
-      if (subnav && hero && 'IntersectionObserver' in window) {
-        const navIo = new IntersectionObserver((entries) => {
-          entries.forEach(en => subnav.classList.toggle('show', !en.isIntersecting));
-        }, { threshold: 0, rootMargin: '-120px 0px 0px 0px' });
-        navIo.observe(hero);
       }
     })();
   </script>

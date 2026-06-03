@@ -81,7 +81,7 @@
         ${link("index.html#pricing", "Pricing")}
         <a href="#" style="color:var(--muted)">Sign in</a>
       </div>
-      <a class="btn btn-primary btn-sm" href="audit.html" aria-label="Audit my listing — free"><span class="cta-full">Audit my listing — free</span><span class="cta-short">Free audit</span></a>
+      <a class="btn btn-primary btn-sm" href="audit.html" aria-label="Get my free audit"><span class="cta-full">Get my free audit</span><span class="cta-short">Free audit</span></a>
     </div></nav>`;
   };
 
@@ -108,7 +108,7 @@
           <div class="brand" style="color:var(--oat-100)"><span class="mark">L</span>Luckee Listing</div>
           <h2 style="color:var(--oat-100);margin:18px 0 10px;font-size:2rem">Audit your listing before your shoppers do.</h2>
           <p class="muted" style="color:var(--forest-300)">In-platform SEO → GEO. Make your listing answer what Alexa for Shopping and shoppers ask — and lift CVR.</p>
-          <a class="btn btn-on-dark" href="audit.html" style="margin-top:8px">Run a free audit →</a>
+          <a class="btn btn-on-dark" href="audit.html" style="margin-top:8px">Get my free audit →</a>
         </div>
         <div class="row wrap" style="gap:56px;align-items:flex-start;font-size:.88rem">
           <div class="stack" style="--gap:10px"><strong style="color:var(--oat-100)">Product</strong><a href="index.html#how">How it works</a><a href="index.html#why">Why Luckee</a><a href="index.html#pricing">Pricing</a></div>
