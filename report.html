@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Diagnosis report · Luckee Listing</title>
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="tokens.css">
   <style>
     /* ============================================================
@@ -353,6 +354,7 @@
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
         <span><b>Sample report</b> — this prototype shows a pre-computed audit for Funflow (<span class="mono">B0G1MJWK3Z</span>, US). Your own input is not yet connected to live extraction.</span>
       </div>
+      <div data-funnel-slot="report" data-reveal></div>
 
       <!-- ===================== 0b. TOP-LINE SUMMARY (3 things at a glance) ===================== -->
       <section class="card card-pad topline" id="topline" data-reveal>
@@ -552,11 +554,11 @@
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
           <div>
             <div class="t">Ready to fix these?</div>
-            <div class="s">Open the optimization workspace — every gap becomes a ready-to-paste rewrite.</div>
+            <div class="s">Generate the optimization bundle — every gap becomes a ready-to-paste rewrite.</div>
           </div>
         </div>
-        <a class="btn btn-on-dark btn-lg" href="workspace.html">
-          Open optimization workspace
+        <a class="btn btn-on-dark btn-lg" href="workspace.html" data-credit-action="optimize">
+          Generate optimization bundle
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -572,6 +574,7 @@
 
       /* ---- app bar (product identity + step progress + Open workspace) ---- */
       document.getElementById('nav').innerHTML = L.appBar('report');
+      L.bootstrapFunnelPage();
 
       /* ---- LIVE SCORE: compute from qaGroups so numbers can never drift ---- */
       const allItems = D.qaGroups.reduce((acc, g) => acc.concat(g.items), []);
