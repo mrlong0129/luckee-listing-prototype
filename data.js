@@ -266,10 +266,10 @@ window.LUCKEE_DATA = {
     eyebrow: "Built safe for Amazon",
     title: "Optimizations that never get your listing suppressed.",
     points: [
-      { t: "Never invents specs", d: "Every fix is evidence-gated. If a fact isn't on your page, we insert a [confirm …] placeholder for you to fill — we never fabricate temperatures, certifications or compatibility." },
-      { t: "Flags claims that need substantiation", d: "Suitability and performance claims (e.g. \"for all hair types\") are flagged as needs-confirmation so you can verify them before Amazon ever asks you to." },
-      { t: "Enforces Amazon limits", d: "Title, bullet and Search Terms rewrites are checked against Amazon's character and byte limits — including the 250-byte backend cap — so nothing gets truncated or rejected." },
-      { t: "Checks restricted & banned words", d: "We screen for prohibited and restricted terms (\"best seller\", \"#1\", \"FDA approved\", \"guaranteed\") so an optimization never triggers a listing suppression." }
+      { t: "Never invents specs", d: "Missing facts become a [confirm …] placeholder — never fabricated." },
+      { t: "Flags claims to verify", d: "Suitability & performance claims are flagged for you to confirm first." },
+      { t: "Enforces Amazon limits", d: "Rewrites respect Amazon's character & 250-byte limits — nothing truncated." },
+      { t: "Checks banned words", d: "Screens terms like \"best seller\" or \"FDA approved\" to avoid suppression." }
     ]
   },
 
@@ -278,9 +278,9 @@ window.LUCKEE_DATA = {
     eyebrow: "Built for ongoing optimization",
     title: "Listing optimization is a loop, not a one-off.",
     points: [
-      { t: "Re-audit to measure the lift", d: "Run the audit again after you publish to measure your before → after answerability lift — see exactly which gaps you closed." },
-      { t: "Version history per ASIN", d: "Every audit and edit is saved as a version per ASIN, so you can track changes over time and roll back when needed." },
-      { t: "Manage many ASINs", d: "Run and compare audits across an entire catalog — built for agencies and portfolio sellers managing many ASINs at once." }
+      { t: "Re-audit to measure the lift", d: "Re-run after publishing to see your before → after answerability lift." },
+      { t: "Version history per ASIN", d: "Every audit & edit saved per ASIN — track changes, roll back anytime." },
+      { t: "Manage many ASINs", d: "Run & compare audits across a whole catalog — built for agencies." }
     ]
   }
 };

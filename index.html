@@ -405,6 +405,11 @@
     .proof-tile .pt-arrow{ color: var(--forest-300); }
     .proof-tile .pt-after{ font-family: var(--serif); font-size:2rem; line-height:1; color: var(--forest-600); font-weight:400; }
     .proof-who{ margin:18px 0 0; font-size:.88rem; color: var(--muted); }
+    .proof-photo{
+      margin-top:22px; position:relative; border-radius: var(--b-radius-frame); overflow:hidden;
+      border:1px solid var(--b-hair); box-shadow: var(--b-shadow-card); aspect-ratio: 16 / 10;
+    }
+    .proof-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
 
     .proof-mock{ padding:22px; }
     .proof-mock-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px; flex-wrap:wrap; }
@@ -489,7 +494,7 @@
     .scene-points .sp-body span{ color: var(--muted); font-size:.88rem; line-height:1.5; }
     .scene-media{
       border-radius: var(--b-radius-frame); overflow:hidden; position:relative;
-      border:1px solid var(--b-hair); box-shadow: var(--b-shadow-card); aspect-ratio: 4 / 5;
+      border:1px solid var(--b-hair); box-shadow: var(--b-shadow-card); aspect-ratio: 4 / 3;
     }
     .scene-media img{ width:100%; height:100%; object-fit:cover; display:block; }
 
@@ -798,9 +803,9 @@
           <div class="ws-copy b-reveal">
             <span class="hero-eyebrow"><span class="pulse"></span>The optimization workspace</span>
             <h2 style="margin-top:18px">Don't just see the problems — <em class="ser-accent" style="color:var(--premium-gold-light)">fix them.</em></h2>
-            <p class="hero-sub" style="margin-top:18px">
-              Every gap becomes a concrete rewrite in the workspace. Edit it, approve it, and export it
-              <strong>ready to paste</strong> into Seller Central — no prompts to write, no assets to download.
+            <p class="hero-sub" style="margin-top:16px;max-width:44ch">
+              Every gap becomes a concrete rewrite — edit it, approve it, and export it
+              <strong>ready to paste</strong> into Seller Central.
             </p>
 
             <div class="ws-flow">
@@ -832,8 +837,7 @@
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
                 Keyword-gap &amp; competitor coverage
               </span>
-              <p>See which high-volume category &amp; scenario keywords you're missing, which belong in
-                backend Search Terms, and what competitors cover that you don't.</p>
+              <p>The high-volume keywords you're missing, which belong in backend Search Terms, and what competitors cover.</p>
             </div>
 
             <a class="btn btn-on-dark" href="workspace.html" style="margin-top:24px">
@@ -902,6 +906,10 @@
             <span class="proof-tag">Projected · illustrative sample</span>
             <div class="proof-band" id="proof-band"></div>
             <p class="proof-who" id="proof-who"></p>
+            <div class="proof-photo">
+              <img src="assets/scene-alexa.png" alt="Illustration of a shopper asking Amazon's AI shopping assistant about a product on their phone" loading="lazy">
+              <span class="scene-tag">Illustrative</span>
+            </div>
           </div>
 
           <!-- Alexa before/after illustrative mock -->
@@ -1198,12 +1206,7 @@
         </div>`;
       }).join('');
 
-      /* ---- SAFE & ONGOING (merged) — render point lists ---- */
-      // The 2 trust points moved out of Why-Us live here as compliance points (page-local).
-      const trustPoints = [
-        { t: 'Real AI, not a GPT wrapper', d: 'Every fix cites the actual extracted evidence and the Alexa for Shopping / COSMO signals behind it — you see the reasoning, not a black box.' },
-        { t: 'Amazon-TOS compliant, authenticity-safe', d: 'We never invent specs and check field limits, so an optimization never gets your listing suppressed.' }
-      ];
+      /* ---- SAFE & ONGOING (merged) — render point lists (data.js source of truth) ---- */
       function renderPoints(targetId, points) {
         const el = document.getElementById(targetId);
         if (!el) return;
@@ -1213,7 +1216,7 @@
             <span class="sp-body"><strong>${L.esc(pt.t)}</strong><span>${L.esc(pt.d)}</span></span>
           </li>`).join('');
       }
-      renderPoints('compliance-points', D.compliance.points.concat(trustPoints));
+      renderPoints('compliance-points', D.compliance.points);
       renderPoints('lifecycle-points', D.lifecycle.points);
 
       /* ---- scroll-reveal (landing-local; respects reduced-motion via CSS) ---- */
