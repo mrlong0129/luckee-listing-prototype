@@ -24,11 +24,11 @@ window.LUCKEE_DATA = {
   answerability: { clear: 3, total: 21, projectedClear: 14, high: 3, med: 8, low: 10 },
 
   executiveSummary:
-    "The Funflow 6-in-1 Hair Dryer Brush listing communicates core functionality and versatility well across its 6 attachments, and its high-speed motor and negative-ion claims are clearly stated. However, Rufus cannot confidently answer several decision-critical buyer questions. The single most damaging gap is hair-type suitability — no text anywhere states which hair types (thick, fine, curly) the tool serves, so shoppers searching \"hair dryer brush for thick hair\" get no matching signal. Temperature behaviour, exact package contents, and the premium-aluminum differentiator are also under-expressed. Closing these gaps is projected to lift clearly-answered questions from 3/21 to about 14/21 and improve conversion on long-tail, intent-rich searches.",
+    "The Funflow 6-in-1 Hair Dryer Brush listing communicates core functionality and versatility well across its 6 attachments, and its high-speed motor and negative-ion claims are clearly stated. However, Alexa for Shopping cannot confidently answer several decision-critical buyer questions. The single most damaging gap is hair-type suitability — no text anywhere states which hair types (thick, fine, curly) the tool serves, so shoppers searching \"hair dryer brush for thick hair\" get no matching signal. Temperature behaviour, exact package contents, and the premium-aluminum differentiator are also under-expressed. Closing these gaps is projected to lift clearly-answered questions from 3/21 to about 14/21 and improve conversion on long-tail, intent-rich searches.",
 
   /* ---- Risk / Gap / Impact ---- */
   risks: [
-    { level: "HIGH", gap: "Hair type suitability completely missing", impact: "Buyers searching \"hair dryer brush for thick / fine / curly hair\" get no matching signal — Rufus answers UNKNOWN and the shopper moves on.", fix: "Bullets · Title · A+ lifestyle" },
+    { level: "HIGH", gap: "Hair type suitability completely missing", impact: "Buyers searching \"hair dryer brush for thick / fine / curly hair\" get no matching signal — Alexa for Shopping answers UNKNOWN and the shopper moves on.", fix: "Bullets · Title · A+ lifestyle" },
     { level: "MED", gap: "Temperature settings have no values", impact: "\"How hot does it get?\" and heat-damage concerns are unanswerable; heat-sensitive shoppers hesitate.", fix: "Bullet 4 · Spec table" },
     { level: "MED", gap: "Package contents scattered / incomplete", impact: "\"What's in the box?\" cannot be answered cleanly — 6-in-1 value is undersold.", fix: "Bullet 5 · A+" },
     { level: "MED", gap: "Premium aluminum body USP only in title", impact: "Key durability/quality differentiator is invisible in bullets and A+, so it does not register at decision time.", fix: "Bullet 1 · A+ hero" },
@@ -56,7 +56,7 @@ window.LUCKEE_DATA = {
     notes: ["Evidence-gated: no specs, certifications, or compatibility inferred beyond what the page states.", "Brand 'Funflow' detected — not treated as a generic keyword."]
   },
 
-  /* ---- Rufus Q&A Simulation (>=20), grouped by decision area ---- */
+  /* ---- Alexa Shopping Q&A Simulation (>=20), grouped by decision area ---- */
   qaGroups: [
     { area: "Functionality & performance", items: [
       { q: "Can this dry and style my hair at the same time?", intent: "Core function", support: "CLEAR", answer: "Yes — it is a 6-in-1 hot-air styler that dries while curling, smoothing and volumizing.", evidence: "Title; Bullet 1", gap: "None", risk: "LOW", fix: "—" },
@@ -130,7 +130,7 @@ window.LUCKEE_DATA = {
         label: "Title", status: "available", priority: "P1", riskLevel: "low",
         currentValue: "Funflow 6-in-1 Hair Dryer Brush with Premium Aluminum Body, 110,000 RPM High-Speed Air Styler with Auto-Wrap Curlers, 200 Million Negative Ions, for Drying, Curling, Smoothing & Volumizing",
         suggestedValue: "Funflow 6-in-1 Hair Dryer Brush for All Hair Types, Premium Aluminum Body, 110,000 RPM High-Speed Air Styler with Auto-Wrap Curlers, 200 Million Negative Ions, for Drying, Curling, Smoothing & Volumizing",
-        reason: "Adding \"for All Hair Types\" helps Rufus answer hair-type suitability questions and captures long-tail searches. The current title covers specs well but lacks audience targeting.",
+        reason: "Adding \"for All Hair Types\" helps Alexa for Shopping answer hair-type suitability questions and captures long-tail searches. The current title covers specs well but lacks audience targeting.",
         impact: "Resolves the top HIGH-risk gap signal in the most-weighted field.",
         sourceEvidence: ["Title", "Q&A: hair-type cluster"],
         embeddedKeywords: ["hair dryer brush", "air styler"],
@@ -213,10 +213,10 @@ window.LUCKEE_DATA = {
 
   /* ---- Landing-page content ---- */
   landingCopy: {
-    dualOpt: "Win Rufus & COSMO — without losing your A9/A10 keyword ranking.",
+    dualOpt: "Win Alexa & COSMO — without losing your A9/A10 keyword ranking.",
     // Replaces the unsourced "1 in 3 buyers" line. Still flagged for citation before launch.
     sourcedStat: {
-      text: "AI shopping assistants are now a core pre-purchase touchpoint: Rufus reached an estimated ~38% of Amazon-app shoppers by Black Friday 2025, with AI-driven shopping at ~$14.2B globally.",
+      text: "AI shopping assistants are now a core pre-purchase touchpoint: Alexa for Shopping reached an estimated ~38% of Amazon-app shoppers by Black Friday 2025, with AI-driven shopping at ~$14.2B globally.",
       source: "Industry estimates 2025–26 — replace with a primary citation before launch."
     }
   },
@@ -224,7 +224,7 @@ window.LUCKEE_DATA = {
   compareTable: {
     cols: ["Luckee Listing", "Generic AI rewriter", "Off-Amazon GEO tool"],
     rows: [
-      { feature: "Optimizes for Amazon Rufus + COSMO", vals: [true, false, "partial"] },
+      { feature: "Optimizes for Amazon Alexa for Shopping + COSMO", vals: [true, false, "partial"] },
       { feature: "Evidence-gated — never invents specs", vals: [true, false, "partial"] },
       { feature: "20+ shopper-question answerability audit", vals: [true, false, false] },
       { feature: "Top-competitor module benchmark", vals: [true, "partial", false] },
@@ -235,12 +235,12 @@ window.LUCKEE_DATA = {
   },
   // Illustrative proof band — REPLACE with a real audited ASIN before launch.
   caseProof: {
-    label: "Illustrative — replace with a real audited ASIN before launch",
+    label: "Illustrative sample — not a guarantee. Replace with a real audited ASIN before launch.",
     who: "a 7-figure beauty-tools brand",
     metrics: [
       { label: "COSMO content score", before: "62", after: "94" },
-      { label: "Rufus-answerable questions", before: "3 / 21", after: "15 / 21" },
-      { label: "Detail-page conversion", before: "baseline", after: "+8%" }
+      { label: "Alexa-answerable questions", before: "3 / 21", after: "15 / 21" },
+      { label: "Detail-page conversion", before: "baseline", after: "projected uplift" }
     ]
   },
   differentiators: [
@@ -250,14 +250,37 @@ window.LUCKEE_DATA = {
     { icon: "wand", title: "Last-mile execution", body: "We hand you the exact rewrite, in the exact field, ready to paste. No prompts to write. No assets to download." }
   ],
   howItWorks: [
-    { step: "01", title: "Extract evidence", body: "Pull title, bullets, description, A+ and spec data into a normalized Evidence Pack." },
-    { step: "02", title: "Simulate Rufus Q&A", body: "Generate 20+ realistic pre-purchase questions across every decision area." },
-    { step: "03", title: "Score answerability", body: "Label each as Clear / Partial / Unknown / Conflict and flag the risk." },
-    { step: "04", title: "Prioritize fixes", body: "Turn every gap into a P0/P1/P2 rewrite placed in the exact listing field." }
+    { step: "01", title: "Extract evidence", body: "Pull title, bullets, description, A+ and spec data into a normalized Evidence Pack.", youGet: "The evidence pack of what Amazon AI can actually read in your listing." },
+    { step: "02", title: "Simulate Alexa Shopping Q&A", body: "Generate 20+ realistic pre-purchase questions across every decision area.", youGet: "The buyer questions your listing must answer but may be missing today." },
+    { step: "03", title: "Score answerability", body: "Label each as Clear / Partial / Unknown / Conflict and flag the risk.", youGet: "Which questions are hurting AI recommendation and conversion right now." },
+    { step: "04", title: "Prioritize fixes", body: "Turn every gap into a P0/P1/P2 rewrite placed in the exact listing field.", youGet: "Edits you can paste straight into Title, Bullets, A+ and Search Terms." }
   ],
   pricing: [
-    { name: "Free diagnostic", price: "$0", tagline: "See your gaps", features: ["1 full audit", "Evidence Pack + Q&A simulation", "Top-3 priority actions"], cta: "Audit free", featured: false },
-    { name: "Seller", price: "$49", per: "/mo", tagline: "Fix and ship", features: ["20 audits / mo", "Full optimization workspace", "Export ready-to-paste briefs", "Competitor benchmark"], cta: "Start free trial", featured: true },
-    { name: "Agency", price: "$149", per: "/mo", tagline: "Scale across listings", features: ["100 audits / mo", "Multi-listing history", "White-label exports", "Priority support"], cta: "Start free trial", featured: false }
-  ]
+    { name: "Free diagnostic", price: "$0", tagline: "See your gaps", features: ["1 full audit", "Alexa answerability score", "Top 3 gaps", "Sample of the Q&A simulation", "Top-3 priority actions", "Sample competitor benchmark"], cta: "Audit free", featured: false },
+    { name: "Seller", price: "$49", per: "/mo", tagline: "Fix and ship", features: ["20 audits / mo", "Full 20+ Q&A simulation", "Full competitor benchmark", "Title · Bullets · A+ · Search Terms fixes", "Ready-to-paste export", "Compliance & claim checks", "Re-audit + history"], cta: "Start free trial", featured: true },
+    { name: "Agency", price: "$149", per: "/mo", tagline: "Scale across listings", features: ["100 audits / mo", "Multi-ASIN management", "Batch reports", "White-label exports", "Team collaboration", "Client report templates"], cta: "Start free trial", featured: false }
+  ],
+
+  /* ---- Compliance / safety section (landing) ---- */
+  compliance: {
+    eyebrow: "Built safe for Amazon",
+    title: "Optimizations that never get your listing suppressed.",
+    points: [
+      { t: "Never invents specs", d: "Every fix is evidence-gated. If a fact isn't on your page, we insert a [confirm …] placeholder for you to fill — we never fabricate temperatures, certifications or compatibility." },
+      { t: "Flags claims that need substantiation", d: "Suitability and performance claims (e.g. \"for all hair types\") are flagged as needs-confirmation so you can verify them before Amazon ever asks you to." },
+      { t: "Enforces Amazon limits", d: "Title, bullet and Search Terms rewrites are checked against Amazon's character and byte limits — including the 250-byte backend cap — so nothing gets truncated or rejected." },
+      { t: "Checks restricted & banned words", d: "We screen for prohibited and restricted terms (\"best seller\", \"#1\", \"FDA approved\", \"guaranteed\") so an optimization never triggers a listing suppression." }
+    ]
+  },
+
+  /* ---- Lifecycle / ongoing optimization section (landing) ---- */
+  lifecycle: {
+    eyebrow: "Built for ongoing optimization",
+    title: "Listing optimization is a loop, not a one-off.",
+    points: [
+      { t: "Re-audit to measure the lift", d: "Run the audit again after you publish to measure your before → after answerability lift — see exactly which gaps you closed." },
+      { t: "Version history per ASIN", d: "Every audit and edit is saved as a version per ASIN, so you can track changes over time and roll back when needed." },
+      { t: "Manage many ASINs", d: "Run and compare audits across an entire catalog — built for agencies and portfolio sellers managing many ASINs at once." }
+    ]
+  }
 };

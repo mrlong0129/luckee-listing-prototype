@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luckee Listing · See what Rufus can't answer — before it costs you the sale</title>
+  <title>Luckee Listing · See what Alexa for Shopping can't answer — before it costs you the sale</title>
   <link rel="stylesheet" href="tokens.css">
   <noscript><style>.b-reveal,.b-stagger>*{opacity:1!important;transform:none!important}</style></noscript>
   <style>
@@ -369,6 +369,11 @@
     .how-step:hover .how-num{ transform: translateY(-3px); border-color: var(--forest-600); box-shadow: var(--sh-brand); }
     .how-step h3{ font-size:1.2rem; margin-bottom:8px; }
     .how-step p{ color: var(--muted); font-size:.9rem; margin:0; line-height:1.6; }
+    .how-youget{
+      margin-top:12px !important; padding-top:12px; border-top:1px solid var(--b-hair);
+      color: var(--neutral-900) !important; font-size:.86rem !important; line-height:1.5 !important;
+    }
+    .how-youget .hy-label{ font-weight:700; color: var(--forest-700); }
 
     /* ============================================================
        5 · SAMPLE REPORT — product mockup in device frame
@@ -443,6 +448,81 @@
     .mc-flag-good{ color: var(--success-600); }
 
     /* ============================================================
+       WORKSPACE BAND — "Don't just see the problems — fix them"
+       ============================================================ */
+    .ws-grid{ display:grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr); gap: 52px; align-items:center; }
+    .ws-copy .ws-flow{
+      display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin: 22px 0 6px;
+    }
+    .ws-step{
+      display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:.9rem;
+      color: var(--oat-100); background: rgba(255,255,255,.06); border:1px solid var(--b-hair-dark);
+      padding: 8px 14px; border-radius: var(--r-pill);
+    }
+    .ws-step svg{ color: var(--premium-gold-light); flex-shrink:0; }
+    .ws-arrow{ color: var(--forest-300); flex-shrink:0; }
+    .ws-fields{ display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+    .ws-field{
+      font-family: var(--mono); font-size:.78rem; letter-spacing:.01em;
+      color: var(--oat-100); background: rgba(217,232,218,.10); border:1px solid var(--b-hair-dark);
+      padding: 6px 12px; border-radius: var(--r-pill);
+    }
+    .ws-promise{
+      display:inline-flex; align-items:center; gap:9px; margin-top:24px;
+      padding: 11px 17px; border-radius: var(--r-pill);
+      background: rgba(201,168,76,.12); border:1px solid rgba(232,201,106,.36);
+      color: var(--oat-100); font-size:.9rem; font-weight:600;
+    }
+    .ws-promise svg{ color: var(--premium-gold-light); flex-shrink:0; }
+    .ws-visual{
+      border-radius: var(--b-radius-frame); overflow:hidden; position:relative;
+      border:1px solid var(--b-hair-dark); box-shadow: var(--b-shadow-float); aspect-ratio: 4 / 3;
+    }
+    .ws-visual img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .scene-tag{
+      position:absolute; bottom:12px; left:12px; z-index:2;
+      font-size:.66rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      color: var(--oat-100); background: rgba(28,43,29,.62); backdrop-filter: blur(4px);
+      padding: 5px 11px; border-radius: var(--r-pill); border:1px solid rgba(217,232,218,.18);
+    }
+    .ws-keyword{
+      margin-top:26px; padding:20px 22px; border-radius: var(--r-card);
+      background: rgba(255,255,255,.05); border:1px solid var(--b-hair-dark);
+    }
+    .ws-keyword .wk-head{
+      display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:.95rem;
+      color: var(--oat-100); margin-bottom:8px;
+    }
+    .ws-keyword .wk-head svg{ color: var(--premium-gold-light); flex-shrink:0; }
+    .ws-keyword p{ color: var(--forest-300); font-size:.9rem; line-height:1.6; margin:0; }
+
+    /* ============================================================
+       SCENE SECTIONS (compliance / lifecycle) — copy + illustrative visual
+       ============================================================ */
+    .scene-wrap{ display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 52px; align-items:center; }
+    .scene-wrap.reverse .scene-media{ order:-1; }
+    .scene-points{ list-style:none; padding:0; margin: 26px 0 0; display:flex; flex-direction:column; gap:18px; }
+    .scene-points li{ display:flex; gap:14px; align-items:flex-start; }
+    .scene-points .sp-tick{
+      width:26px; height:26px; border-radius:8px; flex-shrink:0; margin-top:2px;
+      display:grid; place-items:center; background: var(--forest-050); border:1px solid var(--forest-100); color: var(--forest-600);
+    }
+    .scene-points .sp-body strong{ display:block; font-size:1rem; color: var(--neutral-900); margin-bottom:3px; }
+    .scene-points .sp-body span{ color: var(--muted); font-size:.9rem; line-height:1.55; }
+    .scene-media{
+      border-radius: var(--b-radius-frame); overflow:hidden; position:relative;
+      border:1px solid var(--b-hair); box-shadow: var(--b-shadow-card); aspect-ratio: 4 / 3;
+    }
+    .scene-media img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* proof illustrative visual */
+    .proof-scene{
+      margin-top:20px; border-radius: var(--r-card); overflow:hidden; position:relative;
+      border:1px solid var(--b-hair); aspect-ratio: 16 / 9;
+    }
+    .proof-scene img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* ============================================================
        6 · PRICING
        ============================================================ */
     .price-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 22px; align-items:stretch; }
@@ -469,8 +549,17 @@
     }
     .pc-features li.pc-feature-note{ color: var(--forest-100); font-style:italic; }
     .price-card:not(.featured) .pc-features li.pc-feature-note{ color: var(--muted); }
+    .price-boundary{
+      margin: 30px auto 0; text-align:center; max-width: 64ch; font-size:.92rem; line-height:1.6; color: var(--muted);
+    }
+    .price-boundary strong{ color: var(--neutral-900); font-weight:600; }
+    .price-upgrade{
+      margin: 18px auto 0; text-align:center; max-width: 60ch; font-size:.92rem; font-weight:600; line-height:1.5;
+      color: var(--forest-700); display:flex; align-items:flex-start; justify-content:center; gap:9px;
+    }
+    .price-upgrade svg{ color: var(--forest-600); flex-shrink:0; margin-top:3px; }
     .price-trust{
-      margin: 34px auto 0; text-align:center; max-width:48ch; font-size:.88rem; font-weight:500; color: var(--muted);
+      margin: 22px auto 0; text-align:center; max-width:48ch; font-size:.88rem; font-weight:500; color: var(--muted);
       display:flex; align-items:center; justify-content:center; gap:8px;
     }
     .price-trust svg{ color: var(--forest-600); flex-shrink:0; }
@@ -517,6 +606,10 @@
       .hero-grid{ grid-template-columns: 1fr; gap: 44px; }
       .rufus-stage{ max-width: 460px; }
       .sample-wrap{ grid-template-columns: 1fr; gap: 36px; }
+      .ws-grid{ grid-template-columns: 1fr; gap: 36px; }
+      .ws-visual{ order:-1; }
+      .scene-wrap{ grid-template-columns: 1fr; gap: 32px; }
+      .scene-wrap.reverse .scene-media,.scene-media{ order:-1; }
       .how-flow{ grid-template-columns: repeat(2,1fr); gap: 36px 24px; }
       .how-flow::before{ display:none; }
       .proof-wrap{ grid-template-columns: 1fr; gap: 36px; }
@@ -538,6 +631,8 @@
       .proof-band{ grid-template-columns: 1fr; gap: 12px; }
       .cmp-card{ overflow-x:auto; }
       .cmp-card .table{ min-width: 540px; }
+      .ws-flow{ gap: 8px; }
+      .ws-step{ font-size:.82rem; padding: 7px 11px; }
     }
   </style>
 </head>
@@ -550,10 +645,11 @@
       <nav class="subnav-links" aria-label="Section navigation">
         <a href="#shift">The shift</a>
         <a href="#why">Why Luckee</a>
-        <a href="#compare">Compare</a>
         <a href="#how">How it works</a>
+        <a href="#workspace">Fix them</a>
         <a href="#sample">Sample report</a>
         <a href="#proof">Proof</a>
+        <a href="#compliance">Safe &amp; ongoing</a>
         <a href="#pricing">Pricing</a>
       </nav>
       <a class="btn btn-primary btn-sm" href="audit.html">Audit free</a>
@@ -570,11 +666,12 @@
           <!-- left: narrative + audit control -->
           <div>
             <span class="hero-eyebrow b-reveal"><span class="pulse"></span>In-platform SEO → GEO</span>
-            <h1 class="b-reveal">See what Rufus <em>can't answer</em> — before it costs you the sale.</h1>
+            <h1 class="b-reveal">See what Alexa for Shopping <em>(formerly Rufus)</em> can't answer.</h1>
             <p class="hero-sub b-reveal">
-              Shopping is moving from search to agents. A polished listing that can't answer
-              <strong>compatibility, sizing or usage</strong> makes Rufus (and Amazon's COSMO ranking)
-              unable to answer — Rufus says <em>“I'm not sure”</em> and the shopper bounces.
+              Find the buyer questions your Amazon listing can't answer for
+              <strong>Alexa for Shopping, COSMO and shoppers</strong> — and get fixes you can paste
+              straight into <strong>Title, Bullets, A+ and Search Terms.</strong> When the page never
+              says, Alexa answers <em>“I'm not sure”</em> and the shopper buys elsewhere.
             </p>
 
             <form class="audit-start b-reveal" id="audit-start" action="audit.html" method="get">
@@ -588,7 +685,7 @@
               </select>
               <span class="as-divider"></span>
               <button class="btn btn-on-dark" type="submit">
-                Get my free Rufus &amp; COSMO score
+                Get my free Alexa &amp; COSMO score
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </button>
             </form>
@@ -620,7 +717,7 @@
               <div class="rufus-card">
                 <div class="rufus-chrome">
                   <span class="dots"><i></i><i></i><i></i></span>
-                  <span class="url">amazon.com/dp/B0G1MJWK3Z · Rufus</span>
+                  <span class="url">amazon.com/dp/B0G1MJWK3Z · Alexa</span>
                 </div>
                 <div class="rufus-body">
                   <div class="rufus-head">
@@ -628,7 +725,7 @@
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4m0 0H8m4 0h4M5 8h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2Z"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/></svg>
                     </div>
                     <div>
-                      <div class="rh-name">Rufus</div>
+                      <div class="rh-name">Alexa</div>
                       <div class="rh-meta">Amazon shopping assistant</div>
                     </div>
                   </div>
@@ -657,7 +754,7 @@
         <div class="logo-strip b-reveal">
           <div class="ls-label">Built for the way Amazon shoppers now buy</div>
           <div class="logo-row">
-            <span class="logo-chip"><span class="lc-mark">R</span>Rufus</span>
+            <span class="logo-chip"><span class="lc-mark">A</span>Alexa Shopping</span>
             <span class="logo-chip"><span class="lc-mark">C</span>COSMO ranking</span>
             <span class="logo-chip"><span class="lc-mark">A+</span>A+ content</span>
             <span class="logo-chip"><span class="lc-mark">SC</span>Seller Central</span>
@@ -697,7 +794,7 @@
           <div class="e-card lift compare-card cc-bad">
             <span class="cc-label">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-              Rufus can't answer
+              Alexa can't answer
             </span>
             <h3 class="serif">“I'm not sure…”</h3>
             <p>Ask about hair type, heat or what's in the box and the agent stalls — because the page never says.</p>
@@ -750,6 +847,73 @@
       </div>
     </section>
 
+    <!-- ============================ WORKSPACE BAND ============================ -->
+    <section class="band band-dark" id="workspace">
+      <div class="seam seam-top seam-oat-down"></div>
+      <div class="container">
+        <div class="ws-grid">
+          <div class="ws-copy b-reveal">
+            <span class="hero-eyebrow"><span class="pulse"></span>The optimization workspace</span>
+            <h2 style="margin-top:18px">Don't just see the problems — <em class="ser-accent" style="color:var(--premium-gold-light)">fix them.</em></h2>
+            <p class="hero-sub" style="margin-top:18px">
+              Every gap becomes a concrete rewrite in the workspace. Edit it, approve it, and export it
+              <strong>ready to paste</strong> into Seller Central — no prompts to write, no assets to download.
+            </p>
+
+            <div class="ws-flow">
+              <span class="ws-step">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                Edit
+              </span>
+              <svg class="ws-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <span class="ws-step">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+                Approve
+              </span>
+              <svg class="ws-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <span class="ws-step">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+                Export
+              </span>
+            </div>
+
+            <div class="ws-fields">
+              <span class="ws-field">Title</span>
+              <span class="ws-field">Bullets</span>
+              <span class="ws-field">A+</span>
+              <span class="ws-field">Search Terms</span>
+            </div>
+
+            <div class="ws-keyword">
+              <span class="wk-head">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                Keyword-gap &amp; competitor coverage
+              </span>
+              <p>See which high-volume category &amp; scenario keywords you're missing, which belong in
+                backend Search Terms, and what competitors cover that you don't.</p>
+            </div>
+
+            <a class="btn btn-on-dark" href="workspace.html" style="margin-top:24px">
+              See the optimization workspace
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+
+          <div class="b-reveal">
+            <div class="ws-visual">
+              <img src="assets/scene-seller.png" alt="Illustration of a seller editing and exporting Amazon-ready listing fixes in the Luckee optimization workspace" loading="lazy">
+              <span class="scene-tag">Illustrative</span>
+            </div>
+            <div class="ws-promise">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+              Ready-to-paste · no prompts · no downloads.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="seam seam-bot seam-white-up"></div>
+    </section>
+
     <!-- ============================ 5 · SAMPLE REPORT ============================ -->
     <section class="band band-white" id="sample">
       <hr class="band-rule">
@@ -783,8 +947,10 @@
       <div class="seam seam-top seam-white-down"></div>
       <div class="container">
         <div class="sec-head center b-reveal">
-          <span class="eyebrow">Proof</span>
+          <span class="eyebrow">What you'll see</span>
           <h2>From AI-invisible to <span class="ser-accent">AI-recommended.</span></h2>
+          <p class="lede muted">A projected, illustrative picture of the before → after you can expect once
+            the gaps are closed — not a guaranteed result.</p>
         </div>
 
         <div class="proof-wrap">
@@ -793,13 +959,17 @@
             <div class="proof-band" id="proof-band"></div>
             <p class="proof-who" id="proof-who"></p>
             <p class="proof-caption" id="proof-caption"></p>
+            <div class="proof-scene">
+              <img src="assets/scene-alexa.png" alt="Illustration of Alexa for Shopping confidently answering a buyer question on an optimized Amazon listing" loading="lazy">
+              <span class="scene-tag">Illustrative</span>
+            </div>
           </div>
 
-          <!-- Rufus before/after illustrative mock -->
+          <!-- Alexa before/after illustrative mock -->
           <div class="e-card proof-mock b-reveal">
             <div class="proof-mock-head">
-              <span class="eyebrow" style="color:var(--forest-600)">Rufus · before → after</span>
-              <span class="chip chip-unknown">Illustrative sample</span>
+              <span class="eyebrow" style="color:var(--forest-600)">Alexa · before → after</span>
+              <span class="chip chip-unknown">Illustrative</span>
             </div>
 
             <div class="mini-chat">
@@ -830,8 +1000,37 @@
       </div>
     </section>
 
+    <!-- ============================ COMPLIANCE ============================ -->
+    <section class="band band-white" id="compliance">
+      <hr class="band-rule">
+      <div class="container" style="padding-top:0">
+        <div class="scene-wrap">
+          <div class="b-reveal" id="compliance-copy"></div>
+          <div class="scene-media b-reveal">
+            <img src="assets/scene-compliance.png" alt="Illustration of an Amazon listing optimization passing compliance and claim-substantiation checks" loading="lazy">
+            <span class="scene-tag">Illustrative</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ LIFECYCLE ============================ -->
+    <section class="band band-soft" id="lifecycle">
+      <div class="seam seam-top seam-white-down"></div>
+      <div class="container">
+        <div class="scene-wrap reverse">
+          <div class="b-reveal" id="lifecycle-copy"></div>
+          <div class="scene-media b-reveal">
+            <img src="assets/scene-portfolio.png" alt="Illustration of re-auditing listings over time and tracking version history across many ASINs" loading="lazy">
+            <span class="scene-tag">Illustrative</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============================ 6 · PRICING ============================ -->
     <section class="band band-oat" id="pricing">
+      <div class="seam seam-top seam-soft-down"></div>
       <div class="container">
         <div class="sec-head center b-reveal">
           <span class="eyebrow">Transparent pricing</span>
@@ -839,6 +1038,14 @@
           <p class="lede muted">Start free, see your gaps, then upgrade only when you're shipping fixes.</p>
         </div>
         <div class="price-grid b-stagger" id="price-grid"></div>
+        <p class="price-boundary b-reveal">
+          The free tier is a <strong>diagnostic</strong> — see your gaps and top fixes. The paid tiers unlock the
+          full <strong>optimization workspace</strong> + export + re-audit and version history.
+        </p>
+        <p class="price-upgrade b-reveal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+          Upgrade to unlock the full optimization workspace: edit, approve and export Amazon-ready fixes.
+        </p>
         <p class="price-trust b-reveal">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
           No card to start · cancel anytime · no % of your sales.
@@ -852,7 +1059,7 @@
       <div class="container b-reveal">
         <span class="hero-eyebrow" style="justify-content:center;display:inline-flex"><span class="pulse"></span>Run your first audit free</span>
         <h2 style="margin-top:18px">Audit your listing <em>before</em> your shoppers do.</h2>
-        <p>Paste an ASIN and see exactly what Rufus and COSMO can't answer — in minutes, no card required.</p>
+        <p>Paste an ASIN and see exactly what Alexa for Shopping and COSMO can't answer — in minutes, no card required.</p>
 
         <form class="audit-start" id="audit-start-2" action="audit.html" method="get">
           <input class="input mono" id="hero-asin-2" name="asin" type="text"
@@ -865,7 +1072,7 @@
           </select>
           <span class="as-divider"></span>
           <button class="btn btn-on-dark" type="submit">
-            Get my free Rufus &amp; COSMO score
+            Get my free Alexa &amp; COSMO score
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
         </form>
@@ -903,8 +1110,8 @@
 
       /* ---- hero dual-optimization reassurance pill ---- */
       document.querySelector('#hero-dualopt span').innerHTML =
-        '<strong>Win Rufus &amp; COSMO</strong>' +
-        L.esc(D.landingCopy.dualOpt.replace(/^Win Rufus & COSMO\s*—?\s*/i, ' — '));
+        '<strong>Win Alexa &amp; COSMO</strong>' +
+        L.esc(D.landingCopy.dualOpt.replace(/^Win Alexa & COSMO\s*—?\s*/i, ' — '));
 
       /* ---- 2 · sourced stat line + source caption ---- */
       document.getElementById('stat-line').textContent = D.landingCopy.sourcedStat.text;
@@ -928,7 +1135,7 @@
       // 4 differentiators from data + 2 trust/transparency cards (page-local, not in data.js)
       const whyExtra = [
         { icon: 'real-ai', title: 'Real AI, not a GPT wrapper',
-          body: 'We cite the actual extracted evidence and the Rufus/COSMO signals behind every fix — you can see the reasoning, not a black box.' },
+          body: 'We cite the actual extracted evidence and the Alexa for Shopping / COSMO signals behind every fix — you can see the reasoning, not a black box.' },
         { icon: 'compliant', title: 'Amazon-TOS compliant, authenticity-safe',
           body: 'We never invent specs, flag claims that need substantiation, and check field limits — so an optimization never gets your listing suppressed.' }
       ];
@@ -988,6 +1195,7 @@
           <div class="how-num">${L.esc(s.step)}</div>
           <h3 class="serif">${L.esc(s.title)}</h3>
           <p>${L.esc(s.body)}</p>
+          ${s.youGet ? `<p class="how-youget"><span class="hy-label">You get:</span> ${L.esc(s.youGet)}</p>` : ''}
         </div>`).join('');
 
       /* ---- 5 · SAMPLE REPORT preview ---- */
@@ -1054,6 +1262,26 @@
           <a class="btn ${p.featured ? 'btn-on-dark' : 'btn-outline'} btn-block" href="audit.html">${L.esc(p.cta)}</a>
         </div>`;
       }).join('');
+
+      /* ---- COMPLIANCE + LIFECYCLE scene sections (eyebrow + title + point list) ---- */
+      function renderScene(targetId, data) {
+        const el = document.getElementById(targetId);
+        if (!el || !data) return;
+        el.innerHTML = `
+          <div class="sec-head" style="max-width:none">
+            <span class="eyebrow">${L.esc(data.eyebrow)}</span>
+            <h2>${L.esc(data.title)}</h2>
+          </div>
+          <ul class="scene-points">
+            ${(data.points || []).map(pt => `
+              <li>
+                <span class="sp-tick">${CHECK}</span>
+                <span class="sp-body"><strong>${L.esc(pt.t)}</strong><span>${L.esc(pt.d)}</span></span>
+              </li>`).join('')}
+          </ul>`;
+      }
+      renderScene('compliance-copy', D.compliance);
+      renderScene('lifecycle-copy', D.lifecycle);
 
       /* ---- scroll-reveal (landing-local; respects reduced-motion via CSS) ---- */
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

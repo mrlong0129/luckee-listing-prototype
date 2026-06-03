@@ -88,6 +88,75 @@
     }
     .reassure svg { flex-shrink: 0; color: var(--forest-600); }
 
+    /* ---- Intent split: primary "Run audit" vs secondary "sample report" ---- */
+    .intent-split {
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+      margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--b-hair);
+    }
+    .intent-split .is-or {
+      font-size: .74rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .intent-split .is-sample { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 200px; }
+    .intent-split .is-sample .is-lead { font-size: .82rem; color: var(--muted); line-height: 1.45; }
+    .link-sample {
+      display: inline-flex; align-items: center; gap: 7px; align-self: flex-start;
+      font-weight: 600; font-size: .9rem; color: var(--forest-600);
+      text-decoration: none; transition: gap .15s var(--b-ease), color .15s var(--b-ease);
+    }
+    .link-sample:hover { color: var(--forest-700); gap: 10px; }
+    .link-sample svg { flex-shrink: 0; transition: transform .15s var(--b-ease); }
+    .link-sample:hover svg { transform: translateX(2px); }
+
+    /* ---- Sample result preview (compact elevated panel, pre-submit) ---- */
+    .preview-card { margin-top: 26px; overflow: hidden; }
+    .preview-card .pv-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 15px 22px; border-bottom: 1px solid var(--b-hair); background: var(--oat-100);
+    }
+    .pv-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--forest-600);
+    }
+    .pv-eyebrow svg { color: var(--gold-600, #B8902E); }
+    .pv-tag {
+      font-size: .68rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--muted); font-family: var(--mono);
+    }
+    .pv-body { padding: 18px 22px 22px; }
+    .pv-scoreline { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+    .pv-score {
+      font-family: var(--mono); font-weight: 600; font-size: 1.5rem; line-height: 1; color: var(--neutral-900);
+    }
+    .pv-score .pv-cur { color: var(--error-600); }
+    .pv-score .pv-arrow { color: var(--muted); margin: 0 4px; font-weight: 500; }
+    .pv-score .pv-proj { color: var(--success-600); }
+    .pv-score-cap { font-size: .8rem; color: var(--muted); line-height: 1.4; }
+    .pv-rows { display: grid; gap: 1px; background: var(--b-hair); border-radius: var(--r-sm); overflow: hidden; border: 1px solid var(--b-hair); }
+    .pv-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 11px 14px; background: var(--card); font-size: .85rem; color: var(--neutral-700); line-height: 1.45;
+    }
+    .pv-row .pv-k { font-weight: 600; color: var(--neutral-900); flex-shrink: 0; min-width: 124px; }
+    .pv-row .pv-v { min-width: 0; }
+    .pv-row .pv-v .q { font-style: italic; color: var(--forest-700); }
+    .pv-areas { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+    .pv-area-chip {
+      display: inline-flex; align-items: center; padding: 5px 11px; border-radius: var(--r-pill);
+      font-size: .76rem; font-weight: 600; background: var(--forest-050); color: var(--forest-700);
+      border: 1px solid var(--forest-100);
+    }
+    .pv-foot {
+      display: flex; align-items: center; gap: 8px; margin-top: 16px;
+      font-size: .76rem; color: var(--muted); line-height: 1.45;
+    }
+    .pv-foot svg { flex-shrink: 0; color: var(--forest-600); }
+
+    @media (max-width: 768px) {
+      .pv-row .pv-k { min-width: 0; }
+      .pv-row { flex-direction: column; gap: 2px; }
+    }
+
     /* ---- Field grid for paired inputs ---- */
     .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     .field-grid .field + .field { margin-top: 0; }
@@ -195,7 +264,7 @@
         <div class="audit-head" data-reveal>
           <span class="eyebrow">Start an audit</span>
           <h1>Audit your listing</h1>
-          <p class="lede muted">We extract evidence, simulate 20+ Rufus questions and benchmark top competitors. A live audit takes ~60–90s.</p>
+          <p class="lede muted">We extract evidence, simulate 20+ Alexa for Shopping questions and benchmark top competitors. A live audit takes ~60–90s.</p>
         </div>
 
         <div class="audit-card card-pad-lg" data-reveal>
@@ -288,17 +357,41 @@
               </div>
             </div>
 
-            <!-- RUN -->
+            <!-- RUN — PRIMARY INTENT: audit a real ASIN -->
             <button class="btn btn-primary btn-lg btn-block" id="run" type="button" style="margin-top:28px">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v4M3 5h4M6 17v4M4 19h4"/><path d="M13 4 8.5 15 13 13.5 15 18l4.5-11L13 4Z"/></svg>
-              Run audit
+              Audit my real ASIN
             </button>
 
             <div class="reassure">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
               <span>Evidence-gated · brand-aware · we never invent specs.</span>
             </div>
+
+            <!-- SECONDARY INTENT: skip straight to the sample report -->
+            <div class="intent-split">
+              <span class="is-or">or</span>
+              <div class="is-sample">
+                <span class="is-lead">Just want to see the output first? Skip the form and open the pre-computed sample report.</span>
+                <a class="link-sample" href="report.html">
+                  Try the sample report
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <!-- SAMPLE RESULT PREVIEW — what you'll get, before you submit -->
+        <div class="audit-card preview-card" id="preview-card" data-reveal>
+          <div class="pv-head">
+            <span class="pv-eyebrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v4M3 5h4M6 17v4M4 19h4"/><path d="M13 4 8.5 15 13 13.5 15 18l4.5-11L13 4Z"/></svg>
+              Preview · what you'll get
+            </span>
+            <span class="pv-tag" id="pv-tag"></span>
+          </div>
+          <div class="pv-body" id="pv-body"><!-- filled from LUCKEE_DATA --></div>
         </div>
       </section>
 
@@ -361,6 +454,81 @@
       const mktParam = params.get('marketplace');
       if (mktParam) { const ms = document.getElementById('marketplace'); if ([...ms.options].some(o => o.value === mktParam)) ms.value = mktParam; }
 
+      /* ============================ SAMPLE RESULT PREVIEW ============================
+         Pre-submit panel so users know what the audit produces. Computed from
+         LUCKEE_DATA wherever possible so it can't drift from the report. */
+      (function renderPreview() {
+        const body = document.getElementById('pv-body');
+        const tag = document.getElementById('pv-tag');
+        if (!body) return;
+
+        const a = D.answerability || {};
+        const cur = a.clear, total = a.total, proj = a.projectedClear;
+
+        // Competitor-covered gap = the first benchmark module you don't cover but
+        // competitors do — this is the single most-damaging missing dimension.
+        let compGap = null;
+        (D.benchmark || []).some(m => {
+          const youMissing = m.you === 'not_available';
+          const compCovers = (m.comp || []).some(c => c === 'available');
+          if (youMissing && compCovers) { compGap = m.module; return true; }
+          return false;
+        });
+
+        // Top gap = the HIGH-risk UNKNOWN buyer question tied to that competitor-covered
+        // gap (match on the gap's leading keyword, e.g. "Hair-type"), so the headline
+        // question and the covered-gap dimension always agree.
+        const compKey = (compGap || '').toLowerCase().split(/[ /]/)[0]; // "hair-type"
+        let topGap = null;
+        const pickQ = (pred) =>
+          (D.qaGroups || []).some(g => (g.items || []).some(it => {
+            if (pred(it)) { topGap = it; return true; } return false;
+          }));
+        // 1) HIGH + UNKNOWN whose gap matches the competitor-covered dimension
+        if (compKey) pickQ(it => it.risk === 'HIGH' && it.support === 'UNKNOWN'
+          && String(it.gap || '').toLowerCase().includes(compKey));
+        // 2) any HIGH + UNKNOWN  3) any HIGH
+        if (!topGap) pickQ(it => it.risk === 'HIGH' && it.support === 'UNKNOWN');
+        if (!topGap) pickQ(it => it.risk === 'HIGH');
+
+        // Fix areas = the optimizable listing fields the audit ships rewrites for,
+        // taken from the suggest bundle modules (Title · Bullets · A+ · Search Terms).
+        const FIELD_ORDER = ['Title', 'Bullets', 'A+', 'Search Terms'];
+        const labelMap = { 'A+ Page': 'A+' };
+        const mods = (D.bundle && D.bundle.modules) || {};
+        const areaSet = new Set();
+        Object.keys(mods).forEach(k => {
+          const raw = (mods[k] && mods[k].label) || '';
+          const lbl = labelMap[raw] || raw;
+          if (lbl) areaSet.add(lbl);
+        });
+        let areas = [...areaSet].sort((x, y) => {
+          const ix = FIELD_ORDER.indexOf(x), iy = FIELD_ORDER.indexOf(y);
+          return (ix === -1 ? 99 : ix) - (iy === -1 ? 99 : iy);
+        });
+
+        tag.textContent = D.product.brand + ' · ' + D.product.asin;
+
+        body.innerHTML = `
+          <div class="pv-scoreline">
+            <span class="pv-score"><span class="pv-cur">${cur}</span><span class="pv-arrow">→</span><span class="pv-proj">${proj}</span> / ${total}</span>
+            <span class="pv-score-cap">buyer questions clearly answered — current ${cur} / ${total}, projected ${proj} / ${total} after fixes.</span>
+          </div>
+          <div class="pv-rows">
+            <div class="pv-row"><span class="pv-k">Current score</span><span class="pv-v">${cur} / ${total} buyer questions clearly answered</span></div>
+            ${topGap ? `<div class="pv-row"><span class="pv-k">Top gap</span><span class="pv-v"><span class="q">“${L.esc(topGap.q)}”</span></span></div>` : ''}
+            ${compGap ? `<div class="pv-row"><span class="pv-k">Competitor-covered gap</span><span class="pv-v">${L.esc(compGap)}</span></div>` : ''}
+            <div class="pv-row"><span class="pv-k">After fixes</span><span class="pv-v">projected ${proj} / ${total}</span></div>
+          </div>
+          <div class="pv-areas" aria-label="Fix areas">
+            ${areas.map(x => `<span class="pv-area-chip">${L.esc(x)}</span>`).join('')}
+          </div>
+          <div class="pv-foot">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span>Sample preview from the pre-computed ${L.esc(D.product.brand)} audit. Run yours above to see your own gaps.</span>
+          </div>`;
+      })();
+
       /* ---- inline field validation helper ---- */
       function fieldError(input, msg) {
         input.style.borderColor = 'var(--error-600)';
@@ -421,7 +589,7 @@
       const PHASES = [
         { label: 'Extracting listing evidence', meta: 'title · bullets · A+ · spec table' },
         { label: 'Reading A+ images (13 detected)', meta: '13 modules' },
-        { label: 'Simulating Rufus Q&A (20+ questions)', meta: '20 questions · 5 areas' },
+        { label: 'Simulating Alexa Shopping Q&A (20+ questions)', meta: '20 questions · 5 areas' },
         { label: 'Benchmarking top competitors', meta: '3 competitors' },
         { label: 'Building optimization plan', meta: 'P0 · P1 · P2' }
       ];
@@ -546,15 +714,19 @@
         document.getElementById('prog-asin').textContent = pasteMode ? D.product.asin : asinVal;
         document.getElementById('prog-mkt').textContent = pasteMode ? D.product.country : mktVal;
 
-        // ---- honest demo note when input isn't the pre-computed sample ----
+        // ---- honest demo note — always shown so users are never misled ----
+        // In this prototype every input resolves to the same pre-computed sample audit.
         const demo = document.getElementById('demo-note');
         const isSample = !pasteMode && asinVal.toUpperCase().includes(D.product.asin);
         if (demo) {
-          if (isSample) { demo.style.display = 'none'; }
-          else {
-            demo.style.display = 'flex';
-            demo.innerHTML = '<svg class="di" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span><b>Demo.</b> Live extraction isn\'t connected in this prototype — showing a pre-computed sample audit for '
+          const di = '<svg class="di" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>';
+          demo.style.display = 'flex';
+          if (isSample) {
+            demo.innerHTML = di + '<span><b>Demo.</b> Live extraction isn\'t connected in this prototype — every audit shows the same pre-computed sample for '
               + L.esc(D.product.brand) + ' (' + L.esc(D.product.asin) + ' · ' + L.esc(D.product.country) + ').</span>';
+          } else {
+            demo.innerHTML = di + '<span><b>Demo.</b> Live extraction isn\'t connected in this prototype — your real ASIN still shows the pre-computed sample audit for '
+              + L.esc(D.product.brand) + ' (' + L.esc(D.product.asin) + ' · ' + L.esc(D.product.country) + '), so the results below are sample data, not your listing.</span>';
           }
         }
 

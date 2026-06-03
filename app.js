@@ -107,7 +107,7 @@
         <div style="max-width:420px">
           <div class="brand" style="color:var(--oat-100)"><span class="mark">L</span>Luckee Listing</div>
           <h2 style="color:var(--oat-100);margin:18px 0 10px;font-size:2rem">Audit your listing before your shoppers do.</h2>
-          <p class="muted" style="color:var(--forest-300)">In-platform SEO → GEO. Make your listing answer what Rufus and shoppers ask — and lift CVR.</p>
+          <p class="muted" style="color:var(--forest-300)">In-platform SEO → GEO. Make your listing answer what Alexa for Shopping and shoppers ask — and lift CVR.</p>
           <a class="btn btn-on-dark" href="audit.html" style="margin-top:8px">Run a free audit →</a>
         </div>
         <div class="row wrap" style="gap:56px;align-items:flex-start;font-size:.88rem">

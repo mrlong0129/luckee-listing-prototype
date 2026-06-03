@@ -49,6 +49,44 @@
     /* keep the banner snug above the header card */
     .blocks > .sample-banner + * { margin-top: 20px; }
 
+    /* ---- 0b. Top-line summary (the 3 things a seller needs at a glance) ---- */
+    .topline.card-pad { padding: 28px 32px; }
+    .topline .sec-head { margin-bottom: 18px; }
+    .topline .tl-lead {
+      font-size: 1.02rem; line-height: 1.6; color: var(--neutral-700); margin: 0 0 22px; max-width: 80ch;
+    }
+    .topline .tl-lead .hl { color: var(--forest-700); font-weight: 600; }
+    .topline-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .tl-card {
+      position: relative; padding: 20px 22px; border-radius: var(--r-input);
+      background: var(--oat-100); border: 1px solid var(--b-hair);
+      box-shadow: inset 4px 0 0 var(--forest-600);
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .tl-card.tl-problem { box-shadow: inset 4px 0 0 var(--error-600); }
+    .tl-card.tl-action  { box-shadow: inset 4px 0 0 var(--premium-gold); }
+    .tl-card .tl-k {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: .66rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+    }
+    .tl-card .tl-k svg { flex-shrink: 0; }
+    .tl-card.tl-score .tl-k { color: var(--forest-700); }
+    .tl-card.tl-problem .tl-k { color: var(--error-600); }
+    .tl-card.tl-action .tl-k { color: var(--premium-gold); }
+    .tl-card .tl-v {
+      font-family: var(--serif); font-size: 1.46rem; line-height: 1.14; color: var(--neutral-900);
+    }
+    .tl-card.tl-score .tl-v .mono { font-family: var(--mono); font-size: 1.7rem; font-weight: 600; color: var(--forest-700); }
+    .tl-card.tl-score .tl-v .lab { font-family: var(--mono); font-size: .82rem; font-weight: 600; color: var(--forest-700); letter-spacing: .04em; }
+    .tl-card .tl-note { font-size: .82rem; line-height: 1.5; color: var(--muted); margin-top: -2px; }
+    .tl-card .tl-note .mono { font-family: var(--mono); color: var(--neutral-700); }
+
+    @media (max-width: 760px) {
+      .topline-grid { grid-template-columns: 1fr; }
+    }
+
     /* generous vertical rhythm between major blocks (landing breathing room) */
     .blocks > * + * { margin-top: 38px; }
 
@@ -316,6 +354,41 @@
         <span><b>Sample report</b> — this prototype shows a pre-computed audit for Funflow (<span class="mono">B0G1MJWK3Z</span>, US). Your own input is not yet connected to live extraction.</span>
       </div>
 
+      <!-- ===================== 0b. TOP-LINE SUMMARY (3 things at a glance) ===================== -->
+      <section class="card card-pad topline" id="topline" data-reveal>
+        <div class="sec-head">
+          <span class="eyebrow">At a glance</span>
+          <h2>Your listing in <span class="ser-accent">three lines</span></h2>
+        </div>
+        <p class="tl-lead">These are the buyer questions your listing fails to answer before the shopper decides to buy — surfaced by <span class="hl">Alexa for Shopping (formerly Rufus)</span>.</p>
+        <div class="topline-grid">
+          <div class="tl-card tl-score">
+            <span class="tl-k">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-6"/></svg>
+              Current score
+            </span>
+            <div class="tl-v"><span class="mono" id="tl-score-num"></span> <span class="lab">CLEAR</span></div>
+            <div class="tl-note" id="tl-score-note"></div>
+          </div>
+          <div class="tl-card tl-problem">
+            <span class="tl-k">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg>
+              Biggest problem
+            </span>
+            <div class="tl-v" id="tl-problem-v">Hair-type suitability missing</div>
+            <div class="tl-note" id="tl-problem-note"></div>
+          </div>
+          <div class="tl-card tl-action">
+            <span class="tl-k">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+              First priority action
+            </span>
+            <div class="tl-v" id="tl-action-v">Fix Bullet 2 + Title</div>
+            <div class="tl-note" id="tl-action-note"></div>
+          </div>
+        </div>
+      </section>
+
       <!-- ===================== 1. REPORT HEADER ===================== -->
       <section class="card card-pad" id="report-header" data-reveal>
         <div class="report-hd">
@@ -340,7 +413,7 @@
                   </div>
                 </div>
               </div>
-              <div class="ring-label">Rufus answerability</div>
+              <div class="ring-label">Alexa answerability</div>
               <div class="ring-projected" id="ring-projected"></div>
             </div>
             <div class="risk-count" id="risk-count"></div>
@@ -366,7 +439,7 @@
         <div class="sec-head">
           <span class="eyebrow">Where you lose the answer</span>
           <h2>Risk, gap &amp; <span class="ser-accent">impact</span></h2>
-          <p class="sub">Each gap is a question Rufus cannot answer from your page — ranked by what it costs you at decision time.</p>
+          <p class="sub">Each gap is a question Alexa for Shopping cannot answer from your page — ranked by what it costs you at decision time.</p>
         </div>
         <div class="table-card table-scroll">
           <table class="table risk-table">
@@ -425,12 +498,12 @@
         </div>
       </section>
 
-      <!-- ===================== 5. RUFUS Q&A SIMULATION ===================== -->
+      <!-- ===================== 5. ALEXA SHOPPING Q&A SIMULATION ===================== -->
       <section data-reveal>
         <div class="sec-head">
           <span class="eyebrow">20+ simulated shopper questions</span>
-          <h2>Rufus Q&amp;A <span class="ser-accent">simulation</span></h2>
-          <p class="sub">We modeled how Rufus would answer real pre-purchase questions from your page evidence. Click any question to read the simulated answer.</p>
+          <h2>Alexa Shopping Q&amp;A <span class="ser-accent">simulation</span></h2>
+          <p class="sub">We modeled how Alexa for Shopping would answer real pre-purchase questions from your page evidence. Click any question to read the simulated answer.</p>
           <span class="qa-meta"><span class="countpill" id="qa-total">20 questions</span> across 5 decision areas · click to expand</span>
         </div>
         <div id="qa-groups"></div>
@@ -511,6 +584,28 @@
         projectedClear: D.answerability.projectedClear
       };
       const scorePct = score.total ? Math.round(score.clear / score.total * 100) : 0;
+
+      /* ===================== 0b. TOP-LINE SUMMARY (3 things at a glance) ===================== */
+      // (a) score — reuse the live computed clear/total so it can never drift
+      document.getElementById('tl-score-num').textContent = score.clear + ' / ' + score.total;
+      document.getElementById('tl-score-note').innerHTML =
+        'Projected after fixes: <span class="mono">' + L.esc(score.projectedClear + ' / ' + score.total) + '</span> CLEAR.';
+
+      // (b) biggest problem — first HIGH-risk gap from the risk table (source of truth)
+      const topRisk = (D.risks.find(r => r.level === 'HIGH') || D.risks[0]);
+      if (topRisk) {
+        document.getElementById('tl-problem-v').textContent = topRisk.gap;
+        document.getElementById('tl-problem-note').textContent =
+          score.high + ' high-risk gap' + (score.high === 1 ? '' : 's') + ' · fix area: ' + topRisk.fix;
+      }
+
+      // (c) first priority action — top of the fix queue (headline stays the seller-facing
+      // shorthand; the note is data-driven from the actual P0 action so it can't drift)
+      const topAction = D.priorityActions[0];
+      if (topAction) {
+        document.getElementById('tl-action-note').innerHTML =
+          L.prioChip(topAction.prio) + ' ' + L.esc(topAction.action) + '.';
+      }
 
       /* ============================ 1. HEADER ============================ */
       const p = D.product;
@@ -630,7 +725,7 @@
                   <div class="det-block">
                     <div class="det-k">
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-                      Simulated Rufus answer
+                      Simulated Alexa answer
                     </div>
                     <div class="det-answer">${L.esc(item.answer)}</div>
                   </div>
