@@ -213,7 +213,7 @@ window.LUCKEE_DATA = {
 
   /* ---- Landing-page content ---- */
   landingCopy: {
-    dualOpt: "Win Alexa & COSMO — without losing your A9/A10 keyword ranking.",
+    dualOpt: "Check the fields Amazon sellers can actually edit: Title, Bullets, A+, Search Terms.",
     // Replaces the unsourced "1 in 3 buyers" line. Still flagged for citation before launch.
     sourcedStat: {
       text: "AI shopping assistants are now a core pre-purchase touchpoint: Alexa for Shopping reached an estimated ~38% of Amazon-app shoppers by Black Friday 2025, with AI-driven shopping at ~$14.2B globally.",
@@ -222,7 +222,7 @@ window.LUCKEE_DATA = {
   },
   // Category-defining comparison (true = full, 'partial' = limited, false = none)
   compareTable: {
-    cols: ["Luckee Listing", "Generic AI rewriter", "Off-Amazon GEO tool"],
+    cols: ["Luckee Listing", "Generic AI rewriter", "Website AI-search tool"],
     rows: [
       { feature: "Optimizes for Amazon Alexa for Shopping + COSMO", vals: [true, false, "partial"] },
       { feature: "Evidence-gated — never invents specs", vals: [true, false, "partial"] },
@@ -233,33 +233,130 @@ window.LUCKEE_DATA = {
       { feature: "Transparent self-serve pricing", vals: [true, "partial", false] }
     ]
   },
-  // Illustrative proof band — REPLACE with a real audited ASIN before launch.
+  // Landing sample outcome — uses the same prototype ASIN as the report.
   caseProof: {
-    label: "Illustrative sample — not a guarantee. Replace with a real audited ASIN before launch.",
-    who: "a 7-figure beauty-tools brand",
+    label: "Sample prototype output. Confirm claims before publishing.",
+    who: "the Funflow sample ASIN in this prototype",
     metrics: [
-      { label: "COSMO content score", before: "62", after: "94" },
-      { label: "Alexa-answerable questions", before: "3 / 21", after: "15 / 21" },
-      { label: "Detail-page conversion", before: "baseline", after: "projected uplift" }
+      { label: "Clearly answered questions", before: "3 / 21", after: "14 / 21" },
+      { label: "Priority fixes drafted", before: "0", after: "5" },
+      { label: "Seller confirmations surfaced", before: "hidden", after: "4 checks" }
     ]
   },
   differentiators: [
-    { icon: "scan", title: "Fuller data extraction", body: "We read what GPT can't reliably get — spec tables, A+ module copy, and on-image text. Your audit is built on real page evidence, not guesses." },
-    { icon: "swords", title: "Top-competitor analysis", body: "We benchmark your module coverage against the top competitors, so you fix the gaps that actually cost you the comparison." },
-    { icon: "shield-check", title: "Evidence pack + Q&A matching", body: "Every finding is backed by extracted evidence and a simulated 20+ shopper Q&A. No vibes — you see exactly why each fix matters." },
-    { icon: "wand", title: "Last-mile execution", body: "We hand you the exact rewrite, in the exact field, ready to paste. No prompts to write. No assets to download." }
+    { icon: "scan", title: "Reads the real page", body: "Title, bullets, specs, A+ and visible evidence in one audit." },
+    { icon: "swords", title: "Benchmarks competitors", body: "See which modules top listings already answer." },
+    { icon: "shield-check", title: "Tests buyer questions", body: "Clear, partial or unknown for each purchase concern." },
+    { icon: "wand", title: "Writes field fixes", body: "Drafts for Title, Bullets, A+ and Search Terms." }
   ],
   howItWorks: [
-    { step: "01", title: "Extract evidence", body: "Pull title, bullets, description, A+ and spec data into a normalized Evidence Pack.", youGet: "The evidence pack of what Amazon AI can actually read in your listing." },
-    { step: "02", title: "Simulate Alexa Shopping Q&A", body: "Generate 20+ realistic pre-purchase questions across every decision area.", youGet: "The buyer questions your listing must answer but may be missing today." },
-    { step: "03", title: "Score answerability", body: "Label each as Clear / Partial / Unknown / Conflict and flag the risk.", youGet: "Which questions are hurting AI recommendation and conversion right now." },
-    { step: "04", title: "Prioritize fixes", body: "Turn every gap into a P0/P1/P2 rewrite placed in the exact listing field.", youGet: "Edits you can paste straight into Title, Bullets, A+ and Search Terms." }
+    { step: "01", title: "Extract", body: "Read the listing evidence.", youGet: "A complete map of what your page actually says." },
+    { step: "02", title: "Ask", body: "Run buyer questions.", youGet: "The buyer questions blocking the sale." },
+    { step: "03", title: "Score", body: "Find Clear, Partial and Unknown answers.", youGet: "A prioritized list of what to fix first." },
+    { step: "04", title: "Fix", body: "Draft exact field edits.", youGet: "Seller-Central-ready copy to paste." }
   ],
   pricing: [
-    { name: "Free diagnostic", price: "$0", tagline: "See your gaps", features: ["1 full audit", "Alexa answerability score", "Top 3 gaps", "Sample of the Q&A simulation", "Top-3 priority actions", "Sample competitor benchmark"], cta: "Audit free", featured: false },
-    { name: "Seller", price: "$49", per: "/mo", tagline: "Fix and ship", features: ["20 audits / mo", "Full 20+ Q&A simulation", "Full competitor benchmark", "Title · Bullets · A+ · Search Terms fixes", "Ready-to-paste export", "Compliance & claim checks", "Re-audit + history"], cta: "Start free trial", featured: true },
-    { name: "Agency", price: "$149", per: "/mo", tagline: "Scale across listings", features: ["100 audits / mo", "Multi-ASIN management", "Batch reports", "White-label exports", "Team collaboration", "Client report templates"], cta: "Start free trial", featured: false }
+    {
+      name: "First loop free",
+      tagline: "Audit + fix one listing",
+      price: "$0",
+      per: "/month",
+      cta: "Get my free audit",
+      credits: "1,500 Credits",
+      features: ["1 full audit", "Full 20+ Q&A simulation", "Competitor benchmark", "1 optimization bundle (Title · Bullets · A+ · Search Terms)", "Ready-to-paste export", "Prioritized fix list"]
+    },
+    {
+      name: "Seller",
+      tagline: "Fix and ship",
+      price: "$29.25",
+      per: "/month",
+      badge: "Most Popular",
+      badgeTone: "gold",
+      cta: "Subscribe",
+      savings: "Save $127.8",
+      credits: "30,000 Credits",
+      featured: true,
+      features: ["20 audits / mo", "Full 20+ Q&A simulation", "Full competitor benchmark", "Title · Bullets · A+ · Search Terms fixes", "Ready-to-paste export", "Compliance & claim checks", "Re-audit + history"],
+      note: "Includes monitoring & re-audits"
+    },
+    {
+      name: "Agency",
+      tagline: "Scale across listings",
+      price: "$74.25",
+      per: "/month",
+      cta: "Subscribe",
+      savings: "Save $297",
+      credits: "100,000 Credits",
+      features: ["100 audits / mo", "Multi-ASIN management", "Batch reports", "White-label exports", "Team collaboration", "Client report templates"]
+    }
   ],
+  creditPack: {
+    title: "Credit Pack",
+    remaining: "97,785.3 / 100,000 remaining",
+    status: "Active",
+    price: "$39.9",
+    cta: "Buy More",
+    progress: 97.8
+  },
+
+  /* ---- Funnel / credit policy (prototype-level; production reuses Luckee 1.0) ---- */
+  funnel: {
+    selectedStrategy: "Aha-first: ASIN input is open, report viewing asks for account, optimization asks for credit confirmation.",
+    notSelectedStrategy: "Auth-first: require login and credit before the first analysis.",
+    trial: {
+      label: "First complete loop is free",
+      auditLabel: "1 free audit report",
+      optimizationLabel: "1 free optimization bundle",
+      accountCopy: "Create or sign in to a Luckee account to save this report and use the free optimization bundle.",
+      noCardCopy: "No card needed for the first loop. Later runs use your Luckee credits."
+    },
+    account: {
+      name: "Luckee user",
+      email: "demo@luckee.ai",
+      creditsLabel: "Luckee credits",
+      creditsValue: "Shared Luckee credits"
+    },
+    auth: {
+      title: "Welcome to Luckee",
+      subtitle: "AI E-commerce helper, making operations easier",
+      loginTab: "Login",
+      registerTab: "Sign up",
+      loginSubmit: "SIGN IN",
+      registerSubmit: "SIGN UP",
+      loginFields: ["Username/Email", "Password"],
+      registerFields: ["Email", "Code", "Username", "Password", "Confirm"],
+      legalLogin: "By logging in, you agree to our Terms of Service and Privacy Policy",
+      legalRegister: "By signing up, you agree to our Terms of Service and Privacy Policy"
+    },
+    creditRules: [
+      { event: "Enter ASIN", cost: "No credit", note: "Keep the first action frictionless." },
+      { event: "Generate report", cost: "Audit credit", note: "First report uses the free audit allowance." },
+      { event: "View existing report", cost: "No extra credit", note: "Do not punish browsing or sharing." },
+      { event: "Generate optimization bundle", cost: "Optimization credit", note: "Confirm before consuming credit." },
+      { event: "Edit, approve, export", cost: "No extra credit", note: "The generated bundle can be worked through freely." },
+      { event: "Re-audit after publish", cost: "Audit credit", note: "Production should treat this as a new measurable run." }
+    ],
+    reportGate: {
+      title: "Your report is ready.",
+      body: "Sign in or create a free Luckee account to view the full diagnosis, save the ASIN, and keep the first optimization bundle attached to your account.",
+      primary: "Continue with free account",
+      secondary: "Uses your first free audit report"
+    },
+    optimizationConfirm: {
+      title: "Generate the optimization bundle?",
+      body: "This creates the Title, Bullets, A+ and Search Terms fixes for this report.",
+      cost: "Uses 1 Optimization Credit",
+      footnote: "After generation, editing, approving and exporting this bundle do not cost extra.",
+      primary: "Use 1 credit and generate",
+      cancel: "Not now"
+    },
+    paywall: {
+      title: "No optimization credits left",
+      body: "The free optimization bundle has already been used. Continue with Luckee credits, invite a teammate, or upgrade before generating another bundle.",
+      primary: "View pricing",
+      secondary: "Not now"
+    }
+  },
 
   /* ---- Compliance / safety section (landing) ---- */
   compliance: {

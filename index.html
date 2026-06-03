@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luckee Listing · See what Alexa for Shopping can't answer — before it costs you the sale</title>
+  <title>Luckee Listing · Make your Amazon listing answerable</title>
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="tokens.css">
   <noscript><style>.b-reveal,.b-stagger>*{opacity:1!important;transform:none!important}</style></noscript>
   <style>
     /* ============================================================
        LANDING — ART DIRECTION B · "PREMIUM PRODUCT PLATFORM"
        Linear / Stripe / Vercel-grade, warm. Luckee VI only.
-       All styling is landing-local. No edits to tokens.css/data.js/app.js.
+       Styling is landing-local and uses the shared prototype data.
        ============================================================ */
 
     /* ---------- landing-local type scale & rhythm ---------- */
     :root{
-      --b-band-pad: 68px;         /* consistent section rhythm — calm, not cavernous */
-      --b-band-pad-sm: 52px;
+      --b-band-pad: 58px;         /* tighter section rhythm for a product-led landing page */
+      --b-band-pad-sm: 44px;
       --b-radius-frame: 18px;
       --b-shadow-card: 0 1px 2px rgba(28,43,29,.05), 0 8px 28px -12px rgba(28,43,29,.18);
       --b-shadow-card-hover: 0 2px 4px rgba(28,43,29,.06), 0 24px 56px -20px rgba(28,43,29,.34);
@@ -74,7 +75,7 @@
     .sec-head.center .eyebrow{ justify-content:center; }
     .sec-head h2{ margin-bottom: 16px; }
     .sec-head .lede{ margin: 0; }
-    .display-xl{ font-size: clamp(2.7rem, 5.4vw, 4.4rem); line-height: 1.02; letter-spacing: -.018em; }
+    .display-xl{ font-size: clamp(2.7rem, 5.4vw, 4.4rem); line-height: 1.02; letter-spacing: 0; }
 
     /* serif emphasis inside Montserrat-led headings */
     .ser-accent{ font-family: var(--serif); font-weight: 400; font-style: italic; }
@@ -106,7 +107,7 @@
     /* ============================================================
        1 · HERO  (dark band, gradient-mesh glow)
        ============================================================ */
-    .hero{ padding-block: 96px 100px; }
+    .hero{ padding-block: 62px 58px; min-height: calc(100vh - 68px); display:flex; align-items:center; }
     .hero-grid{
       display:grid; grid-template-columns: minmax(0,1.08fr) minmax(0,.92fr);
       gap: 64px; align-items: center;
@@ -138,19 +139,19 @@
     @keyframes bPing{ 0%{ transform:scale(.6); opacity:.9 } 80%,100%{ transform:scale(1.5); opacity:0 } }
 
     .hero h1{
-      color: var(--oat-100); margin: 22px 0 0; max-width: 15ch;
-      font-size: clamp(2.7rem, 5.2vw, 4.5rem); line-height: 1.02; letter-spacing: -.02em;
+      color: var(--oat-100); margin: 18px 0 0; max-width: 10.8ch;
+      font-size: clamp(3rem, 5.2vw, 4.55rem); line-height: 1.01; letter-spacing: 0;
     }
     .hero h1 em{ font-family: var(--serif); font-style: italic; font-weight:400; color: var(--premium-gold-light); }
     .hero-sub{
-      color: var(--forest-300); font-size: 1.18rem; line-height: 1.62; max-width: 48ch; margin: 24px 0 0;
+      color: var(--forest-300); font-size: 1.04rem; line-height: 1.5; max-width: 39ch; margin: 18px 0 0;
     }
     .hero-sub strong{ color: var(--oat-100); font-weight:600; }
     .hero-sub em{ font-style: italic; color: #ffd9d9; }
 
     /* audit start — bright pill row on dark */
     .audit-start{
-      display:flex; align-items:center; gap:8px; max-width: 580px; margin-top: 34px;
+      display:flex; align-items:center; gap:8px; max-width: 560px; margin-top: 26px;
       background: var(--card); border-radius: var(--r-pill); padding: 7px 7px 7px 9px;
       box-shadow: 0 18px 50px -18px rgba(0,0,0,.6), 0 0 0 1px rgba(217,232,218,.10);
     }
@@ -161,20 +162,24 @@
     .audit-start .as-select{
       border:0; background: var(--oat-200); border-radius: var(--r-pill); height:38px; padding:0 12px;
       font-size:.82rem; font-weight:600; color: var(--neutral-700); font-family: var(--sans); cursor:pointer;
-      flex-shrink:0; outline:none;
+      flex-shrink:0;
     }
+    .audit-start .as-select:focus-visible{ box-shadow:0 0 0 3px rgba(201,168,76,.34); outline:none; }
     .audit-start .as-divider{ width:1px; height:26px; background: var(--border); flex-shrink:0; }
     .audit-start .btn{ flex-shrink:0; }
 
     .hero-trust{
-      display:flex; flex-wrap:wrap; gap:8px 22px; align-items:center; margin-top:22px;
+      display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:16px;
       font-size:.84rem; color: var(--forest-300);
     }
-    .hero-trust .ti{ display:inline-flex; align-items:center; gap:7px; }
+    .hero-trust .ti{
+      display:inline-flex; align-items:center; gap:7px; padding:7px 10px;
+      border:1px solid var(--b-hair-dark); border-radius:var(--r-pill); background:rgba(255,255,255,.045);
+    }
     .hero-trust svg{ color: var(--premium-gold-light); flex-shrink:0; }
 
     .hero-dualopt{
-      display:inline-flex; align-items:center; gap:10px; margin-top:20px;
+      display:inline-flex; align-items:center; gap:10px; margin-top:14px;
       padding: 10px 17px 10px 14px; border-radius: var(--r-pill);
       background: rgba(201,168,76,.12); border:1px solid rgba(232,201,106,.36);
       color: var(--oat-100); font-size:.86rem; font-weight:500; line-height:1.35; max-width: 580px;
@@ -182,8 +187,8 @@
     .hero-dualopt svg{ color: var(--premium-gold-light); flex-shrink:0; }
     .hero-dualopt strong{ color: var(--premium-gold-light); font-weight:700; }
 
-    /* ---- floating Rufus chat as a device card ---- */
-    .rufus-stage{ position: relative; }
+    /* ---- floating assistant chat as a device card ---- */
+    .rufus-stage{ position: relative; max-width: 600px; margin-left:auto; }
     .rufus-stage::before{
       content:""; position:absolute; inset:-8% -10% -14% -6%;
       background: radial-gradient(60% 60% at 70% 30%, rgba(201,168,76,.18), transparent 70%);
@@ -210,11 +215,16 @@
       background: rgba(0,0,0,.16); padding: 4px 11px; border-radius: var(--r-pill);
       flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
     }
-    .rufus-body{ padding: 22px; }
-    .rufus-head{ display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+    .rufus-body{ padding: 24px; }
+    .rufus-head{ display:grid; grid-template-columns:44px 1fr auto; align-items:center; gap:12px; margin-bottom:18px; }
     .rufus-avatar{
-      width:34px; height:34px; border-radius:10px; flex-shrink:0;
-      background: linear-gradient(135deg,#2a8fd6,#6ad0ff); display:grid; place-items:center; color:#fff;
+      width:44px; height:44px; border-radius:14px; flex-shrink:0;
+      background: linear-gradient(135deg,#2496d8,#68d5ff); display:grid; place-items:center; color:#fff;
+    }
+    .assistant-pill{
+      font-size:.64rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+      color:#bdeaff; border:1px solid rgba(104,213,255,.3); background:rgba(36,150,216,.16);
+      padding:5px 9px; border-radius:var(--r-pill); white-space:nowrap;
     }
     .rufus-head .rh-name{ font-weight:600; font-size:.92rem; color: var(--oat-100); }
     .rufus-head .rh-meta{ font-size:.72rem; color: var(--forest-300); }
@@ -234,7 +244,7 @@
     .rufus-caption .arrow{ color: var(--premium-gold-light); }
 
     /* logo strip under hero */
-    .logo-strip{ margin-top: 64px; }
+    .logo-strip{ margin-top: 42px; }
     .logo-strip .ls-label{
       text-align:center; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
       color: var(--forest-300); margin-bottom:18px; font-weight:600;
@@ -257,8 +267,8 @@
     /* ============================================================
        2 · THE SHIFT
        ============================================================ */
-    .compare-grid{ display:grid; grid-template-columns: 1fr auto 1fr; gap: 26px; align-items:stretch; margin-top: 40px; }
-    .compare-card{ padding: 32px 30px; display:flex; flex-direction:column; }
+    .compare-grid{ display:grid; grid-template-columns: 1fr auto 1fr; gap: 22px; align-items:stretch; margin-top: 30px; }
+    .compare-card{ padding: 26px 26px; display:flex; flex-direction:column; }
     .compare-card .cc-label{
       font-size:.7rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
       margin-bottom:16px; display:inline-flex; align-items:center; gap:8px;
@@ -267,16 +277,16 @@
     .cc-bad{ border-top: 3px solid var(--error-600); }
     .cc-good .cc-label{ color: var(--success-600); }
     .cc-bad .cc-label{ color: var(--error-600); }
-    .compare-card h3{ font-size:1.55rem; margin-bottom:10px; }
+    .compare-card h3{ font-size:1.38rem; margin-bottom:10px; }
     .compare-card p{ color: var(--muted); font-size:.92rem; margin:0; }
     .compare-arrow{ display:grid; place-items:center; color: var(--forest-500); align-self:center; }
     .compare-arrow .ca-pill{
       font-size:.72rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
       color: var(--error-600); background: var(--error-bg); padding:5px 12px; border-radius: var(--r-pill); margin-top:12px;
     }
-    .stat-block{ margin-top: 44px; text-align:center; max-width: 60ch; margin-inline:auto; }
+    .stat-block{ margin-top: 30px; text-align:center; max-width: 56ch; margin-inline:auto; }
     .stat-line{
-      font-family: var(--serif); font-size: clamp(1.5rem, 2.6vw, 2.1rem); line-height:1.32;
+      font-family: var(--serif); font-size: clamp(1.35rem, 2.2vw, 1.8rem); line-height:1.34;
       color: var(--neutral-900); margin:0;
     }
     .stat-line .hl{ color: var(--forest-600); }
@@ -285,15 +295,15 @@
        3 · WHY US — clean 2×2 grid (4 core differentiators)
        ============================================================ */
     .bento{
-      display:grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 8px;
+      display:grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 8px;
       align-items: stretch;
     }
-    .why-card{ display:flex; flex-direction:column; gap:14px; padding: 26px 28px; justify-content:flex-start; }
-    .why-card h3{ font-size:1.3rem; line-height:1.16; }
+    .why-card{ display:flex; flex-direction:column; gap:12px; padding: 22px 24px; justify-content:flex-start; }
+    .why-card h3{ font-size:1.18rem; line-height:1.18; }
     .why-card p{ color: var(--muted); font-size:.92rem; margin:0; line-height:1.6; }
     .why-card .b-tile{ width:48px; height:48px; }
     .why-card .wc-corner{
-      position:absolute; top:24px; right:26px; font-family: var(--mono); font-size:.72rem;
+      position:absolute; top:20px; right:22px; font-family: var(--mono); font-size:.72rem;
       color: var(--forest-300); letter-spacing:.04em;
     }
 
@@ -321,7 +331,7 @@
     /* ============================================================
        4 · HOW IT WORKS — connected step flow
        ============================================================ */
-    .how-flow{ display:grid; grid-template-columns: repeat(4,1fr); gap: 24px; position:relative; margin-top: 8px; }
+    .how-flow{ display:grid; grid-template-columns: repeat(4,1fr); gap: 22px; position:relative; margin-top: 8px; }
     .how-flow::before{
       content:""; position:absolute; top:28px; left:11%; right:11%; height:2px; z-index:0;
       background: linear-gradient(90deg, var(--forest-100), var(--forest-300) 50%, var(--forest-100));
@@ -329,13 +339,13 @@
     }
     .how-step{ position:relative; z-index:1; }
     .how-num{
-      width:58px; height:58px; border-radius:50%; background: var(--card);
-      border:2px solid var(--forest-100); display:grid; place-items:center; margin-bottom:20px;
+      width:52px; height:52px; border-radius:50%; background: var(--card);
+      border:2px solid var(--forest-100); display:grid; place-items:center; margin-bottom:16px;
       font-family: var(--serif); font-size:1.55rem; color: var(--forest-600); box-shadow: var(--sh-sm);
       transition: transform .3s var(--b-ease), border-color .3s var(--b-ease), box-shadow .3s var(--b-ease);
     }
     .how-step:hover .how-num{ transform: translateY(-3px); border-color: var(--forest-600); box-shadow: var(--sh-brand); }
-    .how-step h3{ font-size:1.2rem; margin-bottom:8px; }
+    .how-step h3{ font-size:1.1rem; margin-bottom:8px; }
     .how-step p{ color: var(--muted); font-size:.9rem; margin:0; line-height:1.6; }
     .how-youget{
       margin-top:12px !important; padding-top:12px; border-top:1px solid var(--b-hair);
@@ -391,31 +401,61 @@
     /* ============================================================
        PROOF
        ============================================================ */
-    .proof-wrap{ display:grid; grid-template-columns: minmax(0,1.04fr) minmax(0,.96fr); gap: 44px; align-items:center; }
+    .proof-wrap{ display:grid; grid-template-columns: minmax(0,.92fr) minmax(0,1.08fr); gap: 42px; align-items:center; }
     .proof-tag{
       display:inline-flex; align-items:center; gap:8px; margin-bottom:18px;
       font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
-      color: var(--warning-600); background: var(--warning-bg); padding:6px 13px; border-radius: var(--r-pill);
+      color: var(--forest-700); background: var(--forest-050); padding:6px 13px; border-radius: var(--r-pill);
     }
-    .proof-band{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px; }
-    .proof-tile{ padding:22px 18px; text-align:center; }
-    .proof-tile .pt-label{ font-size:.78rem; color: var(--muted); margin-bottom:12px; min-height:2.4em; display:flex; align-items:center; justify-content:center; }
-    .proof-tile .pt-flow{ display:flex; align-items:baseline; justify-content:center; gap:9px; }
-    .proof-tile .pt-before{ font-family: var(--serif); font-size:1.4rem; color: var(--muted); }
-    .proof-tile .pt-arrow{ color: var(--forest-300); }
-    .proof-tile .pt-after{ font-family: var(--serif); font-size:2rem; line-height:1; color: var(--forest-600); font-weight:400; }
-    .proof-who{ margin:18px 0 0; font-size:.88rem; color: var(--muted); }
     .proof-photo{
-      margin-top:22px; position:relative; border-radius: var(--b-radius-frame); overflow:hidden;
-      border:1px solid var(--b-hair); box-shadow: var(--b-shadow-card); aspect-ratio: 16 / 10;
+      margin-top:18px; position:relative; border-radius: var(--b-radius-frame); overflow:hidden;
+      border:1px solid var(--b-hair); box-shadow: var(--b-shadow-card); aspect-ratio: 16 / 9;
     }
     .proof-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-    .proof-mock{ padding:22px; }
+    .outcome-console{ padding:22px; }
+    .outcome-tabs{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:18px;
+      background: var(--oat-200); padding:6px; border-radius: var(--r-pill);
+    }
+    .outcome-tab{
+      appearance:none; border:0; border-radius:var(--r-pill); background:transparent; color:var(--muted);
+      min-height:40px; font-family:var(--sans); font-weight:700; font-size:.82rem; cursor:pointer;
+      transition: background .2s var(--b-ease), color .2s var(--b-ease), box-shadow .2s var(--b-ease);
+    }
+    .outcome-tab:hover{ color:var(--forest-700); }
+    .outcome-tab:focus-visible{ outline:none; box-shadow:0 0 0 3px rgba(62,91,63,.18); }
+    .outcome-tab.is-active{ background:var(--card); color:var(--forest-700); box-shadow:var(--sh-sm); }
+    .outcome-panel{ display:none; min-height:330px; }
+    .outcome-panel.is-active{ display:block; }
+    .outcome-kicker{
+      font-family:var(--mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase;
+      color:var(--forest-600); margin-bottom:14px; font-weight:700;
+    }
+    .outcome-score{
+      display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-bottom:16px;
+    }
+    .outcome-metric{ border:1px solid var(--b-hair); border-radius:var(--r-card); padding:18px; background:var(--oat-100); }
+    .outcome-metric .om-label{ font-size:.78rem; color:var(--muted); margin-bottom:8px; }
+    .outcome-metric .om-value{ font-family:var(--serif); font-size:2.2rem; line-height:1; color:var(--forest-600); }
+    .outcome-fix{
+      border:1px solid var(--forest-100); border-radius:var(--r-card); padding:16px 18px; background:var(--forest-050);
+    }
+    .outcome-fix strong{ display:block; color:var(--forest-800); margin-bottom:5px; }
+    .outcome-fix span{ color:var(--muted); font-size:.9rem; line-height:1.5; }
+    .export-list{ display:grid; gap:10px; }
+    .export-row{
+      display:grid; grid-template-columns:104px 1fr auto; gap:12px; align-items:center;
+      border:1px solid var(--b-hair); border-radius:var(--r-input); padding:12px 14px; background:var(--oat-100);
+    }
+    .export-row .er-field{ font-family:var(--mono); font-size:.78rem; color:var(--muted); }
+    .export-row .er-copy{ min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:600; color:var(--neutral-900); }
+    .export-row .er-state{ font-size:.68rem; font-weight:700; color:var(--forest-700); text-transform:uppercase; letter-spacing:.07em; }
+    .proof-mock{ padding:20px; }
     .proof-mock-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px; flex-wrap:wrap; }
     .mini-chat + .mini-chat{ margin-top:18px; padding-top:18px; border-top:1px solid var(--b-hair); }
     .mc-label{ font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color: var(--muted); margin-bottom:10px; }
-    .mc-bubble{ border-radius:14px; padding:11px 14px; font-size:.88rem; line-height:1.45; max-width:92%; }
+    .mc-bubble{ border-radius:14px; padding:10px 13px; font-size:.86rem; line-height:1.45; max-width:92%; }
     .mc-user{ background: var(--oat-200); color: var(--neutral-900); border:1px solid var(--b-hair); border-bottom-right-radius:5px; margin-left:auto; }
     .mc-rufus{ margin-top:10px; border-bottom-left-radius:5px; }
     .mc-rufus-bad{ background: var(--error-bg); color: var(--error-600); border:1px solid rgba(220,40,40,.28); }
@@ -427,7 +467,15 @@
     /* ============================================================
        WORKSPACE BAND — "Don't just see the problems — fix them"
        ============================================================ */
-    .ws-grid{ display:grid; grid-template-columns: minmax(0,1.05fr) minmax(0,.95fr); gap: 52px; align-items:center; }
+    #workspace{
+      padding-block: 84px 98px;
+      background:
+        radial-gradient(48% 70% at 74% 28%, rgba(201,168,76,.12), transparent 64%),
+        linear-gradient(180deg, #172617 0%, var(--forest-900) 42%, #172617 100%);
+    }
+    #workspace .container{ max-width: 1440px; }
+    .ws-grid{ display:grid; grid-template-columns: minmax(0,.95fr) minmax(0,1.05fr); gap: 64px; align-items:center; }
+    .ws-copy{ max-width: 680px; }
     .ws-copy .ws-flow{
       display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin: 22px 0 6px;
     }
@@ -438,11 +486,27 @@
     }
     .ws-step svg{ color: var(--premium-gold-light); flex-shrink:0; }
     .ws-arrow{ color: var(--forest-300); flex-shrink:0; }
-    .ws-fields{ display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+    .ws-fields{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:8px; margin-top:20px; }
     .ws-field{
       font-family: var(--mono); font-size:.78rem; letter-spacing:.01em;
       color: var(--oat-100); background: rgba(217,232,218,.10); border:1px solid var(--b-hair-dark);
-      padding: 6px 12px; border-radius: var(--r-pill);
+      padding: 9px 12px; border-radius: 12px; text-align:center;
+    }
+    .ws-panel{
+      margin-top:26px; border:1px solid rgba(217,232,218,.18); border-radius: var(--b-radius-frame);
+      background: rgba(255,255,255,.055); overflow:hidden;
+    }
+    .ws-panel-row{
+      display:grid; grid-template-columns: 116px 1fr auto; gap:14px; align-items:center;
+      padding:14px 16px; border-bottom:1px solid rgba(217,232,218,.1);
+    }
+    .ws-panel-row:last-child{ border-bottom:0; }
+    .ws-panel-row .wp-k{ font-family:var(--mono); font-size:.76rem; color:var(--forest-300); }
+    .ws-panel-row .wp-v{ color:var(--oat-100); font-weight:600; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .ws-panel-row .wp-tag{
+      font-size:.68rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+      color:var(--premium-gold-light); background:rgba(201,168,76,.12); border:1px solid rgba(232,201,106,.3);
+      padding:5px 9px; border-radius:var(--r-pill); white-space:nowrap;
     }
     .ws-promise{
       display:inline-flex; align-items:center; gap:9px; margin-top:24px;
@@ -463,7 +527,7 @@
       padding: 5px 11px; border-radius: var(--r-pill); border:1px solid rgba(217,232,218,.18);
     }
     .ws-keyword{
-      margin-top:26px; padding:20px 22px; border-radius: var(--r-card);
+      margin-top:18px; padding:16px 18px; border-radius: var(--r-card);
       background: rgba(255,255,255,.05); border:1px solid var(--b-hair-dark);
     }
     .ws-keyword .wk-head{
@@ -471,20 +535,20 @@
       color: var(--oat-100); margin-bottom:8px;
     }
     .ws-keyword .wk-head svg{ color: var(--premium-gold-light); flex-shrink:0; }
-    .ws-keyword p{ color: var(--forest-300); font-size:.9rem; line-height:1.6; margin:0; }
+    .ws-keyword p{ color: var(--forest-300); font-size:.86rem; line-height:1.5; margin:0; }
 
     /* ============================================================
        SAFE & ONGOING — merged compliance + lifecycle band
        header on top · two point groups + one illustrative visual
        ============================================================ */
-    .safe-wrap{ display:grid; grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr); gap: 52px; align-items:start; margin-top: 8px; }
-    .safe-groups{ display:grid; grid-template-columns: 1fr 1fr; gap: 36px 40px; }
+    .safe-wrap{ display:grid; grid-template-columns: minmax(0,1.08fr) minmax(0,.92fr); gap: 44px; align-items:center; margin-top: 8px; }
+    .safe-groups{ display:grid; grid-template-columns: 1fr 1fr; gap: 28px 32px; }
     .safe-group .sg-head{
       font-family: var(--sans); font-weight:700; font-size:.74rem; letter-spacing:.1em; text-transform:uppercase;
       color: var(--forest-700); margin-bottom:18px; display:flex; align-items:center; gap:8px;
     }
     .safe-group .sg-head svg{ color: var(--forest-600); flex-shrink:0; }
-    .scene-points{ list-style:none; padding:0; margin: 0; display:flex; flex-direction:column; gap:16px; }
+    .scene-points{ list-style:none; padding:0; margin: 0; display:flex; flex-direction:column; gap:13px; }
     .scene-points li{ display:flex; gap:12px; align-items:flex-start; }
     .scene-points .sp-tick{
       width:24px; height:24px; border-radius:7px; flex-shrink:0; margin-top:2px;
@@ -497,40 +561,106 @@
       border:1px solid var(--b-hair); box-shadow: var(--b-shadow-card); aspect-ratio: 4 / 3;
     }
     .scene-media img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .safe-console{ border:1px solid var(--b-hair); border-radius:var(--b-radius-frame); background:var(--card); box-shadow:var(--b-shadow-card); padding:20px; }
+    .safe-tabs{ display:grid; grid-template-columns:1fr 1fr; gap:8px; background:var(--oat-200); padding:6px; border-radius:var(--r-pill); margin-bottom:18px; }
+    .safe-tab{
+      appearance:none; border:0; min-height:42px; border-radius:var(--r-pill); background:transparent; cursor:pointer;
+      font-family:var(--sans); font-weight:700; color:var(--muted);
+    }
+    .safe-tab:hover{ color:var(--forest-700); }
+    .safe-tab:focus-visible{ outline:none; box-shadow:0 0 0 3px rgba(62,91,63,.18); }
+    .safe-tab.is-active{ background:var(--card); color:var(--forest-700); box-shadow:var(--sh-sm); }
+    .safe-panel{ display:none; }
+    .safe-panel.is-active{ display:block; }
+    .safe-checks{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+    .safe-check{
+      display:flex; align-items:flex-start; gap:10px; min-height:84px;
+      border:1px solid var(--b-hair); border-radius:var(--r-card); background:var(--oat-100); padding:14px;
+    }
+    .safe-check .sp-tick{
+      width:24px; height:24px; border-radius:7px; flex-shrink:0; margin-top:1px;
+      display:grid; place-items:center; background: var(--forest-050); border:1px solid var(--forest-100); color: var(--forest-600);
+    }
+    .safe-check strong{ display:block; font-size:.94rem; color:var(--neutral-900); margin-bottom:3px; }
+    .safe-check span{ display:block; font-size:.82rem; line-height:1.4; color:var(--muted); }
 
     /* ============================================================
        6 · PRICING
        ============================================================ */
-    .price-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 22px; align-items:stretch; }
-    .price-card{ display:flex; flex-direction:column; padding: 30px 28px; }
-    .price-card.featured{
-      background: var(--forest-600); color: var(--oat-100); border-color: var(--forest-600);
-      box-shadow: 0 30px 70px -30px rgba(28,43,29,.6), var(--sh-brand);
-      transform: translateY(-8px);
+    .pricing-panel{ margin-top: 28px; }
+    .billing-toggle{
+      display:inline-flex; align-items:center; gap:8px; padding:5px; margin: 4px auto 0;
+      border-radius: var(--r-pill); background: rgba(255,255,255,.68); border:1px solid var(--border-soft);
+      box-shadow: var(--sh-sm);
     }
-    .price-card.featured.lift:hover{ transform: translateY(-12px); }
-    .price-card.featured .pc-tagline,.price-card.featured .pc-per{ color: var(--forest-100); }
-    .price-name{ font-size:.92rem; font-weight:600; letter-spacing:.02em; }
-    .price-amount{ font-family: var(--serif); font-size:2.9rem; line-height:1; margin:12px 0 2px; }
-    .price-card.featured .price-amount{ color: var(--oat-100); }
-    .pc-per{ font-size:.9rem; color: var(--muted); font-weight:500; }
-    .pc-tagline{ font-size:.9rem; color: var(--muted); margin:6px 0 24px; }
-    .pc-features{ list-style:none; padding:0; margin:0 0 26px; display:flex; flex-direction:column; gap:13px; flex:1; }
-    .pc-features li{ display:flex; align-items:flex-start; gap:10px; font-size:.9rem; line-height:1.4; }
-    .pc-features svg{ flex-shrink:0; margin-top:2px; color: var(--forest-600); }
-    .price-card.featured .pc-features svg{ color: var(--forest-100); }
+    .billing-toggle span{
+      min-height:34px; padding:8px 18px; border-radius: var(--r-pill); display:grid; place-items:center;
+      font-size:.82rem; font-weight:700; color: var(--muted);
+    }
+    .billing-toggle .is-active{ background: var(--forest-600); color: var(--oat-100); box-shadow: var(--sh-brand); }
+    .price-grid{ display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items:stretch; margin-top: 38px; }
+    .price-card{
+      display:flex; flex-direction:column; min-height: 520px; padding: 28px 28px 26px; position:relative;
+      background: rgba(255,255,255,.86); border:1px solid var(--border-soft); border-radius: var(--r-sheet);
+      box-shadow: 0 22px 70px -48px rgba(28,43,29,.45);
+    }
+    .price-card:hover{ transform: translateY(-4px); box-shadow: 0 28px 80px -48px rgba(28,43,29,.62); }
     .pc-badge{
-      position:absolute; top:18px; right:20px; font-size:.68rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
-      background: var(--premium-gold); color: var(--forest-900); padding:5px 12px; border-radius: var(--r-pill);
+      position:absolute; top:22px; right:24px; font-size:.68rem; font-weight:800; letter-spacing:.01em;
+      background: var(--forest-600); color: var(--oat-100); padding:5px 12px; border-radius: var(--r-pill);
     }
-    .pc-features li.pc-feature-note{ color: var(--forest-100); font-style:italic; }
-    .price-card:not(.featured) .pc-features li.pc-feature-note{ color: var(--muted); }
+    .pc-badge.gold{ background:#C68A00; color:#fff; }
+    .price-name{ font-family:var(--serif); font-size:1.13rem; line-height:1.1; color:var(--neutral-900); padding-right:96px; }
+    .pc-tagline{ font-size:.82rem; color: var(--muted); margin:8px 0 16px; }
+    .price-row{ display:flex; align-items:flex-end; gap:5px; margin: 4px 0 2px; }
+    .price-amount{ font-family: var(--serif); font-size:2.75rem; line-height:1; color: var(--neutral-900); }
+    .pc-per{ font-size:.82rem; color: var(--muted); font-weight:500; padding-bottom:6px; }
+    .plan-savings{ min-height:20px; font-size:.76rem; font-weight:800; color:var(--forest-600); margin:0 0 16px; }
+    .plan-cta{
+      margin: 0 0 22px; min-height:44px; border-radius: var(--r-pill); display:grid; place-items:center;
+      font-weight:800; font-size:.86rem;
+    }
+    .plan-cta.is-auth-required{ background:var(--forest-050); color:var(--forest-700); border:1px solid var(--forest-100); box-shadow:none; }
+    .plan-cta-note{ min-height:18px; margin:-12px 0 14px; color:var(--muted); font-size:.72rem; font-weight:600; text-align:center; }
+    .plan-cta.is-disabled{ color:#8d8d88; background:#fff; border:1px solid var(--border); box-shadow:none; cursor:default; }
+    .pc-section{ margin-top: 0; }
+    .pc-section + .pc-section{ margin-top:18px; }
+    .pc-section-label{ display:block; color:var(--muted); font-size:.78rem; font-weight:600; margin-bottom:7px; }
+    .pc-credit{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      margin:0; padding:10px 12px; border:1px solid var(--border-soft); border-radius:14px;
+      background:var(--oat-100); font-size:.82rem; font-weight:800; color: var(--forest-700);
+    }
+    .pc-credit span{ color:var(--muted); font-weight:650; }
+    .pc-features{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px; flex:1; }
+    .pc-features li{ display:flex; align-items:flex-start; gap:10px; font-size:.82rem; line-height:1.42; color:var(--neutral-700); }
+    .pc-features svg{ flex-shrink:0; margin-top:2px; color: var(--forest-600); }
+    .pc-feature-note{ color:var(--muted) !important; font-style:italic; }
+    .credit-pack{
+      margin-top: 20px; padding: 20px 22px; border:1px solid var(--border-soft); border-radius: var(--r-sheet);
+      background: rgba(255,255,255,.9); box-shadow: 0 22px 70px -50px rgba(28,43,29,.5);
+      display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:20px; align-items:center;
+    }
+    .credit-pack-main{ display:flex; align-items:center; gap:16px; min-width:0; }
+    .credit-icon{
+      width:50px; height:50px; border-radius:16px; display:grid; place-items:center;
+      color:var(--forest-600); background:var(--forest-050); border:1px solid var(--forest-100); flex:0 0 auto;
+    }
+    .credit-copy{ min-width:0; flex:1; }
+    .credit-title-row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .credit-title-row strong{ font-size:1rem; }
+    .credit-status{ padding:3px 8px; border-radius:7px; border:1px solid var(--forest-100); color:var(--forest-700); background:var(--forest-050); font-size:.68rem; font-weight:800; }
+    .credit-meta{ color:var(--forest-700); font-size:.86rem; font-weight:800; margin:4px 0 8px; }
+    .credit-bar{ height:8px; border-radius:var(--r-pill); background:var(--oat-250); overflow:hidden; max-width:560px; }
+    .credit-fill{ height:100%; border-radius:inherit; background:var(--forest-600); }
+    .credit-pack-buy{ display:flex; align-items:center; gap:14px; }
+    .credit-pack-price{ color:var(--muted); font-size:.82rem; }
     .price-boundary{
-      margin: 26px auto 0; text-align:center; max-width: 64ch; font-size:.9rem; line-height:1.55; color: var(--muted);
+      margin: 24px auto 0; text-align:center; max-width: 72ch; font-size:.9rem; line-height:1.55; color: var(--muted);
     }
-    .price-boundary strong{ color: var(--neutral-900); font-weight:600; }
+    .price-boundary strong{ color: var(--neutral-900); font-weight:700; }
     .price-trust{
-      margin: 14px auto 0; text-align:center; max-width:48ch; font-size:.86rem; font-weight:500; color: var(--muted);
+      margin: 14px auto 0; text-align:center; max-width:54ch; font-size:.86rem; font-weight:500; color: var(--muted);
       display:flex; align-items:center; justify-content:center; gap:8px;
     }
     .price-trust svg{ color: var(--forest-600); flex-shrink:0; }
@@ -539,19 +669,17 @@
        FINAL CTA band (dark, glow)
        ============================================================ */
     .final-cta{ text-align:center; }
-    .final-cta h2{ font-size: clamp(2.2rem,4.4vw,3.4rem); max-width: 18ch; margin-inline:auto; }
+    .final-cta h2{ font-size: clamp(2.05rem,4vw,3rem); max-width: 18ch; margin-inline:auto; }
     .final-cta h2 em{ font-family: var(--serif); font-style:italic; color: var(--premium-gold-light); }
-    .final-cta p{ color: var(--forest-300); font-size:1.08rem; max-width: 48ch; margin: 18px auto 0; }
-    .final-cta .audit-start{ margin: 36px auto 0; }
+    .final-cta p{ color: var(--forest-300); font-size:1rem; max-width: 46ch; margin: 16px auto 0; }
+    .final-cta .audit-start{ margin: 28px auto 0; }
     .final-cta-sub{ margin-top:18px; font-size:.82rem; color: var(--forest-300); }
 
     /* ============================================================
        SCROLL-REVEAL motion (landing-local, staggered)
        ============================================================ */
-    .b-reveal{ opacity:0; transform: translateY(20px); transition: opacity .7s var(--b-ease), transform .7s var(--b-ease); will-change: opacity, transform; }
-    .b-reveal.in{ opacity:1; transform:none; }
-    .b-stagger > *{ opacity:0; transform: translateY(18px); transition: opacity .6s var(--b-ease), transform .6s var(--b-ease); }
-    .b-stagger.in > *{ opacity:1; transform:none; }
+    .b-reveal{ opacity:1; transform:none; transition: opacity .7s var(--b-ease), transform .7s var(--b-ease); }
+    .b-stagger > *{ opacity:1; transform:none; transition: opacity .6s var(--b-ease), transform .6s var(--b-ease); }
     .b-stagger.in > *:nth-child(1){ transition-delay:.02s }
     .b-stagger.in > *:nth-child(2){ transition-delay:.08s }
     .b-stagger.in > *:nth-child(3){ transition-delay:.14s }
@@ -569,8 +697,8 @@
       .hero-grid{ gap: 48px; }
     }
     @media (max-width: 980px){
-      :root{ --b-band-pad: 60px; }
-      .hero{ padding-block: 80px 84px; }
+      :root{ --b-band-pad: 54px; }
+      .hero{ padding-block: 64px 62px; }
       .hero-grid{ grid-template-columns: 1fr; gap: 44px; }
       .rufus-stage{ max-width: 460px; }
       .sample-wrap{ grid-template-columns: 1fr; gap: 36px; }
@@ -583,10 +711,31 @@
       .proof-wrap{ grid-template-columns: 1fr; gap: 36px; }
     }
     @media (max-width: 768px){
+      :root{ --b-band-pad: 46px; }
+      .container{ padding-inline: 18px; }
+      .hero{ padding-block: 42px 38px; }
+      .hero-grid{ gap: 30px; }
+      .hero h1{ max-width: 100%; font-size: clamp(2.2rem, 10vw, 2.85rem); line-height:1.05; }
+      .hero-sub{ font-size: .98rem; line-height: 1.52; margin-top:16px; }
+      .hero-trust{ gap:8px 14px; }
+      .hero-dualopt{ align-items:flex-start; border-radius: var(--r-card); }
+      .audit-start{ margin-top:22px; }
+      .logo-strip{ display:none; }
+      .logo-row{ gap:10px; }
+      .logo-chip{ font-size:.76rem; padding:8px 12px; }
+      .rufus-body{ padding:18px; }
+      .bubble{ font-size:.84rem; padding:10px 12px; }
+      .sec-head .eyebrow{ margin-bottom:12px; }
+      .sec-head h2{ margin-bottom:12px; }
       .bento{ grid-template-columns: 1fr; }
       .safe-groups{ grid-template-columns: 1fr; gap: 32px; }
       .price-grid{ grid-template-columns: 1fr; }
-      .price-card.featured{ transform:none; }
+      .price-card{ min-height:auto; padding:24px 22px; }
+      .price-name{ padding-right:86px; }
+      .billing-toggle{ width:100%; justify-content:space-between; }
+      .billing-toggle span{ flex:1; padding-inline:10px; }
+      .credit-pack{ grid-template-columns:1fr; }
+      .credit-pack-buy{ justify-content:space-between; }
       .compare-grid{ grid-template-columns: 1fr; }
       .compare-arrow{ transform: rotate(90deg); }
       .audit-start{ flex-wrap:wrap; border-radius: var(--r-card); padding: 12px; }
@@ -594,11 +743,27 @@
       .audit-start .as-divider{ display:none; }
       .audit-start .btn{ width:100%; }
       .how-flow{ grid-template-columns: 1fr; }
-      .proof-band{ grid-template-columns: 1fr; gap: 12px; }
       .cmp-card{ overflow-x:auto; }
       .cmp-card .table{ min-width: 540px; }
       .ws-flow{ gap: 8px; }
       .ws-step{ font-size:.82rem; padding: 7px 11px; }
+      #workspace{ padding-block:58px 64px; }
+      .ws-fields{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+      .ws-panel-row{ grid-template-columns:1fr auto; gap:8px; }
+      .ws-panel-row .wp-k{ grid-column:1 / -1; }
+      .outcome-score{ grid-template-columns:1fr; }
+      .outcome-panel{ min-height:0; }
+      .safe-checks{ grid-template-columns:1fr; }
+      .export-row{ grid-template-columns:1fr auto; }
+      .export-row .er-field{ grid-column:1 / -1; }
+    }
+    @media (max-width: 540px){
+      .hero h1{ max-width: 100%; }
+      .audit-start{ align-items:stretch; }
+      .audit-start .as-select{ width:auto; }
+      .compare-card{ padding:22px; }
+      .proof-photo{ display:none; }
+      .final-cta h2{ max-width: 12ch; }
     }
   </style>
 </head>
@@ -614,22 +779,21 @@
         <div class="hero-grid">
           <!-- left: narrative + audit control -->
           <div>
-            <span class="hero-eyebrow b-reveal"><span class="pulse"></span>In-platform SEO → GEO</span>
-            <h1 class="b-reveal">See what Alexa for Shopping <em>(formerly Rufus)</em> can't answer.</h1>
+            <span class="hero-eyebrow b-reveal"><span class="pulse"></span>Amazon listing audit</span>
+            <h1 class="b-reveal">Make your listing answerable.</h1>
             <p class="hero-sub b-reveal">
-              Shoppers now ask Amazon's AI assistant before they buy. If your listing can't answer,
-              it recommends someone else. Luckee finds the buyer questions you're missing —
-              and writes the fixes you can drop into your listing.
+              Paste an ASIN. Luckee finds missing buyer answers, shows the source evidence,
+              and drafts Seller Central-ready fixes.
             </p>
 
             <form class="audit-start b-reveal" id="audit-start" action="audit.html" method="get">
               <input class="input mono" id="hero-asin" name="asin" type="text"
-                     value="B0G1MJWK3Z" placeholder="Paste your ASIN or Amazon URL" aria-label="ASIN or Amazon URL">
+                     value="B0G1MJWK3Z" placeholder="ASIN or Amazon URL…" aria-label="ASIN or Amazon URL" autocomplete="off" spellcheck="false">
               <select class="as-select" id="hero-mkt" name="marketplace" aria-label="Marketplace">
                 <option value="US" selected>🇺🇸 US</option>
-                <option value="UK">UK</option>
-                <option value="DE">DE</option>
-                <option value="JP">JP</option>
+                <option value="UK">🇬🇧 UK</option>
+                <option value="DE">🇩🇪 DE</option>
+                <option value="JP">🇯🇵 JP</option>
               </select>
               <span class="as-divider"></span>
               <button class="btn btn-on-dark" type="submit">
@@ -641,15 +805,15 @@
             <div class="hero-trust b-reveal">
               <span class="ti">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
-                Evidence-based
+                Find gaps
               </span>
               <span class="ti">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
-                No prompts to write
+                Write fixes
               </span>
               <span class="ti">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
-                Ready to paste into Seller Central
+                Export fields
               </span>
             </div>
 
@@ -659,7 +823,7 @@
             </p>
           </div>
 
-          <!-- right: floating Rufus chat in a device card -->
+          <!-- right: floating assistant chat in a device card -->
           <div class="b-reveal">
             <div class="rufus-stage">
               <div class="rufus-card">
@@ -670,12 +834,17 @@
                 <div class="rufus-body">
                   <div class="rufus-head">
                     <div class="rufus-avatar">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4m0 0H8m4 0h4M5 8h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2Z"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/></svg>
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <circle cx="12" cy="12" r="8.2" stroke="currentColor" stroke-width="1.8"/>
+                        <path d="M7.5 14.2c1.1 1.6 2.7 2.4 4.5 2.4 2.7 0 4.9-2.2 4.9-4.9 0-2-1.2-3.7-3-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M7.4 9.9c.9-1.7 2.5-2.7 4.4-2.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                      </svg>
                     </div>
                     <div>
                       <div class="rh-name">Alexa</div>
                       <div class="rh-meta">Amazon shopping assistant</div>
                     </div>
+                    <span class="assistant-pill">AI answer</span>
                   </div>
 
                   <div class="bubble bubble-user">Is this good for thick hair?</div>
@@ -685,12 +854,12 @@
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
                       Can't answer
                     </span>
-                    I'm not sure — this listing doesn't say which hair types it's designed for.
+                    I’m not sure — this listing doesn’t say which hair types it’s designed for.
                   </div>
 
                   <div class="rufus-caption">
                     <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-                    The shopper moves on. The sale is lost.
+                    Confidence drops before the shopper reaches the page.
                   </div>
                 </div>
               </div>
@@ -700,15 +869,14 @@
 
         <!-- trust logo strip -->
         <div class="logo-strip b-reveal">
-          <div class="ls-label">Built for the way Amazon shoppers now buy</div>
+          <div class="ls-label">Built around the surfaces that decide the sale</div>
           <div class="logo-row">
             <span class="logo-chip"><span class="lc-mark">A</span>Alexa Shopping</span>
-            <span class="logo-chip"><span class="lc-mark">C</span>COSMO ranking</span>
             <span class="logo-chip"><span class="lc-mark">A+</span>A+ content</span>
             <span class="logo-chip"><span class="lc-mark">SC</span>Seller Central</span>
-            <span class="logo-chip"><span class="lc-mark">QA</span>20+ shopper Q&amp;A</span>
+            <span class="logo-chip"><span class="lc-mark">QA</span>Buyer Q&amp;A</span>
           </div>
-          <span class="logo-illus">Illustrative sample — surfaces Luckee optimizes against</span>
+          <span class="logo-illus">Illustrative — sample data</span>
         </div>
       </div>
       <div class="seam seam-bot seam-oat-up"></div>
@@ -719,39 +887,39 @@
       <div class="container">
         <div class="sec-head b-reveal">
           <span class="eyebrow">The shift</span>
-          <h2>Your listing looks great. But can it <span class="ser-accent">talk back?</span></h2>
-          <p class="lede muted">A beautiful page wins the scroll. An <em>answerable</em> one wins the AI
-            assistant — which increasingly decides before the shopper ever sees your page.</p>
+          <h2>A good-looking listing can still fail the <span class="ser-accent">answer test.</span></h2>
+          <p class="lede muted">When the page never states hair type, heat settings, box contents or proof behind a claim,
+            the assistant has to say it does not know.</p>
         </div>
 
         <div class="compare-grid b-stagger">
           <div class="e-card lift compare-card cc-good">
             <span class="cc-label">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
-              Listing looks great
+              Human-readable page
             </span>
-            <h3 class="serif">Polished &amp; on-brand</h3>
-            <p>Crisp images, benefit-led bullets, a rich A+ page — everything a human eye expects.</p>
+            <h3 class="serif">Polished and persuasive</h3>
+            <p>Strong images and benefit copy can still miss the exact facts buyers ask before purchase.</p>
           </div>
 
           <div class="compare-arrow">
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            <span class="ca-pill">Sale lost</span>
+            <span class="ca-pill">Confidence drops</span>
           </div>
 
           <div class="e-card lift compare-card cc-bad">
             <span class="cc-label">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-              Alexa can't answer
+              Assistant cannot answer
             </span>
-            <h3 class="serif">“I'm not sure…”</h3>
-            <p>Ask about hair type, heat or what's in the box and the assistant stalls — because the page never says.</p>
+            <h3 class="serif">“I’m not sure…”</h3>
+            <p>The gap is not visual polish. It is missing evidence in title, bullets, A+, specs or backend terms.</p>
           </div>
         </div>
 
         <div class="stat-block b-reveal">
-          <p class="stat-line">More shoppers now let Amazon's AI shortlist for them. A page that can't answer
-            their questions <span class="hl">quietly loses the sale.</span></p>
+          <p class="stat-line">Luckee turns those unknowns into a prioritized list of
+            <span class="hl">safe, field-level fixes.</span></p>
         </div>
       </div>
     </section>
@@ -762,25 +930,10 @@
       <div class="container" style="padding-top:0">
         <div class="sec-head b-reveal" style="margin-top:0">
           <span class="eyebrow">Why Luckee</span>
-          <h2>Not another keyword tool. An <span class="ser-accent">answerability engine.</span></h2>
-          <p class="lede muted">Four things we do that generic AI rewriters and SEO checkers don't.</p>
+          <h2>Not another keyword tool. A listing <span class="ser-accent">answerability engine.</span></h2>
+          <p class="lede muted">The audit follows the same flow a seller needs: extract evidence, compare competitors, find unanswered questions, then ship safe edits.</p>
         </div>
         <div class="bento b-stagger" id="why-grid"></div>
-      </div>
-    </section>
-
-    <!-- ============================ COMPARISON ============================ -->
-    <section class="band band-soft" id="compare">
-      <div class="seam seam-top seam-white-down"></div>
-      <div class="container">
-        <div class="sec-head center b-reveal">
-          <span class="eyebrow">Why not just…</span>
-          <h2>Not a rewriter. Not a website GEO tool.</h2>
-          <p class="lede muted">Where Luckee sits versus the two things sellers usually reach for.</p>
-        </div>
-        <div class="cmp-frame b-reveal">
-          <div class="table-card cmp-card" id="compare-table"></div>
-        </div>
       </div>
     </section>
 
@@ -789,7 +942,7 @@
       <div class="container">
         <div class="sec-head center b-reveal">
           <span class="eyebrow">How it works</span>
-          <h2>From raw listing to <span class="ser-accent">ready-to-paste fix</span> — in four steps.</h2>
+          <h2>From listing evidence to <span class="ser-accent">publish-ready edits</span> in four steps.</h2>
         </div>
         <div class="how-flow b-stagger" id="how-flow"></div>
       </div>
@@ -804,8 +957,7 @@
             <span class="hero-eyebrow"><span class="pulse"></span>The optimization workspace</span>
             <h2 style="margin-top:18px">Don't just see the problems — <em class="ser-accent" style="color:var(--premium-gold-light)">fix them.</em></h2>
             <p class="hero-sub" style="margin-top:16px;max-width:44ch">
-              Every gap becomes a concrete rewrite — edit it, approve it, and export it
-              <strong>ready to paste</strong> into Seller Central.
+              Each gap becomes a field-level edit with evidence, claim checks and export status.
             </p>
 
             <div class="ws-flow">
@@ -832,28 +984,46 @@
               <span class="ws-field">Search Terms</span>
             </div>
 
+            <div class="ws-panel" aria-label="Workspace output preview">
+              <div class="ws-panel-row">
+                <span class="wp-k">Gap</span>
+                <span class="wp-v">Hair-type suitability missing</span>
+                <span class="wp-tag">P0</span>
+              </div>
+              <div class="ws-panel-row">
+                <span class="wp-k">Fix</span>
+                <span class="wp-v">Add supported hair types to Bullet 2</span>
+                <span class="wp-tag">Drafted</span>
+              </div>
+              <div class="ws-panel-row">
+                <span class="wp-k">Export</span>
+                <span class="wp-v">Seller confirms claim, then paste</span>
+                <span class="wp-tag">Gated</span>
+              </div>
+            </div>
+
             <div class="ws-keyword">
               <span class="wk-head">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-                Keyword-gap &amp; competitor coverage
+                Answer off-page queries
               </span>
-              <p>The high-volume keywords you're missing, which belong in backend Search Terms, and what competitors cover.</p>
+              <p>Buyer queries that don't fit the page go into backend Search Terms — and you see what competitors answer that you don't.</p>
             </div>
 
             <a class="btn btn-on-dark" href="workspace.html" style="margin-top:24px">
-              See the optimization workspace
+              Open workspace
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
           </div>
 
           <div class="b-reveal">
             <div class="ws-visual">
-              <img src="assets/scene-seller.png" alt="Illustration of a seller editing and exporting Amazon-ready listing fixes in the Luckee optimization workspace" loading="lazy">
+              <img src="assets/scene-seller.png" width="960" height="720" alt="Illustration of a seller editing and exporting Amazon-ready listing fixes in the Luckee optimization workspace" loading="lazy">
               <span class="scene-tag">Illustrative</span>
             </div>
             <div class="ws-promise">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
-              Ready-to-paste · no prompts · no downloads.
+              Edit · approve · export.
             </div>
           </div>
         </div>
@@ -868,9 +1038,9 @@
         <div class="sample-wrap">
           <div class="sec-head b-reveal" style="margin:0">
             <span class="eyebrow">Sample report</span>
-            <h2>See the exact gaps — and <span class="ser-accent">why each one costs you.</span></h2>
+            <h2>See the exact gaps and <span class="ser-accent">where to fix them.</span></h2>
             <p class="lede muted">Every audit opens on a single answerability score, the highest-risk gap, and the
-              shopper questions your listing leaves hanging.</p>
+              buyer questions your listing leaves unresolved.</p>
             <a class="btn btn-outline" href="report.html" style="margin-top:8px">
               See the full sample report
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -889,49 +1059,66 @@
       </div>
     </section>
 
-    <!-- ============================ PROOF ============================ -->
+    <!-- ============================ SAMPLE OUTCOME ============================ -->
     <section class="band band-soft" id="proof">
       <div class="seam seam-top seam-white-down"></div>
       <div class="container">
         <div class="sec-head center b-reveal">
           <span class="eyebrow">What you'll see</span>
-          <h2>From AI-invisible to <span class="ser-accent">AI-recommended.</span></h2>
-          <p class="lede muted">A projected, illustrative picture of the before → after once the gaps are
-            closed — not a guaranteed result.</p>
+          <h2>Audit result. Question. Export.</h2>
+          <p class="lede muted">Switch between the buyer-risk view and the field you can actually ship.</p>
         </div>
 
         <div class="proof-wrap">
-          <!-- compact projected-metric row -->
           <div class="b-reveal">
-            <span class="proof-tag">Projected · illustrative sample</span>
-            <div class="proof-band" id="proof-band"></div>
-            <p class="proof-who" id="proof-who"></p>
             <div class="proof-photo">
-              <img src="assets/scene-alexa.png" alt="Illustration of a shopper asking Amazon's AI shopping assistant about a product on their phone" loading="lazy">
+              <img src="assets/scene-alexa.png" width="960" height="540" alt="Illustration of a shopper asking Amazon's AI shopping assistant about a product on their phone" loading="lazy">
               <span class="scene-tag">Illustrative</span>
             </div>
           </div>
 
-          <!-- Alexa before/after illustrative mock -->
-          <div class="e-card proof-mock b-reveal">
+          <div class="e-card outcome-console b-reveal">
             <div class="proof-mock-head">
-              <span class="eyebrow" style="color:var(--forest-600)">Alexa · before → after</span>
-              <span class="chip chip-unknown">Illustrative</span>
+              <span class="eyebrow" style="color:var(--forest-600)">Sample ASIN preview</span>
+              <span class="chip chip-unknown">Sample</span>
             </div>
 
-            <div class="mini-chat">
+            <div class="outcome-tabs" role="tablist" aria-label="Sample audit views">
+              <button class="outcome-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="outcome-score" data-outcome="score">Score</button>
+              <button class="outcome-tab" type="button" role="tab" aria-selected="false" aria-controls="outcome-question" data-outcome="question">Question</button>
+              <button class="outcome-tab" type="button" role="tab" aria-selected="false" aria-controls="outcome-export" data-outcome="export">Export</button>
+            </div>
+
+            <div class="outcome-panel is-active" id="outcome-score" role="tabpanel">
+              <div class="outcome-kicker">Answerability lift</div>
+              <div class="outcome-score">
+                <div class="outcome-metric">
+                  <div class="om-label">Before</div>
+                  <div class="om-value">3/21</div>
+                </div>
+                <div class="outcome-metric">
+                  <div class="om-label">After fixes</div>
+                  <div class="om-value">14/21</div>
+                </div>
+              </div>
+              <div class="outcome-fix">
+                <strong>Top blocker: hair-type suitability</strong>
+                <span>Alexa cannot answer thick, fine or curly hair questions because the page never states support.</span>
+              </div>
+            </div>
+
+            <div class="outcome-panel" id="outcome-question" role="tabpanel" hidden>
+              <div class="outcome-kicker">Buyer question simulation</div>
               <div class="mc-label">Before</div>
               <div class="mc-bubble mc-user">Is this good for thick hair?</div>
               <div class="mc-bubble mc-rufus mc-rufus-bad">
                 <span class="mc-flag mc-flag-bad">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-                  Can't answer
+                  Unknown
                 </span>
-                I'm not sure — this listing doesn't say which hair types it's designed for.
+                Page never states supported hair types.
               </div>
-            </div>
-
-            <div class="mini-chat">
+              <div class="mini-chat">
               <div class="mc-label">After</div>
               <div class="mc-bubble mc-user">Is this good for thick hair?</div>
               <div class="mc-bubble mc-rufus mc-rufus-good">
@@ -939,7 +1126,29 @@
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
                   Answered
                 </span>
-                Yes — it's designed for thick, fine and wavy hair.
+                Yes — after seller confirmation, the listing can state the supported hair types directly.
+              </div>
+              </div>
+            </div>
+
+            <div class="outcome-panel" id="outcome-export" role="tabpanel" hidden>
+              <div class="outcome-kicker">Ready for workspace approval</div>
+              <div class="export-list">
+                <div class="export-row">
+                  <span class="er-field">Bullet 2</span>
+                  <span class="er-copy">For thick, fine &amp; wavy hair</span>
+                  <span class="er-state">Confirm</span>
+                </div>
+                <div class="export-row">
+                  <span class="er-field">A+</span>
+                  <span class="er-copy">Add hair-type labels to lifestyle module</span>
+                  <span class="er-state">Drafted</span>
+                </div>
+                <div class="export-row">
+                  <span class="er-field">Search Terms</span>
+                  <span class="er-copy">hair dryer brush for thick hair</span>
+                  <span class="er-state">Export</span>
+                </div>
               </div>
             </div>
           </div>
@@ -953,31 +1162,62 @@
       <div class="container" style="padding-top:0">
         <div class="sec-head b-reveal" style="margin-top:0">
           <span class="eyebrow">Safe &amp; ongoing</span>
-          <h2>Built to be safe — and to <span class="ser-accent">keep working.</span></h2>
-          <p class="lede muted">Every fix is checked against Amazon's rules before you publish, and the audit
-            re-runs so your listing keeps answering as your catalog grows.</p>
+          <h2>Safe before publish. Useful after launch.</h2>
+          <p class="lede muted">Toggle the checks sellers need before export and after the listing changes.</p>
         </div>
 
         <div class="safe-wrap">
-          <div class="safe-groups b-reveal">
-            <div class="safe-group">
-              <div class="sg-head">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
-                Safe for Amazon
-              </div>
-              <ul class="scene-points" id="compliance-points"></ul>
+          <div class="safe-console b-reveal">
+            <div class="safe-tabs" role="tablist" aria-label="Safety views">
+              <button class="safe-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="safe-before" data-safe="before">Before Publish</button>
+              <button class="safe-tab" type="button" role="tab" aria-selected="false" aria-controls="safe-after" data-safe="after">After Launch</button>
             </div>
-            <div class="safe-group">
-              <div class="sg-head">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-6.5 2.8L3 8"/><path d="M3 3v5h5"/></svg>
-                Keeps working
+
+            <div class="safe-panel is-active" id="safe-before" role="tabpanel">
+              <div class="safe-checks">
+                <div class="safe-check">
+                  <span class="sp-tick" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span>
+                  <div><strong>No invented specs</strong><span>Missing facts stay gated.</span></div>
+                </div>
+                <div class="safe-check">
+                  <span class="sp-tick" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span>
+                  <div><strong>Claim confirmation</strong><span>Seller approves suitability claims.</span></div>
+                </div>
+                <div class="safe-check">
+                  <span class="sp-tick" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span>
+                  <div><strong>Amazon limits</strong><span>Fields respect character rules.</span></div>
+                </div>
+                <div class="safe-check">
+                  <span class="sp-tick" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span>
+                  <div><strong>Banned words</strong><span>Risky terms get flagged.</span></div>
+                </div>
               </div>
-              <ul class="scene-points" id="lifecycle-points"></ul>
+            </div>
+
+            <div class="safe-panel" id="safe-after" role="tabpanel" hidden>
+              <div class="safe-checks">
+                <div class="safe-check">
+                  <span class="sp-tick" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span>
+                  <div><strong>Re-audit</strong><span>Measure clear answers again.</span></div>
+                </div>
+                <div class="safe-check">
+                  <span class="sp-tick" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span>
+                  <div><strong>Version history</strong><span>Track edits per ASIN.</span></div>
+                </div>
+                <div class="safe-check">
+                  <span class="sp-tick" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span>
+                  <div><strong>Catalog view</strong><span>Compare many listings.</span></div>
+                </div>
+                <div class="safe-check">
+                  <span class="sp-tick" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span>
+                  <div><strong>Next fixes</strong><span>Keep the queue prioritized.</span></div>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="scene-media b-reveal">
-            <img src="assets/scene-compliance.png" alt="Illustration of an Amazon listing optimization passing compliance and claim-substantiation checks" loading="lazy">
+            <img src="assets/scene-compliance.png" width="900" height="675" alt="Illustration of an Amazon listing optimization passing compliance and claim-substantiation checks" loading="lazy">
             <span class="scene-tag">Illustrative</span>
           </div>
         </div>
@@ -989,22 +1229,24 @@
       <div class="seam seam-top seam-soft-down"></div>
       <div class="container">
         <div class="sec-head center b-reveal">
-          <span class="eyebrow">Transparent pricing</span>
-          <h2>No demos. No hidden fees.</h2>
-          <p class="lede muted">Start free, see your gaps, then upgrade only when you're shipping fixes.</p>
+          <span class="eyebrow">Luckee pricing</span>
+          <h2>Same Luckee plan. Same credits.</h2>
+          <p class="lede muted">Luckee Listing uses your main Luckee account. Your first loop is free; audits and optimizations after that draw on your existing plan's credits.</p>
+          <div class="billing-toggle" aria-label="Billing period">
+            <span class="is-active">Yearly · Save 25%</span>
+            <span>Monthly</span>
+          </div>
         </div>
-        <div class="price-grid b-stagger" id="price-grid"></div>
+        <div class="pricing-panel">
+          <div class="price-grid b-stagger" id="price-grid"></div>
+          <div class="credit-pack b-reveal" id="credit-pack"></div>
+        </div>
         <p class="price-boundary b-reveal">
-          The free tier is a <strong>diagnostic</strong> — see your gaps and top fixes. The paid tiers unlock the
-          full <strong>optimization workspace</strong> + export + re-audit and version history.
-        </p>
-        <p class="price-upgrade b-reveal">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
-          Upgrade to unlock the full optimization workspace: edit, approve and export Amazon-ready fixes.
+          Listing does not introduce a separate wallet or subscription. New Listing reports and optimization bundles consume the same <strong>Luckee credits</strong> after the free loop.
         </p>
         <p class="price-trust b-reveal">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
-          No card to start · cancel anytime · no % of your sales.
+          Billing and credits are managed in your main Luckee account.
         </p>
       </div>
     </section>
@@ -1013,18 +1255,18 @@
     <section class="band band-dark final-cta">
       <div class="seam seam-top seam-oat-down"></div>
       <div class="container b-reveal">
-        <span class="hero-eyebrow" style="justify-content:center;display:inline-flex"><span class="pulse"></span>Run your first audit free</span>
-        <h2 style="margin-top:18px">Audit your listing <em>before</em> your shoppers do.</h2>
-        <p>Paste an ASIN and see exactly what Alexa for Shopping and COSMO can't answer — in minutes, no card required.</p>
+        <span class="hero-eyebrow" style="justify-content:center;display:inline-flex"><span class="pulse"></span>Run your first loop free</span>
+        <h2 style="margin-top:18px">Find what your listing still cannot answer.</h2>
+        <p>Paste an ASIN and run one complete loop: report, optimization bundle and export-ready fixes. No card required.</p>
 
         <form class="audit-start" id="audit-start-2" action="audit.html" method="get">
           <input class="input mono" id="hero-asin-2" name="asin" type="text"
-                 value="B0G1MJWK3Z" placeholder="Paste your ASIN or Amazon URL" aria-label="ASIN or Amazon URL">
+                 value="B0G1MJWK3Z" placeholder="ASIN or Amazon URL…" aria-label="ASIN or Amazon URL" autocomplete="off" spellcheck="false">
           <select class="as-select" id="hero-mkt-2" name="marketplace" aria-label="Marketplace">
             <option value="US" selected>🇺🇸 US</option>
-            <option value="UK">UK</option>
-            <option value="DE">DE</option>
-            <option value="JP">JP</option>
+            <option value="UK">🇬🇧 UK</option>
+            <option value="DE">🇩🇪 DE</option>
+            <option value="JP">🇯🇵 JP</option>
           </select>
           <span class="as-divider"></span>
           <button class="btn btn-on-dark" type="submit">
@@ -1032,7 +1274,7 @@
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
         </form>
-        <p class="final-cta-sub">No card to start · cancel anytime · no % of your sales.</p>
+        <p class="final-cta-sub">Includes 1 audit report + 1 optimization bundle · later runs use Luckee credits.</p>
       </div>
     </section>
   </main>
@@ -1047,8 +1289,37 @@
       const L = window.Luckee;
 
       /* ---- chrome ---- */
-      document.getElementById('nav').innerHTML = L.topNav('How it works');
+      function landingNav() {
+        const link = (href, label) => `<a href="${href}">${label}</a>`;
+        return `
+          <nav class="nav"><div class="container nav-inner">
+            <a class="brand" href="index.html"><span class="mark">L</span>Luckee <span style="color:var(--muted);font-weight:400">Listing</span></a>
+            <div class="nav-links">
+              ${link("#why", "Why Luckee")}
+              ${link("#how", "Workflow")}
+              ${link("#workspace", "Workspace")}
+              ${link("#pricing", "Pricing")}
+            </div>
+            <div class="nav-actions">
+              <span data-account-slot></span>
+              <a class="btn btn-primary btn-sm" href="audit.html" aria-label="Get my free audit"><span class="cta-full" aria-hidden="true">Get my free audit</span><span class="cta-short" aria-hidden="true">Free audit</span></a>
+            </div>
+          </div></nav>`;
+      }
+      document.getElementById('nav').innerHTML = landingNav();
       document.getElementById('footer').innerHTML = L.footer();
+      L.bootstrapFunnelPage();
+      document.querySelectorAll('#nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', e => {
+          const target = document.querySelector(anchor.getAttribute('href'));
+          if (!target) return;
+          e.preventDefault();
+          const navH = document.querySelector('.nav')?.getBoundingClientRect().height || 68;
+          const top = target.getBoundingClientRect().top + window.scrollY - navH - 14;
+          history.pushState(null, '', anchor.getAttribute('href'));
+          window.scrollTo({ top, behavior: 'smooth' });
+        });
+      });
 
       /* ---- small inline icon set (lucide-like) ---- */
       const ICONS = {
@@ -1066,7 +1337,7 @@
 
       /* ---- hero dual-optimization reassurance pill ---- */
       document.querySelector('#hero-dualopt span').innerHTML =
-        '<strong>Optimizes for Amazon AI</strong> without losing your existing keyword ranking.';
+        '<strong>First loop free:</strong> one audit report plus one optimization bundle, then later runs use Luckee credits.';
 
       /* ---- hero audit start → audit.html with chosen ASIN (both hero + final CTA) ---- */
       function wireAudit(formId, asinId, mktId) {
@@ -1091,43 +1362,26 @@
           <p>${L.esc(d.body)}</p>
         </div>`).join('');
 
-      /* ---- COMPARISON TABLE ---- */
-      const ct = D.compareTable;
-      const cmpCell = v => v === true
-        ? `<span class="cmp-yes" aria-label="Yes">${CHECK}</span>`
-        : v === 'partial'
-          ? `<span class="cmp-partial">◐ Limited</span>`
-          : `<span class="cmp-no" aria-label="No">—</span>`;
-      const usClass = i => i === 0 ? ' class="cmp-us"' : '';
-      document.getElementById('compare-table').innerHTML = `
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              ${ct.cols.map((c, i) => `<th scope="col"${usClass(i)}>${L.esc(c)}</th>`).join('')}
-            </tr>
-          </thead>
-          <tbody>
-            ${ct.rows.map(r => `
-              <tr>
-                <th scope="row">${L.esc(r.feature)}</th>
-                ${r.vals.map((v, i) => `<td${usClass(i)}>${cmpCell(v)}</td>`).join('')}
-              </tr>`).join('')}
-          </tbody>
-        </table>`;
-
-      /* ---- PROOF band + Rufus before/after caption ---- */
-      const cp = D.caseProof;
-      document.getElementById('proof-band').innerHTML = cp.metrics.map(m => `
-        <div class="e-card lift proof-tile">
-          <div class="pt-label">${L.esc(m.label)}</div>
-          <div class="pt-flow">
-            <span class="pt-before">${L.esc(m.before)}</span>
-            <span class="pt-arrow">→</span>
-            <span class="pt-after serif">${L.esc(m.after)}</span>
-          </div>
-        </div>`).join('');
-      document.getElementById('proof-who').textContent = 'Illustrative sample modeled on ' + cp.who + ' — not a guaranteed result.';
+      /* ---- compact tabbed previews ---- */
+      function bindTabs(buttonSelector, panelPrefix, activeClass) {
+        document.querySelectorAll(buttonSelector).forEach(btn => {
+          btn.addEventListener('click', () => {
+            const key = btn.dataset.outcome || btn.dataset.safe;
+            document.querySelectorAll(buttonSelector).forEach(b => {
+              const isActive = b === btn;
+              b.classList.toggle(activeClass, isActive);
+              b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
+            document.querySelectorAll(`[id^="${panelPrefix}-"]`).forEach(panel => {
+              const isActive = panel.id === `${panelPrefix}-${key}`;
+              panel.classList.toggle(activeClass, isActive);
+              panel.hidden = !isActive;
+            });
+          });
+        });
+      }
+      bindTabs('.outcome-tab', 'outcome', 'is-active');
+      bindTabs('.safe-tab', 'safe', 'is-active');
 
       /* ---- 4 · HOW IT WORKS steps ---- */
       document.getElementById('how-flow').innerHTML = D.howItWorks.map(s => `
@@ -1187,37 +1441,70 @@
         <div class="rp-fade"></div>`;
 
       /* ---- 6 · PRICING cards ---- */
-      const RECURRING_NOTE = 'Includes monitoring & re-audits';
-      document.getElementById('price-grid').innerHTML = D.pricing.map(p => {
-        const features = p.featured ? p.features.concat([RECURRING_NOTE]) : p.features;
-        // ONE primary CTA label for the "start an audit" action; paid tiers keep their own CTA.
-        const isFree = p.price === '$0';
-        const cta = isFree ? 'Get my free audit' : p.cta;
-        return `
-        <div class="e-card lift price-card${p.featured ? ' featured' : ''}">
-          ${p.featured ? '<span class="pc-badge">Most popular</span>' : ''}
-          <span class="price-name">${L.esc(p.name)}</span>
-          <div class="price-amount serif">${L.esc(p.price)}<span class="pc-per">${L.esc(p.per || '')}</span></div>
-          <p class="pc-tagline">${L.esc(p.tagline)}</p>
-          <ul class="pc-features">
-            ${features.map(f => `<li${f === RECURRING_NOTE ? ' class="pc-feature-note"' : ''}>${CHECK}<span>${L.esc(f)}</span></li>`).join('')}
-          </ul>
-          <a class="btn ${p.featured ? 'btn-on-dark' : 'btn-outline'} btn-block" href="audit.html">${L.esc(cta)}</a>
-        </div>`;
-      }).join('');
-
-      /* ---- SAFE & ONGOING (merged) — render point lists (data.js source of truth) ---- */
-      function renderPoints(targetId, points) {
-        const el = document.getElementById(targetId);
-        if (!el) return;
-        el.innerHTML = (points || []).map(pt => `
-          <li>
-            <span class="sp-tick">${CHECK}</span>
-            <span class="sp-body"><strong>${L.esc(pt.t)}</strong><span>${L.esc(pt.d)}</span></span>
-          </li>`).join('');
+      function planCta(p, signedIn) {
+        if (p.price === '$0') {
+          return `<a class="btn btn-outline btn-block plan-cta" href="audit.html">${L.esc(p.cta || 'Get my free audit')}</a>`;
+        }
+        if (!signedIn) {
+          return `
+            <button class="btn btn-block plan-cta is-auth-required" type="button" data-auth-action="register">Sign up to subscribe</button>
+            <p class="plan-cta-note">Use the same Luckee account and credits.</p>`;
+        }
+        return `<a class="btn btn-primary btn-block plan-cta" href="https://luckee.ai/" target="_blank" rel="noreferrer">${L.esc(p.cta || 'Subscribe')}</a>`;
       }
-      renderPoints('compliance-points', D.compliance.points);
-      renderPoints('lifecycle-points', D.lifecycle.points);
+
+      function renderPricing() {
+        const state = L.funnel ? L.funnel.getState() : { signedIn: false };
+        const signedIn = !!state.signedIn;
+        document.getElementById('price-grid').innerHTML = D.pricing.map(p => `
+          <div class="price-card lift">
+            ${p.badge ? `<span class="pc-badge ${L.esc(p.badgeTone || '')}">${L.esc(p.badge)}</span>` : ''}
+            <span class="price-name">${L.esc(p.name)}</span>
+            <p class="pc-tagline">${L.esc(p.tagline)}</p>
+            <div class="price-row">
+              <span class="price-amount">${L.esc(p.price)}</span>
+              <span class="pc-per">${L.esc(p.per || '')}</span>
+            </div>
+            <p class="plan-savings">${L.esc(p.savings || '')}</p>
+            ${planCta(p, signedIn)}
+            <div class="pc-section">
+              <p class="pc-credit"><span>Luckee credits</span>${L.esc(p.credits)}</p>
+            </div>
+            <div class="pc-section" style="flex:1">
+              <ul class="pc-features">
+                ${(p.features || []).map(f => `<li>${CHECK}<span>${L.esc(f)}</span></li>`).join('')}
+                ${p.note ? `<li class="pc-feature-note">${CHECK}<span>${L.esc(p.note)}</span></li>` : ''}
+              </ul>
+            </div>
+          </div>`).join('');
+
+        const pack = D.creditPack || {};
+        document.getElementById('credit-pack').innerHTML = `
+          <div class="credit-pack-main">
+            <span class="credit-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 10-13h-7l1-7Z"/></svg>
+            </span>
+            <div class="credit-copy">
+              <div class="credit-title-row">
+                <strong>${L.esc(pack.title || 'Credit Pack')}</strong>
+                <span class="credit-status">${signedIn ? L.esc(pack.status || 'Active') : 'Sign up required'}</span>
+                <span class="credit-pack-price">· ${L.esc(pack.price || '')}</span>
+              </div>
+              <p class="credit-meta">${signedIn ? L.esc(pack.remaining || '') : 'Sign up or sign in to view your Luckee credit balance.'}</p>
+              <div class="credit-bar" aria-label="Credit pack remaining">
+                <span class="credit-fill" style="width:${signedIn ? Math.max(0, Math.min(100, Number(pack.progress || 0))) : 0}%"></span>
+              </div>
+            </div>
+          </div>
+          <div class="credit-pack-buy">
+            ${signedIn
+              ? `<a class="btn btn-primary btn-sm" href="https://luckee.ai/" target="_blank" rel="noreferrer">${L.esc(pack.cta || 'Buy More')}</a>`
+              : `<button class="btn btn-primary btn-sm" type="button" data-auth-action="register">Sign up</button>`}
+          </div>`;
+        L.wireAuthActions();
+      }
+      L.refreshPricing = renderPricing;
+      renderPricing();
 
       /* ---- scroll-reveal (landing-local; respects reduced-motion via CSS) ---- */
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
