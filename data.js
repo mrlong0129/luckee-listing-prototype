@@ -330,9 +330,9 @@ window.LUCKEE_DATA = {
     },
     creditRules: [
       { event: "Enter ASIN", cost: "No credit", note: "Keep the first action frictionless." },
-      { event: "Generate report", cost: "Audit credit", note: "First report uses the free audit allowance." },
+      { event: "Generate report", cost: "First free", note: "First complete loop is free — no card needed." },
       { event: "View existing report", cost: "No extra credit", note: "Do not punish browsing or sharing." },
-      { event: "Generate optimization bundle", cost: "Optimization credit", note: "Confirm before consuming credit." },
+      { event: "Generate optimization bundle", cost: "First free, then credits", note: "Included in the free first loop; later runs use Luckee credits." },
       { event: "Edit, approve, export", cost: "No extra credit", note: "The generated bundle can be worked through freely." },
       { event: "Re-audit after publish", cost: "Audit credit", note: "Production should treat this as a new measurable run." }
     ],
@@ -345,9 +345,9 @@ window.LUCKEE_DATA = {
     optimizationConfirm: {
       title: "Generate the optimization bundle?",
       body: "This creates the Title, Bullets, A+ and Search Terms fixes for this report.",
-      cost: "Uses 1 Optimization Credit",
-      footnote: "After generation, editing, approving and exporting this bundle do not cost extra.",
-      primary: "Use 1 credit and generate",
+      cost: "Free — included in your first complete loop",
+      footnote: "Your first complete use (audit + optimization) is free. Later runs use your Luckee credits — editing, approving and exporting never cost extra.",
+      primary: "Generate (free)",
       cancel: "Not now"
     },
     paywall: {

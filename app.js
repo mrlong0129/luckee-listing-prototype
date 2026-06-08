@@ -394,6 +394,7 @@
     const D = window.LUCKEE_DATA || {};
     const F = D.funnel || {};
     const options = Object.assign({
+      eyebrow: "",
       title: "",
       body: "",
       cost: "",
@@ -410,7 +411,7 @@
     overlay.innerHTML = `
       <div class="funnel-modal card card-pad-lg" role="dialog" aria-modal="true" aria-labelledby="funnel-modal-title">
         <button class="funnel-modal-close" type="button" aria-label="Close dialog">×</button>
-        <span class="eyebrow">Credit checkpoint</span>
+        <span class="eyebrow">${L.esc(options.eyebrow || "Credit checkpoint")}</span>
         <h2 id="funnel-modal-title">${L.esc(options.title)}</h2>
         <p>${L.esc(options.body)}</p>
         ${options.cost ? `<div class="credit-cost"><span>${L.esc(options.cost)}</span></div>` : ""}
@@ -465,11 +466,12 @@
       }
 
       L.showFunnelModal({
+        eyebrow: "First loop · free",
         title: confirm.title || "Generate the optimization bundle?",
         body: confirm.body || "This creates the field-level fixes for this report.",
-        cost: confirm.cost || "Uses 1 Optimization Credit",
+        cost: confirm.cost || "Free — included in your first complete loop",
         footnote: confirm.footnote || "",
-        primary: confirm.primary || "Use 1 credit and generate",
+        primary: confirm.primary || "Generate (free)",
         secondary: confirm.cancel || "Not now",
         onConfirm: () => {
           L.funnel.markOptimizationGenerated();
