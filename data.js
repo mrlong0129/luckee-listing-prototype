@@ -301,14 +301,14 @@ window.LUCKEE_DATA = {
 
   /* ---- Funnel / credit policy (prototype-level; production reuses Luckee 1.0) ---- */
   funnel: {
-    selectedStrategy: "Aha-first: ASIN input is open, report viewing asks for account, optimization asks for credit confirmation.",
+    selectedStrategy: "ASIN input is open; clicking the real audit CTA asks for account, then agent-loop progress sets the wait expectation. Optimization uses the shared Luckee subscription context.",
     notSelectedStrategy: "Auth-first: require login and credit before the first analysis.",
     trial: {
       label: "First complete loop is free",
       auditLabel: "1 free audit report",
       optimizationLabel: "1 free optimization bundle",
       accountCopy: "Create or sign in to a Luckee account to save this report and use the free optimization bundle.",
-      noCardCopy: "No card needed for the first loop. Later runs use your Luckee credits."
+      noCardCopy: "No card needed for the first loop. Later runs use your existing Luckee plan and credits."
     },
     account: {
       name: "Luckee user",
@@ -338,22 +338,22 @@ window.LUCKEE_DATA = {
     ],
     reportGate: {
       title: "Your report is ready.",
-      body: "Sign in or create a free Luckee account to view the full diagnosis, save the ASIN, and keep the first optimization bundle attached to your account.",
-      primary: "Continue with free account",
-      secondary: "Uses your first free audit report"
+      body: "The audit is complete. Open the diagnosis report to see the answerability score, evidence gaps and field-level fixes.",
+      primary: "View report",
+      secondary: "Audit complete · first report remains free"
     },
     optimizationConfirm: {
       title: "Generate the optimization bundle?",
       body: "This creates the Title, Bullets, A+ and Search Terms fixes for this report.",
       cost: "Free — included in your first complete loop",
-      footnote: "Your first complete use (audit + optimization) is free. Later runs use your Luckee credits — editing, approving and exporting never cost extra.",
+      footnote: "Your first complete use (audit + optimization) is free. Later runs use the same Luckee user and subscription management — editing, approving and exporting never cost extra.",
       primary: "Generate (free)",
       cancel: "Not now"
     },
     paywall: {
-      title: "No optimization credits left",
-      body: "The free optimization bundle has already been used. Continue with Luckee credits, invite a teammate, or upgrade before generating another bundle.",
-      primary: "View pricing",
+      title: "Continue with your Luckee plan",
+      body: "The free optimization bundle has already been used. Stay in this Listing tool and manage the shared Luckee subscription before generating another bundle.",
+      primary: "Manage plan in this page",
       secondary: "Not now"
     }
   },

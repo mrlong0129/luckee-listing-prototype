@@ -70,17 +70,10 @@
   };
 
   /* ---- shared chrome ---- */
-  L.topNav = function (active) {
-    const link = (href, label) => `<a href="${href}"${active === label ? ' style="color:var(--forest-600)"' : ""}>${label}</a>`;
+  L.topNav = function () {
     return `
     <nav class="nav"><div class="container nav-inner">
       <a class="brand" href="index.html"><span class="mark">L</span>Luckee <span style="color:var(--muted);font-weight:400">Listing</span></a>
-      <div class="nav-links">
-        ${link("index.html#why", "Why Luckee")}
-        ${link("index.html#how", "Workflow")}
-        ${link("index.html#workspace", "Workspace")}
-        ${link("index.html#pricing", "Pricing")}
-      </div>
       <div class="nav-actions">
         <span data-account-slot></span>
         <a class="btn btn-primary btn-sm" href="audit.html" aria-label="Get my free audit"><span class="cta-full" aria-hidden="true">Get my free audit</span><span class="cta-short" aria-hidden="true">Free audit</span></a>
@@ -106,21 +99,28 @@
 
   L.footer = function () {
     return `
-    <footer class="footer grain"><div class="container" style="padding:64px 28px 40px;position:relative;z-index:1">
-      <div class="row-between wrap" style="align-items:flex-end;gap:32px">
-        <div style="max-width:420px">
-          <div class="brand" style="color:var(--oat-100)"><span class="mark">L</span>Luckee Listing</div>
-          <h2 style="color:var(--oat-100);margin:18px 0 10px;font-size:2rem">Find what your listing still cannot answer.</h2>
-          <p class="muted" style="color:var(--forest-300)">Amazon listing answerability: buyer questions, evidence gaps and field-level fixes in one audit.</p>
-          <a class="btn btn-on-dark" href="audit.html" style="margin-top:8px">Get my free audit →</a>
+    <footer class="footer grain"><div class="container footer-compact">
+      <div class="footer-grid">
+        <div class="footer-lede">
+          <div class="brand footer-brand"><span class="mark">L</span>Luckee Listing</div>
+          <h2>Find what your listing still cannot answer.</h2>
+          <p>Amazon listing answerability: buyer questions, evidence gaps and field-level fixes in one audit.</p>
         </div>
-        <div class="row wrap" style="gap:56px;align-items:flex-start;font-size:.88rem">
-          <div class="stack" style="--gap:10px"><strong style="color:var(--oat-100)">Product</strong><a href="index.html#why">Why Luckee</a><a href="index.html#how">Workflow</a><a href="index.html#workspace">Workspace</a><a href="index.html#pricing">Pricing</a></div>
-          <div class="stack" style="--gap:10px"><strong style="color:var(--oat-100)">Prototype</strong><a href="audit.html">Audit flow</a><a href="report.html">Sample report</a><a href="workspace.html">Workspace demo</a></div>
+        <div class="footer-nav">
+          <strong>Product</strong>
+          <a href="index.html#why">Why Luckee</a>
+          <a href="index.html#how">Workflow</a>
+          <a href="index.html#workspace">Workspace</a>
+          <a href="index.html#pricing">Pricing</a>
+        </div>
+        <div class="footer-nav">
+          <strong>Prototype</strong>
+          <a href="audit.html">Audit flow</a>
+          <a href="report.html">Sample report</a>
+          <a href="workspace.html">Workspace demo</a>
         </div>
       </div>
-      <hr class="hr" style="background:rgba(255,255,255,.1);margin:40px 0 18px">
-      <div class="row-between wrap muted" style="color:var(--forest-300);font-size:.8rem">
+      <div class="footer-bottom">
         <span>© 2026 Luckee. Listing optimization for the AI buying era.</span>
         <span>Evidence-gated · brand-aware · never invents</span>
       </div>
@@ -321,6 +321,18 @@
         <div class="auth-logo">L</div>
         <h2 id="auth-title">${L.esc(auth.title || "Welcome to Luckee")}</h2>
         <p>${L.esc(auth.subtitle || "AI E-commerce helper, making operations easier")}</p>
+        <button class="auth-google" type="button" data-auth-success="google">
+          <span class="google-mark" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+              <path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.7-1.57 2.68-3.88 2.68-6.62z"/>
+              <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.8.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18z"/>
+              <path fill="#FBBC05" d="M3.97 10.72A5.4 5.4 0 0 1 3.69 9c0-.6.1-1.18.28-1.72V4.95H.96A9 9 0 0 0 0 9c0 1.45.35 2.82.96 4.05l3.01-2.33z"/>
+              <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.46 3.44 1.35l2.58-2.58A8.66 8.66 0 0 0 9 0 9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z"/>
+            </svg>
+          </span>
+          Continue with Google
+        </button>
+        <div class="auth-divider"><span>or use email</span></div>
         <div class="auth-tabs" role="tablist" aria-label="Luckee account">
           <button type="button" role="tab" data-auth-tab="login">${L.esc(auth.loginTab || "Login")}</button>
           <button type="button" role="tab" data-auth-tab="register">${L.esc(auth.registerTab || "Sign up")}</button>

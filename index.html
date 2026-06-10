@@ -1290,16 +1290,9 @@
 
       /* ---- chrome ---- */
       function landingNav() {
-        const link = (href, label) => `<a href="${href}">${label}</a>`;
         return `
           <nav class="nav"><div class="container nav-inner">
             <a class="brand" href="index.html"><span class="mark">L</span>Luckee <span style="color:var(--muted);font-weight:400">Listing</span></a>
-            <div class="nav-links">
-              ${link("#why", "Why Luckee")}
-              ${link("#how", "Workflow")}
-              ${link("#workspace", "Workspace")}
-              ${link("#pricing", "Pricing")}
-            </div>
             <div class="nav-actions">
               <span data-account-slot></span>
               <a class="btn btn-primary btn-sm" href="audit.html" aria-label="Get my free audit"><span class="cta-full" aria-hidden="true">Get my free audit</span><span class="cta-short" aria-hidden="true">Free audit</span></a>
