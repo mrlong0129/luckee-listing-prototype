@@ -226,7 +226,10 @@
     const params = new URLSearchParams(window.location.search || "");
     const authParam = params.get("auth");
     if (params.get("reset") === "1") L.funnel.reset();
-    if (authParam && !L.funnel.getState().signedIn) L.funnel.markSignedIn(authParam === "register" ? "register" : "login");
+    if (authParam && !L.funnel.getState().signedIn) {
+      const mode = authParam === "register" || authParam === "google" ? authParam : "login";
+      L.funnel.markSignedIn(mode);
+    }
     if (params.get("audit") === "free") L.funnel.markAuditViewed();
     if (params.get("opt") === "1") L.funnel.markOptimizationGenerated();
   };
@@ -346,10 +349,12 @@
         </div>
         <div class="auth-panel" data-auth-panel="register">
           <label>Email<span class="auth-inline"><input class="input" type="email" placeholder="Enter your email" value="${L.esc(defaultAccount().accountEmail)}"><button class="btn btn-outline btn-sm" type="button">Send</button></span></label>
-          <label>Code<input class="input" type="text" placeholder="Enter code" value="000000"></label>
-          <label>Username<input class="input" type="text" placeholder="Username" value="${L.esc(defaultAccount().accountName)}"></label>
-          <label>Password<input class="input" type="password" placeholder="Password" value="prototype"></label>
-          <label>Confirm<input class="input" type="password" placeholder="Repeat password" value="prototype"></label>
+          <div class="auth-grid">
+            <label>Code<input class="input" type="text" placeholder="Enter code" value="000000"></label>
+            <label>Username<input class="input" type="text" placeholder="Username" value="${L.esc(defaultAccount().accountName)}"></label>
+            <label>Password<input class="input" type="password" placeholder="Password" value="prototype"></label>
+            <label>Confirm<input class="input" type="password" placeholder="Repeat password" value="prototype"></label>
+          </div>
           <button class="btn btn-primary btn-block" type="button" data-auth-success="register">${L.esc(auth.registerSubmit || "SIGN UP")}</button>
           <p class="auth-legal">${L.esc(auth.legalRegister || "By signing up, you agree to our Terms of Service and Privacy Policy")}</p>
         </div>

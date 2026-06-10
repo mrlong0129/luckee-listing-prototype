@@ -38,6 +38,16 @@
     .sample-banner svg { flex-shrink: 0; color: var(--info-600); margin-top: 2px; }
     .sample-banner b { color: var(--info-600); font-weight: 600; }
     .sample-banner .mono { font-family: var(--mono); color: var(--neutral-900); }
+    .skills-guard {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;
+    }
+    .guard-card {
+      display: flex; align-items: flex-start; gap: 10px; padding: 13px 16px;
+      border-radius: var(--r-input); background: var(--oat-100);
+      border: 1px solid var(--b-hair); font-size: .84rem; line-height: 1.48; color: var(--neutral-700);
+    }
+    .guard-card b { color: var(--neutral-900); }
+    .guard-card svg { flex-shrink: 0; color: var(--forest-600); margin-top: 1px; }
 
     /* ---- Sticky control bar (below appbar) ---- */
     .ws-bar {
@@ -152,6 +162,16 @@
       font-size: .84rem; color: #8a5108; line-height: 1.55;
     }
     .fact-note svg { flex-shrink: 0; color: var(--warning-600); margin-top: 1px; }
+    .validation-gate {
+      display: none; align-items: flex-start; gap: 9px; margin: 0 26px 24px;
+      padding: 12px 15px; border-radius: var(--r-input);
+      background: color-mix(in srgb, var(--error-600) 8%, white);
+      border: 1px solid color-mix(in srgb, var(--error-600) 24%, white);
+      font-size: .84rem; font-weight: 600; color: var(--error-600); line-height: 1.5;
+    }
+    .validation-gate svg { flex-shrink: 0; margin-top: 1px; }
+    .sug-card.has-validation-gate { border-color: color-mix(in srgb, var(--error-600) 36%, var(--b-hair)); }
+    .sug-card.has-validation-gate .validation-gate:not([hidden]) { display: flex; }
 
     /* ---- Inline "[confirm …]" placeholder token ---- */
     .confirm-token {
@@ -384,6 +404,7 @@
       .ws-bar { position: static; }
       .ws-bar-inner { flex-direction: column; align-items: stretch; }
       .ws-bar-right { justify-content: space-between; }
+      .skills-guard { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -414,7 +435,7 @@
         </button>
         <button class="btn btn-primary" id="open-export" type="button">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
-          Export brief
+          Export Seller Central fields
         </button>
       </div>
     </div>
@@ -426,9 +447,19 @@
       <!-- ============================ SAMPLE / LIVE BANNER ============================ -->
       <div class="sample-banner" role="note" data-reveal>
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-        <span><b>Sample optimization</b> — pre-computed bundle for Funflow (<span class="mono">B0G1MJWK3Z</span>). In production this bundle is generated after credit confirmation.</span>
+        <span><b>Sample optimization</b> — pre-computed bundle for Funflow (<span class="mono">B0G1MJWK3Z</span>). Production should generate it inside the Listing tool while reusing Luckee user, subscription and credit management.</span>
       </div>
       <div data-funnel-slot="workspace" data-reveal style="margin-top:16px"></div>
+      <div class="skills-guard" data-reveal>
+        <div class="guard-card">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span><b>Aiden skill constraint:</b> seller-facing claims, specs and suitability must be confirmed before publish; unresolved facts stay as <span class="confirm-token">[confirm ...]</span>.</span>
+        </div>
+        <div class="guard-card">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+          <span><b>Dylan skill constraint:</b> Amazon field limits, restricted terms and export validation must constrain the final Seller Central-ready output.</span>
+        </div>
+      </div>
 
       <!-- ============================ TITLE PANEL ============================ -->
       <section class="ws-panel" data-panel="title"></section>
@@ -452,11 +483,11 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
       <span class="eyebrow">Last-mile execution</span>
-      <h2 id="export-title" style="margin:12px 0 0;font-size:2rem">Export ready-to-paste brief</h2>
+      <h2 id="export-title" style="margin:12px 0 0;font-size:2rem">Export Seller Central-ready fields</h2>
       <p class="muted" style="margin:8px 0 0;font-size:.92rem;line-height:1.5;max-width:560px">Your finished deliverable — the exact Title, Bullets and Search Terms you accepted, written for the precise Seller Central fields and ready to paste, with every <span class="confirm-token" style="border-style:dashed">[confirm …]</span> spec you still owe flagged so nothing ships unverified.</p>
       <span class="modal-tagline">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
-        No prompts. No asset downloads. Paste straight into Seller Central.
+        Aiden checks claims. Dylan checks Amazon field limits. Paste only after unresolved items are cleared.
       </span>
       <div id="export-body"></div>
       <div id="copy-status" class="sr-only" aria-live="polite"></div>
@@ -610,9 +641,10 @@
           <div class="sug-actions">
             ${note ? `<span class="act-note">${L.esc(note)}</span>` : ''}
             <button class="btn btn-ghost btn-sm" data-action="reject" type="button">${icon.x} Reject</button>
-            <button class="btn btn-outline btn-sm" data-action="edit" type="button">${icon.edit} Edit</button>
+            <button class="btn btn-outline btn-sm" data-action="edit" type="button">${icon.edit} Edit / confirm</button>
             <button class="btn btn-primary btn-sm" data-accept data-action="accept" type="button">${icon.check} Accept</button>
-          </div>`;
+          </div>
+          <div class="validation-gate" data-validation-gate role="alert" hidden></div>`;
       }
 
       /* ============================ PANEL: TITLE ============================ */
@@ -624,7 +656,8 @@
           field: 'title', label: 'Final Title',
           suggestedValue: m.suggestedValue,
           riskLevel: riskKey(m.riskLevel),
-          factStatus: m.factStatus || null
+          factStatus: m.factStatus || null,
+          maxChars: 200
         });
         const titleChars = (m.suggestedValue || '').length;
         const charCls = titleChars > 200 ? 'amber' : '';
@@ -883,7 +916,9 @@
           field: 'searchTerms', label: 'Search Terms (backend)',
           suggestedValue: joined,
           riskLevel: riskKey(m.riskLevel),
-          factStatus: null
+          factStatus: null,
+          byteLimit: m.byteLimit || 250,
+          bannedWords: m.bannedWords || []
         });
         // current value in diff-del styling; each suggested term wrapped as diff-add
         const currentHtml = `<span class="diff-del">${L.esc(m.currentValue)}</span>`;
@@ -1014,6 +1049,74 @@
         const id = card.getAttribute('data-decision');
         if (id && decisions[id]) decisions[id].state = state;
       }
+      function currentDecisionText(id, card) {
+        const d = decisions[id];
+        if (!d) return '';
+        if (d.editedText != null) return d.editedText;
+        const pane = card && card.querySelector('.pdp-pane.optimized .diff-text');
+        if (pane && pane.isContentEditable) return (pane.innerText || pane.textContent || '').trim();
+        return d.suggestedValue || '';
+      }
+      function validationIssueFor(id, value, opts) {
+        const d = decisions[id];
+        if (!d) return '';
+        const text = String(value == null ? '' : value).trim();
+        const confirmed = !!(opts && opts.confirmed) || d.state === 'edited' || d.editedText != null;
+
+        if (!text) return 'Dylan blocks this: the final field cannot be empty.';
+
+        if (d.field === 'title') {
+          const max = d.maxChars || 200;
+          if (text.length > max) {
+            return `Dylan blocks this: Title is ${text.length}/${max} characters. Trim it before accepting.`;
+          }
+        }
+
+        if (d.field === 'searchTerms') {
+          const limit = d.byteLimit || 250;
+          const bytes = byteLen(text);
+          if (bytes > limit) {
+            return `Dylan blocks this: Search Terms are ${bytes}/${limit} bytes. Trim the backend block before accepting.`;
+          }
+          const lower = text.toLowerCase();
+          const hit = (d.bannedWords || []).find(w => lower.indexOf(String(w).toLowerCase()) !== -1);
+          if (hit) {
+            return `Dylan blocks this: remove restricted term "${hit}" before accepting.`;
+          }
+        }
+
+        if (hasConfirmToken(text)) {
+          return 'Aiden blocks this: replace every [confirm ...] placeholder with seller-confirmed facts before accepting.';
+        }
+
+        if (d.factStatus === 'needs_confirmation' && !confirmed) {
+          return 'Aiden blocks this: this claim is not evidenced yet. Use Edit / confirm to confirm or remove the claim before accepting.';
+        }
+
+        return '';
+      }
+      function showValidationGate(card, message) {
+        const gate = card.querySelector('[data-validation-gate]');
+        if (!gate) return;
+        gate.innerHTML = `${icon.alert}<span>${L.esc(message)}</span>`;
+        gate.hidden = false;
+        card.classList.add('has-validation-gate');
+      }
+      function clearValidationGate(card) {
+        const gate = card.querySelector('[data-validation-gate]');
+        if (!gate) return;
+        gate.hidden = true;
+        gate.innerHTML = '';
+        card.classList.remove('has-validation-gate');
+      }
+      function undoAccepted(card) {
+        if (card.classList.contains('is-accepted')) {
+          bumpAccepted(-1);
+          const acc = card.querySelector('[data-action="accept"]');
+          if (acc) setAcceptBtn(acc, false);
+        }
+        card.classList.remove('is-accepted');
+      }
 
       document.addEventListener('click', (e) => {
         const btn = e.target.closest('[data-action]');
@@ -1024,25 +1127,34 @@
 
         if (action === 'accept') {
           const wasAccepted = card.classList.contains('is-accepted');
-          card.classList.remove('is-rejected');
-          card.classList.toggle('is-accepted');
-          const nowAccepted = card.classList.contains('is-accepted');
-
-          if (nowAccepted && !wasAccepted) {
-            bumpAccepted(1);
-            setAcceptBtn(btn, true);
-            // if the card was edited keep the edited state, else mark accepted
-            const id = card.getAttribute('data-decision');
-            if (id && decisions[id] && decisions[id].editedText != null) {
-              decisions[id].state = 'edited'; card.classList.add('is-edited');
-            } else {
-              setDecisionState(card, 'accepted');
-            }
-          } else if (!nowAccepted && wasAccepted) {
-            bumpAccepted(-1);
-            setAcceptBtn(btn, false);
+          if (wasAccepted) {
+            undoAccepted(card);
             setDecisionState(card, 'pending');
             card.classList.remove('is-edited');
+            clearValidationGate(card);
+            refreshAnswerability();
+            return;
+          }
+
+          const id = card.getAttribute('data-decision');
+          if (id && decisions[id]) {
+            const issue = validationIssueFor(id, currentDecisionText(id, card));
+            if (issue) {
+              showValidationGate(card, issue);
+              return;
+            }
+          }
+
+          card.classList.remove('is-rejected');
+          card.classList.add('is-accepted');
+          bumpAccepted(1);
+          setAcceptBtn(btn, true);
+          clearValidationGate(card);
+          if (id && decisions[id] && decisions[id].editedText != null) {
+            decisions[id].state = 'edited';
+            card.classList.add('is-edited');
+          } else {
+            setDecisionState(card, 'accepted');
           }
           refreshAnswerability();
         } else if (action === 'reject') {
@@ -1057,11 +1169,13 @@
           const nowRejected = !card.classList.contains('is-rejected');
           card.classList.toggle('is-rejected');
           setDecisionState(card, nowRejected ? 'rejected' : 'pending');
+          clearValidationGate(card);
           refreshAnswerability();
         } else if (action === 'edit') {
           // make the optimized pane editable; on blur, capture edited text → 'edited'
           const pane = card.querySelector('.pdp-pane.optimized .diff-text');
           if (pane) {
+            clearValidationGate(card);
             pane.setAttribute('contenteditable', 'true');
             pane.style.outline = '2px solid var(--forest-600)';
             pane.style.outlineOffset = '4px';
@@ -1074,9 +1188,19 @@
                 const txt = (pane.innerText || pane.textContent || '').replace(/\s+\n/g, '\n').trim();
                 if (txt && txt !== (decisions[id].suggestedValue || '')) {
                   decisions[id].editedText = txt;
+                  const issue = validationIssueFor(id, txt, { confirmed: true });
+                  if (issue) {
+                    undoAccepted(card);
+                    decisions[id].state = 'pending';
+                    card.classList.remove('is-edited');
+                    showValidationGate(card, issue);
+                    refreshAnswerability();
+                    return;
+                  }
                   decisions[id].state = 'edited';
                   card.classList.remove('is-rejected');
                   card.classList.add('is-edited');
+                  clearValidationGate(card);
                   // an edit counts as accepted for the progress + answerability tally
                   if (!card.classList.contains('is-accepted')) {
                     card.classList.add('is-accepted');

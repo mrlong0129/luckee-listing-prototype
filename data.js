@@ -272,8 +272,12 @@ window.LUCKEE_DATA = {
       per: "/month",
       badge: "Most Popular",
       badgeTone: "gold",
-      cta: "Subscribe",
+      cta: "Manage subscription",
       savings: "Save $127.8",
+      billing: {
+        yearly: { price: "$29.25", per: "/month", savings: "Save $127.8 / year" },
+        monthly: { price: "$39.90", per: "/month", savings: "Billed monthly" }
+      },
       credits: "30,000 Credits",
       featured: true,
       features: ["20 audits / mo", "Full 20+ Q&A simulation", "Full competitor benchmark", "Title · Bullets · A+ · Search Terms fixes", "Ready-to-paste export", "Compliance & claim checks", "Re-audit + history"],
@@ -284,8 +288,12 @@ window.LUCKEE_DATA = {
       tagline: "Scale across listings",
       price: "$74.25",
       per: "/month",
-      cta: "Subscribe",
+      cta: "Manage subscription",
       savings: "Save $297",
+      billing: {
+        yearly: { price: "$74.25", per: "/month", savings: "Save $297 / year" },
+        monthly: { price: "$99", per: "/month", savings: "Billed monthly" }
+      },
       credits: "100,000 Credits",
       features: ["100 audits / mo", "Multi-ASIN management", "Batch reports", "White-label exports", "Team collaboration", "Client report templates"]
     }
