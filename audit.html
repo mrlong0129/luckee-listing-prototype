@@ -48,23 +48,22 @@
       box-shadow: var(--b-shadow-card);
     }
 
-    /* ---- Mode toggle ---- */
-    .mode-tabs {
-      background: var(--oat-200); border: 1px solid var(--b-hair);
-      border-radius: var(--r-pill); padding: 5px; gap: 4px;
-    }
-    .mode-tabs .tab {
-      flex: 1; justify-content: center; height: 42px; font-size: .9rem;
-      transition: background .18s var(--b-ease), color .18s var(--b-ease), box-shadow .18s var(--b-ease), transform .12s var(--b-ease);
-    }
-    .mode-tabs .tab:not(.tab-active):hover { background: rgba(255,255,255,.7); color: var(--forest-700); }
-    .mode-tabs .tab:active { transform: scale(.985); }
-
-    .mode-block[hidden] { display: none; }
-    .mode-block { animation: audFade .4s var(--b-ease) both; }
     @keyframes audFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
     .field-help { font-size: .78rem; color: var(--muted); margin: 7px 0 0; line-height: 1.45; }
+    .run-time-note {
+      display: flex; align-items: flex-start; gap: 9px;
+      margin-top: 14px; padding: 12px 14px; border-radius: var(--r-input);
+      background: var(--info-bg); border: 1px solid #d4e1fb;
+      color: var(--info-600); font-size: .82rem; line-height: 1.5;
+      transition: box-shadow .22s var(--b-ease), transform .22s var(--b-ease);
+    }
+    .run-time-note svg { flex-shrink: 0; margin-top: 1px; }
+    .run-time-note b { font-weight: 700; }
+    .run-time-note.is-active {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 34px -22px rgba(37,99,235,.55);
+    }
 
     /* ---- Advanced options ---- */
     .adv-toggle {
@@ -241,7 +240,7 @@
     /* scroll-reveal is provided by app.js (data-reveal → .reveal/fadeUp);
        only neutralize page-local entry animations under reduced-motion. */
     @media (prefers-reduced-motion: reduce) {
-      .mode-block, .adv-body { animation: none !important; opacity: 1 !important; transform: none !important; }
+      .adv-body { animation: none !important; opacity: 1 !important; transform: none !important; }
     }
 
     @media (max-width: 768px) {
@@ -265,63 +264,25 @@
         <div class="audit-head" data-reveal>
           <span class="eyebrow">Start an audit</span>
           <h1>Audit your listing</h1>
-          <p class="lede muted">We extract evidence, simulate 20+ Alexa for Shopping questions and benchmark top competitors. A real agent loop can take a few minutes.</p>
+          <p class="lede muted">Enter an ASIN or Amazon product link. We extract evidence, simulate 20+ Alexa for Shopping questions and benchmark top competitors.</p>
         </div>
 
         <div class="audit-card card-pad-lg" data-reveal>
-          <!-- mode toggle -->
-          <div class="tabs mode-tabs" role="tablist">
-            <button class="tab tab-active" id="mode-asin" type="button" role="tab" aria-selected="true">By ASIN / URL</button>
-            <button class="tab" id="mode-paste" type="button" role="tab" aria-selected="false">Paste my listing</button>
-          </div>
-
-          <div style="margin-top:26px">
-            <!-- MODE 1 — ASIN / URL -->
-            <div class="mode-block" id="block-asin">
-              <div class="field">
-                <label class="label" for="asin">ASIN or product URL</label>
-                <input class="input mono" id="asin" type="text" value="B0G1MJWK3Z" placeholder="B0… or https://www.amazon.com/dp/…">
-                <p class="field-help">We pull the live page evidence — title, bullets, A+ and spec table.</p>
-              </div>
-              <div class="field">
-                <label class="label" for="marketplace">Marketplace</label>
-                <select class="select" id="marketplace">
-                  <option value="US" selected>Amazon.com — United States</option>
-                  <option value="UK">Amazon.co.uk — United Kingdom</option>
-                  <option value="DE">Amazon.de — Germany</option>
-                  <option value="JP">Amazon.co.jp — Japan</option>
-                  <option value="CA">Amazon.ca — Canada</option>
-                </select>
-              </div>
+          <div>
+            <div class="field">
+              <label class="label" for="asin">ASIN or product URL</label>
+              <input class="input mono" id="asin" type="text" value="B0G1MJWK3Z" placeholder="B0… or https://www.amazon.com/dp/…">
+              <p class="field-help">We pull the live page evidence — title, bullets, A+ and spec table.</p>
             </div>
-
-            <!-- MODE 2 — PASTE -->
-            <div class="mode-block" id="block-paste" hidden>
-              <div class="field">
-                <label class="label" for="p-title">Title</label>
-                <input class="input" id="p-title" type="text" placeholder="Your product title">
-              </div>
-              <div class="field">
-                <label class="label" for="p-bullets">Bullet points <span class="muted" style="font-weight:400">(one per line)</span></label>
-                <textarea class="textarea" id="p-bullets" placeholder="Bullet 1&#10;Bullet 2&#10;Bullet 3…"></textarea>
-              </div>
-              <div class="field">
-                <label class="label" for="p-desc">Description</label>
-                <textarea class="textarea" id="p-desc" placeholder="Product description"></textarea>
-              </div>
-              <div class="field">
-                <label class="label" for="p-aplus">A+ copy</label>
-                <textarea class="textarea" id="p-aplus" placeholder="A+ / EBC module copy"></textarea>
-              </div>
-              <div class="field">
-                <label class="label">A+ screenshots</label>
-                <div class="upload-dropzone" id="dropzone">
-                  <div class="row" style="justify-content:center;gap:10px">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                    <span>Drop screenshots or click to upload</span>
-                  </div>
-                </div>
-              </div>
+            <div class="field">
+              <label class="label" for="marketplace">Marketplace</label>
+              <select class="select" id="marketplace">
+                <option value="US" selected>Amazon.com — United States</option>
+                <option value="UK">Amazon.co.uk — United Kingdom</option>
+                <option value="DE">Amazon.de — Germany</option>
+                <option value="JP">Amazon.co.jp — Japan</option>
+                <option value="CA">Amazon.ca — Canada</option>
+              </select>
             </div>
 
             <!-- ADVANCED OPTIONS -->
@@ -363,6 +324,10 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v4M3 5h4M6 17v4M4 19h4"/><path d="M13 4 8.5 15 13 13.5 15 18l4.5-11L13 4Z"/></svg>
               Audit my real ASIN
             </button>
+            <div class="run-time-note" id="run-time-note" role="note">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <span><b>Report timing:</b> after sign-in, a real listing audit usually takes 10-15 minutes. Keep this page open while the agent loop runs.</span>
+            </div>
 
             <div class="reassure">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
@@ -401,7 +366,7 @@
         <div class="audit-head" data-reveal>
           <span class="eyebrow">Working</span>
           <h1>Analyzing your listing</h1>
-          <p class="lede muted">Luckee is running the agent loop: pulling page evidence, simulating shopper questions and benchmarking competitors. This can take a few minutes on a real ASIN.</p>
+          <p class="lede muted">Luckee is running the agent loop: pulling page evidence, simulating shopper questions and benchmarking competitors. A real listing audit usually takes 10-15 minutes.</p>
         </div>
 
         <div class="audit-card card-pad-lg" data-reveal>
@@ -409,7 +374,7 @@
             <span class="live-dot"></span>
             <span class="mono">Analyzing <strong id="prog-asin">B0G1MJWK3Z</strong> · <span id="prog-mkt">US</span></span>
           </div>
-          <p class="progress-sub">Evidence-gated pipeline running — every finding will be traced to extracted page evidence. Keep this page open; the report appears when the loop finishes.</p>
+          <p class="progress-sub">Evidence-gated pipeline running — every finding will be traced to extracted page evidence. Keep this page open for the 10-15 minute report run.</p>
           <div class="demo-note" id="demo-note" style="display:none"></div>
 
           <div class="phase-list" id="phase-list"></div>
@@ -557,23 +522,6 @@
         });
       }
 
-      /* ============================ MODE TOGGLE ============================ */
-      const modeAsin = document.getElementById('mode-asin');
-      const modePaste = document.getElementById('mode-paste');
-      const blockAsin = document.getElementById('block-asin');
-      const blockPaste = document.getElementById('block-paste');
-
-      function setMode(paste) {
-        modeAsin.classList.toggle('tab-active', !paste);
-        modePaste.classList.toggle('tab-active', paste);
-        modeAsin.setAttribute('aria-selected', String(!paste));
-        modePaste.setAttribute('aria-selected', String(paste));
-        blockAsin.hidden = paste;
-        blockPaste.hidden = !paste;
-      }
-      modeAsin.addEventListener('click', () => setMode(false));
-      modePaste.addEventListener('click', () => setMode(true));
-
       /* ============================ ADVANCED ============================ */
       const advToggle = document.getElementById('adv-toggle');
       const advBody = document.getElementById('adv-body');
@@ -585,14 +533,11 @@
         if (!open) requestAnimationFrame(() => advBody.scrollIntoView({ behavior: 'smooth', block: 'nearest' }));
       });
 
-      /* dropzone is decorative — click acknowledges */
-      const dz = document.getElementById('dropzone');
-      if (dz) dz.addEventListener('click', () => { /* prototype: no real upload */ });
-
       /* ============================ RUN → STATE B ============================ */
       const formEl = document.getElementById('audit-form');
       const progEl = document.getElementById('audit-progress');
       const runBtn = document.getElementById('run');
+      const runTimeNote = document.getElementById('run-time-note');
 
       const PHASES = [
         { label: 'Extracting listing evidence', meta: 'title · bullets · A+ · spec table' },
@@ -720,35 +665,27 @@
       }
 
       function startAuditAfterAuth() {
-        const pasteMode = !blockPaste.hidden;
-
-        // ---- light validation ----
-        if (!pasteMode) {
-          const asinInput = document.getElementById('asin');
-          if (!asinInput.value.trim()) return fieldError(asinInput, 'Enter an ASIN or Amazon URL to audit.');
-        } else {
-          const titleInput = document.getElementById('p-title');
-          if (!titleInput.value.trim()) return fieldError(titleInput, 'Paste at least your product title to run a copy diagnosis.');
-        }
+        const asinInput = document.getElementById('asin');
+        if (!asinInput.value.trim()) return fieldError(asinInput, 'Enter an ASIN or Amazon URL to audit.');
 
         // reflect chosen ASIN / marketplace in the progress header
         const asinVal = (document.getElementById('asin').value || 'B0G1MJWK3Z').trim();
         const mktVal = document.getElementById('marketplace').value || 'US';
-        document.getElementById('prog-asin').textContent = pasteMode ? D.product.asin : asinVal;
-        document.getElementById('prog-mkt').textContent = pasteMode ? D.product.country : mktVal;
+        document.getElementById('prog-asin').textContent = asinVal;
+        document.getElementById('prog-mkt').textContent = mktVal;
 
         // ---- honest demo note — always shown so users are never misled ----
         // In this prototype every input resolves to the same pre-computed sample audit.
         const demo = document.getElementById('demo-note');
-        const isSample = !pasteMode && asinVal.toUpperCase().includes(D.product.asin);
+        const isSample = asinVal.toUpperCase().includes(D.product.asin);
         if (demo) {
           const di = '<svg class="di" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>';
           demo.style.display = 'flex';
           if (isSample) {
-            demo.innerHTML = di + '<span><b>Agent loop running.</b> Production waits a few minutes while the real audit runs. This prototype accelerates the wait and then opens the pre-computed sample for '
+            demo.innerHTML = di + '<span><b>Agent loop running.</b> Real listing audits usually take 10-15 minutes after sign-in. This prototype accelerates the wait and then opens the pre-computed sample for '
               + L.esc(D.product.brand) + ' (' + L.esc(D.product.asin) + ' · ' + L.esc(D.product.country) + ').</span>';
           } else {
-            demo.innerHTML = di + '<span><b>Agent loop running.</b> Real ASIN audits can take a few minutes. This prototype accelerates the wait and then shows the pre-computed sample audit for '
+            demo.innerHTML = di + '<span><b>Agent loop running.</b> Real listing audits usually take 10-15 minutes after sign-in. This prototype accelerates the wait and then shows the pre-computed sample audit for '
               + L.esc(D.product.brand) + ' (' + L.esc(D.product.asin) + ' · ' + L.esc(D.product.country) + '), so the report content is sample data.</span>';
           }
         }
@@ -760,15 +697,12 @@
       }
 
       runBtn.addEventListener('click', () => {
-        const pasteMode = !blockPaste.hidden;
-
-        if (!pasteMode) {
-          const asinInput = document.getElementById('asin');
-          if (!asinInput.value.trim()) return fieldError(asinInput, 'Enter an ASIN or Amazon URL to audit.');
-        } else {
-          const titleInput = document.getElementById('p-title');
-          if (!titleInput.value.trim()) return fieldError(titleInput, 'Paste at least your product title to run a copy diagnosis.');
+        if (runTimeNote) {
+          runTimeNote.classList.add('is-active');
+          setTimeout(() => runTimeNote.classList.remove('is-active'), 1300);
         }
+        const asinInput = document.getElementById('asin');
+        if (!asinInput.value.trim()) return fieldError(asinInput, 'Enter an ASIN or Amazon URL to audit.');
 
         if (!L.funnel.getState().signedIn) {
           L.showAuthModal({
