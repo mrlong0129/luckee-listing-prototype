@@ -532,6 +532,22 @@
         document.querySelectorAll("[data-panel]").forEach(p => {
           p.style.display = p.getAttribute("data-panel") === key ? "" : "none";
         });
+        if (group.getAttribute("data-tab-scroll") === "panel") {
+          const panel = document.querySelector('[data-panel="' + key.replace(/"/g, '\\"') + '"]');
+          if (panel) {
+            const stickyOffset = Array.from(document.querySelectorAll(".appbar, .nav, .ws-bar"))
+              .reduce((sum, el) => {
+                const style = window.getComputedStyle(el);
+                if (style.position !== "sticky" && style.position !== "fixed") return sum;
+                const rect = el.getBoundingClientRect();
+                if (rect.bottom <= 0 || rect.top >= window.innerHeight) return sum;
+                return sum + rect.height;
+              }, 0);
+            const top = Math.max(0, panel.getBoundingClientRect().top + window.scrollY - stickyOffset - 18);
+            window.scrollTo({ top, behavior: "smooth" });
+            return;
+          }
+        }
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
     });

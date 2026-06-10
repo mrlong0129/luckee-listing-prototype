@@ -50,22 +50,33 @@
     .guard-card svg { flex-shrink: 0; color: var(--forest-600); margin-top: 1px; }
 
     /* ---- Sticky control bar (below appbar) ---- */
+    .ws-dock-sentinel { height: 1px; }
     .ws-bar {
-      position: sticky; top: 69px; z-index: 30;
+      position: sticky; top: 0; z-index: 30;
       background: color-mix(in srgb, var(--oat-100) 86%, transparent);
       backdrop-filter: blur(14px) saturate(120%);
       border-bottom: 1px solid var(--b-hair);
+      transition: background .28s var(--b-ease), border-color .28s var(--b-ease), box-shadow .28s var(--b-ease);
     }
     .ws-bar-inner {
-      display: flex; align-items: center; justify-content: space-between; gap: 24px;
-      padding: 14px 0; flex-wrap: wrap;
+      display: flex; align-items: center; justify-content: flex-start; gap: 16px;
+      padding: 14px 0 12px;
+      transition: padding .28s var(--b-ease), justify-content .28s var(--b-ease);
     }
-    .ws-tabs { gap: 8px; flex-wrap: wrap; }
+    .ws-tabs {
+      gap: 8px; flex-wrap: wrap;
+      transition: padding .28s var(--b-ease), border-color .28s var(--b-ease), background .28s var(--b-ease), box-shadow .28s var(--b-ease), transform .28s var(--b-ease);
+    }
     .ws-tabs .tab {
       height: 46px; gap: 9px; padding: 0 16px;
-      transition: background .18s var(--b-ease), color .18s var(--b-ease), box-shadow .18s var(--b-ease), transform .18s var(--b-ease);
+      transition: background .18s var(--b-ease), color .18s var(--b-ease), box-shadow .18s var(--b-ease), transform .18s var(--b-ease), height .24s var(--b-ease), padding .24s var(--b-ease);
     }
     .ws-tabs .tab:not(.tab-active):hover { transform: translateY(-1px); }
+    .ws-tabs .tab:focus-visible {
+      outline: 2px solid color-mix(in srgb, var(--forest-600) 42%, transparent);
+      outline-offset: 3px;
+    }
+    .ws-tabs::-webkit-scrollbar { display: none; }
     .ws-tab-count {
       display: inline-flex; align-items: center; justify-content: center;
       min-width: 21px; height: 21px; padding: 0 6px; border-radius: var(--r-pill);
@@ -76,7 +87,17 @@
     .tab-active .ws-tab-count { background: rgba(255,255,255,.2); color: var(--oat-100); }
     .ws-tab-meta { display: inline-flex; align-items: center; gap: 7px; }
 
-    .ws-bar-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: flex-end; }
+    .ws-action-strip {
+      background: color-mix(in srgb, var(--oat-100) 94%, transparent);
+      border-bottom: 1px solid var(--b-hair);
+    }
+    .ws-action-inner {
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      padding: 12px 0 18px; flex-wrap: wrap;
+    }
+    .ws-action-left,
+    .ws-bar-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .ws-bar-right { justify-content: flex-end; margin-left: auto; }
     /* a subtle hairline separating the status cluster from the action cluster */
     .ws-bar-sep { width: 1px; height: 26px; background: var(--b-hair); flex-shrink: 0; }
     .gen-stamp { font-size: .76rem; color: var(--muted); letter-spacing: .01em; }
@@ -90,6 +111,38 @@
     .progress-pill svg { color: var(--forest-600); }
     /* light up the progress pill once the seller has accepted something */
     .progress-pill.has-accepts { background: var(--forest-100); border-color: var(--forest-300); }
+
+    body.ws-tabs-docked .ws-bar {
+      top: 10px;
+      background: transparent;
+      border-bottom-color: transparent;
+      box-shadow: none;
+      pointer-events: none;
+    }
+    body.ws-tabs-docked .ws-bar-inner {
+      justify-content: center;
+      padding: 8px 28px;
+    }
+    body.ws-tabs-docked .ws-tabs {
+      max-width: min(100%, 940px);
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+      padding: 6px;
+      border-radius: var(--r-pill);
+      border: 1px solid rgba(28,43,29,.12);
+      background: color-mix(in srgb, var(--card) 88%, transparent);
+      backdrop-filter: blur(18px) saturate(130%);
+      box-shadow: 0 14px 40px -24px rgba(28,43,29,.45), 0 1px 2px rgba(28,43,29,.06);
+      pointer-events: auto;
+      transform: translateY(-1px);
+    }
+    body.ws-tabs-docked .ws-tabs .tab {
+      height: 36px;
+      padding: 0 13px;
+      flex-shrink: 0;
+    }
 
     /* ---- Panels ---- */
     .ws-panel { padding-top: 38px; }
@@ -401,9 +454,13 @@
       .ap-body { grid-template-columns: 1fr; }
       .ap-col.left { border-right: 0; border-bottom: 1px solid var(--border-soft); }
       .metric-strip { grid-template-columns: 1fr; }
-      .ws-bar { position: static; }
-      .ws-bar-inner { flex-direction: column; align-items: stretch; }
-      .ws-bar-right { justify-content: space-between; }
+      .ws-bar { top: 0; }
+      .ws-bar-inner { padding: 10px 0; }
+      .ws-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+      .ws-tabs .tab { flex-shrink: 0; }
+      .ws-action-inner { flex-direction: column; align-items: stretch; }
+      .ws-action-left, .ws-bar-right { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+      .ws-bar-right { margin-left: 0; }
       .skills-guard { grid-template-columns: 1fr; }
     }
   </style>
@@ -412,10 +469,15 @@
   <div id="nav"></div>
 
   <!-- ============================ STICKY CONTROL BAR ============================ -->
-  <div class="ws-bar">
+  <div class="ws-dock-sentinel" id="ws-dock-sentinel" aria-hidden="true"></div>
+  <div class="ws-bar" id="ws-bar" aria-label="Workspace shortcuts">
     <div class="ws-wrap ws-bar-inner">
-      <div class="tabs ws-tabs" data-tabs id="ws-tabs"></div>
-      <div class="ws-bar-right">
+      <div class="tabs ws-tabs" data-tabs data-tab-scroll="panel" id="ws-tabs"></div>
+    </div>
+  </div>
+  <div class="ws-action-strip">
+    <div class="ws-wrap ws-action-inner">
+      <div class="ws-action-left">
         <span class="gen-stamp mono">Generated 2026-06-02</span>
         <span class="progress-pill" id="progress-pill">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
@@ -428,6 +490,8 @@
           <span class="ap-arrow">→</span>
           <span class="ap-mono ap-proj"><span id="answer-proj">3</span>/21</span>
         </span>
+      </div>
+      <div class="ws-bar-right">
         <span class="ws-bar-sep" aria-hidden="true"></span>
         <button class="btn btn-ghost btn-sm reaudit-btn" id="reaudit-btn" type="button" title="Project a re-audit with your accepted changes">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
@@ -505,6 +569,18 @@
       /* ---- inject app bar (← Back to report) ---- */
       document.getElementById('nav').innerHTML = L.appBar('workspace');
       L.bootstrapFunnelPage();
+      const dockAfter = 64;
+      let dockTicking = false;
+      function syncWorkspaceDock() {
+        document.body.classList.toggle('ws-tabs-docked', window.scrollY > dockAfter);
+        dockTicking = false;
+      }
+      window.addEventListener('scroll', () => {
+        if (dockTicking) return;
+        dockTicking = true;
+        window.requestAnimationFrame(syncWorkspaceDock);
+      }, { passive: true });
+      syncWorkspaceDock();
 
       /* ---- icon helpers (inline, lucide-like) ---- */
       const icon = {
