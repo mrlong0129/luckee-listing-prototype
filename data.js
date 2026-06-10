@@ -32,7 +32,7 @@ window.LUCKEE_DATA = {
     { level: "MED", gap: "Temperature settings have no values", impact: "\"How hot does it get?\" and heat-damage concerns are unanswerable; heat-sensitive shoppers hesitate.", fix: "Bullet 4 · Spec table" },
     { level: "MED", gap: "Package contents scattered / incomplete", impact: "\"What's in the box?\" cannot be answered cleanly — 6-in-1 value is undersold.", fix: "Bullet 5 · A+" },
     { level: "MED", gap: "Premium aluminum body USP only in title", impact: "Key durability/quality differentiator is invisible in bullets and A+, so it does not register at decision time.", fix: "Bullet 1 · A+ hero" },
-    { level: "MED", gap: "High-volume category synonyms absent from all frontend text", impact: "\"blow dryer brush\", \"hot air brush\" never appear — weak retrieval on the biggest search terms.", fix: "Search Terms (backend)" }
+    { level: "MED", gap: "High-volume category synonyms absent from all frontend text", impact: "\"blow dryer brush\", \"hot air brush\" never appear — weak retrieval on the biggest search terms.", fix: "Search Terms" }
   ],
 
   /* ---- Evidence Pack (extraction-schema) ---- */
@@ -117,7 +117,7 @@ window.LUCKEE_DATA = {
     { prio: "P0", action: "Add temperature values and named heat settings to Bullet 4 + spec table", area: "Bullets · Spec", why: "Answers heat-control & heat-damage questions (2 UNKNOWN).", resolves: 2, effort: "Low", needsConfirmation: true, complianceRisk: false },
     { prio: "P1", action: "Rewrite Bullet 5 as a complete package-contents list + warranty", area: "Bullets", why: "Sells the 6-in-1 value and answers \"what's in the box\".", resolves: 2, effort: "Low", needsConfirmation: true, complianceRisk: false },
     { prio: "P1", action: "Surface the premium aluminum USP in Bullet 1 and the A+ hero", area: "Bullets · A+", why: "Moves the durability differentiator into the decision path.", resolves: 1, effort: "Medium", needsConfirmation: false, complianceRisk: false, assetDependency: true },
-    { prio: "P2", action: "Add high-volume synonyms to backend Search Terms", area: "Search Terms", why: "Improves retrieval on \"blow dryer brush\", \"hot air brush\".", resolves: 2, effort: "Low", needsConfirmation: false, complianceRisk: false }
+    { prio: "P2", action: "Add high-volume synonyms to Search Terms", area: "Search Terms", why: "Improves retrieval on \"blow dryer brush\", \"hot air brush\".", resolves: 2, effort: "Low", needsConfirmation: false, complianceRisk: false }
   ],
 
   /* ---- Optimization suggest bundle (alexa_suggest_checklist_bundle) ---- */
@@ -198,15 +198,15 @@ window.LUCKEE_DATA = {
       },
       searchTerms: {
         label: "Search Terms", priority: "P2", riskLevel: "medium",
-        currentValue: "not available (backend search terms not retrievable)",
+        currentValue: "Current Search Terms unavailable in this prototype",
         suggestedTerms: ["blow dryer brush","hot air brush","hair styling tool for women","one step hair dryer and styler","volumizing hair dryer brush","ionic hair dryer brush","heated brush straightener curler","salon blowout brush","all in one hair tool","hair dryer brush for thick hair","hair dryer brush for fine hair"],
-        reason: "High-volume category synonyms (blow dryer brush, hot air brush) and hair-type long-tail terms are absent from all frontend text. Backend Search Terms is the correct placement since these are synonyms rather than naturally readable phrases.",
+        reason: "High-volume category synonyms (blow dryer brush, hot air brush) and hair-type long-tail terms are absent from the listing. Search Terms is the right placement because these are retrieval phrases rather than naturally readable copy.",
         impact: "Improves retrieval on the highest-volume category queries without keyword-stuffing the frontend.",
         sourceEvidence: ["Title", "Bullets", "Keyword gap analysis"],
         unusedFrontendTerms: ["blow dryer brush", "hot air brush"],
         byteLimit: 250,
         bannedWords: ["best seller", "#1", "guaranteed", "fda approved", "amazon's choice", "free shipping"],
-        mergeNote: "We can't read your current backend Search Terms in this prototype. Paste your existing block so we merge & de-dupe instead of overwriting — and we keep the total under 250 bytes."
+        mergeNote: "Current Search Terms are not connected in this prototype. Paste your existing terms if you want to merge and de-dupe before copying."
       }
     }
   },

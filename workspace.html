@@ -225,6 +225,14 @@
     .validation-gate svg { flex-shrink: 0; margin-top: 1px; }
     .sug-card.has-validation-gate { border-color: color-mix(in srgb, var(--error-600) 36%, var(--b-hair)); }
     .sug-card.has-validation-gate .validation-gate:not([hidden]) { display: flex; }
+    .copy-feedback {
+      display: none; align-items: center; gap: 7px; margin: 0 26px 20px;
+      padding: 10px 14px; border-radius: var(--r-pill);
+      background: var(--success-bg); border: 1px solid color-mix(in srgb, var(--success-600) 22%, white);
+      color: var(--success-600); font-size: .82rem; font-weight: 700;
+    }
+    .copy-feedback svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .sug-card.has-copy-feedback .copy-feedback { display: inline-flex; }
 
     /* ---- Inline "[confirm …]" placeholder token ---- */
     .confirm-token {
@@ -514,16 +522,6 @@
         <span><b>Sample optimization</b> — pre-computed bundle for Funflow (<span class="mono">B0G1MJWK3Z</span>). Production should generate it inside the Listing tool while reusing Luckee user, subscription and credit management.</span>
       </div>
       <div data-funnel-slot="workspace" data-reveal style="margin-top:16px"></div>
-      <div class="skills-guard" data-reveal>
-        <div class="guard-card">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
-          <span><b>Aiden skill constraint:</b> seller-facing claims, specs and suitability must be confirmed before publish; unresolved facts stay as <span class="confirm-token">[confirm ...]</span>.</span>
-        </div>
-        <div class="guard-card">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
-          <span><b>Dylan skill constraint:</b> Amazon field limits, restricted terms and export validation must constrain the final Seller Central-ready output.</span>
-        </div>
-      </div>
 
       <!-- ============================ TITLE PANEL ============================ -->
       <section class="ws-panel" data-panel="title"></section>
@@ -551,7 +549,7 @@
       <p class="muted" style="margin:8px 0 0;font-size:.92rem;line-height:1.5;max-width:560px">Your finished deliverable — the exact Title, Bullets and Search Terms you accepted, written for the precise Seller Central fields and ready to paste, with every <span class="confirm-token" style="border-style:dashed">[confirm …]</span> spec you still owe flagged so nothing ships unverified.</p>
       <span class="modal-tagline">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
-        Aiden checks claims. Dylan checks Amazon field limits. Paste only after unresolved items are cleared.
+        Claim placeholders and Amazon field limits stay visible until they are ready to paste.
       </span>
       <div id="export-body"></div>
       <div id="copy-status" class="sr-only" aria-live="polite"></div>
@@ -718,8 +716,9 @@
             ${note ? `<span class="act-note">${L.esc(note)}</span>` : ''}
             <button class="btn btn-ghost btn-sm" data-action="reject" type="button">${icon.x} Reject</button>
             <button class="btn btn-outline btn-sm" data-action="edit" type="button">${icon.edit} Edit / confirm</button>
-            <button class="btn btn-primary btn-sm" data-accept data-action="accept" type="button">${icon.check} Accept</button>
+            <button class="btn btn-primary btn-sm" data-accept data-action="accept" type="button">${icon.check} Accept & copy</button>
           </div>
+          <div class="copy-feedback" data-copy-feedback role="status" aria-live="polite" hidden></div>
           <div class="validation-gate" data-validation-gate role="alert" hidden></div>`;
       }
 
@@ -966,8 +965,9 @@
                   <p class="ap-sug-body">${L.esc(s.suggestedBody || '')}</p>
                   <p class="ap-sug-dir">${L.esc(s.suggestedVisualDirection || '')}</p>
                   <div style="display:flex;justify-content:flex-end;margin-top:18px">
-                    <button class="btn btn-primary btn-sm" data-accept data-action="accept" type="button">${icon.check} Accept</button>
+                    <button class="btn btn-primary btn-sm" data-accept data-action="accept" type="button">${icon.check} Accept & copy</button>
                   </div>
+                  <div class="copy-feedback" data-copy-feedback role="status" aria-live="polite" hidden></div>
                 </div>
               </div>
             </div>`;
@@ -989,7 +989,7 @@
         const id = decisionId('searchTerms');
         const joined = (m.suggestedTerms || []).join(', ');
         registerDecision(id, {
-          field: 'searchTerms', label: 'Search Terms (backend)',
+          field: 'searchTerms', label: 'Search Terms',
           suggestedValue: joined,
           riskLevel: riskKey(m.riskLevel),
           factStatus: null,
@@ -1017,7 +1017,7 @@
             <div class="st-safety-row">
               <span class="ssr-label">Byte budget</span>
               <span class="st-byte ${overByte ? 'over' : ''}">${bytes} / ${limit} bytes</span>
-              ${overByte ? `<span class="st-check-bad" style="margin-left:auto">${icon.alert} Over limit — trim before saving</span>` : `<span class="muted" style="margin-left:auto;font-size:.8rem">Amazon caps the backend block at ${limit} bytes</span>`}
+              ${overByte ? `<span class="st-check-bad" style="margin-left:auto">${icon.alert} Over limit — trim before accepting</span>` : `<span class="muted" style="margin-left:auto;font-size:.8rem">Amazon Search Terms limit is ${limit} bytes</span>`}
             </div>
             <div class="st-safety-row">
               <span class="ssr-label">Restricted words</span>
@@ -1028,18 +1028,17 @@
 
         return `
           <div class="panel-intro" data-reveal>
-            <span class="eyebrow">Search Terms · backend keyword block</span>
+            <span class="eyebrow">Search Terms · keyword block</span>
             <h1>Search Terms</h1>
             <p class="lede muted">${L.esc(m.reason)}</p>
             <p class="sug-impact" style="margin-top:10px">${icon.target} ${L.esc(m.impact)}</p>
-            <div class="st-note">${icon.info}<span>Placement: backend Search Terms (synonyms, not frontend-readable). These never appear on the live PDP — they only widen retrieval.</span></div>
           </div>
 
           <div class="card sug-card" data-reveal data-decision="${id}">
             <div class="sug-head">
               <div class="sh-left">
                 <div class="sug-title-row">
-                  <span class="sug-kicker">Suggested backend block</span>
+                  <span class="sug-kicker">Suggested Search Terms</span>
                   ${L.riskChip(riskKey(m.riskLevel))}
                   ${L.prioChip(m.priority)}
                 </div>
@@ -1053,7 +1052,7 @@
                   <div class="diff-text diff-mono">${currentHtml}</div>
                 </div>
                 <div class="pdp-pane optimized">
-                  <div class="pane-label"><span class="pl-dot"></span>Suggested — backend keyword block</div>
+                  <div class="pane-label"><span class="pl-dot"></span>Suggested — keyword block</div>
                   <div class="diff-text diff-mono" data-suggested="${id}">${suggestedHtml}</div>
                 </div>
               </div>
@@ -1063,7 +1062,7 @@
                 ${tagRow('Unused frontend terms', m.unusedFrontendTerms, 'tag-kw')}
               </div>
             </div>
-            ${actionFooter('Single backend Search Terms block')}
+            ${actionFooter('Single Search Terms block')}
           </div>`;
       }
 
@@ -1112,11 +1111,11 @@
       // feed the export brief + answerability; others (A+) only move the accepted count.
       function setAcceptBtn(btn, accepted) {
         if (accepted) {
-          btn.innerHTML = `${icon.check} Accepted · Undo`;
-          btn.title = 'Click to undo'; btn.setAttribute('aria-pressed', 'true');
+          btn.innerHTML = `${icon.check} Copied · Undo`;
+          btn.title = 'Click to undo acceptance'; btn.setAttribute('aria-pressed', 'true');
           btn.classList.remove('btn-primary'); btn.classList.add('btn-outline');
         } else {
-          btn.innerHTML = `${icon.check} Accept`;
+          btn.innerHTML = `${icon.check} Accept & copy`;
           btn.title = ''; btn.setAttribute('aria-pressed', 'false');
           btn.classList.remove('btn-outline'); btn.classList.add('btn-primary');
         }
@@ -1133,18 +1132,68 @@
         if (pane && pane.isContentEditable) return (pane.innerText || pane.textContent || '').trim();
         return d.suggestedValue || '';
       }
+      function acceptCopyText(card) {
+        const id = card.getAttribute('data-decision');
+        if (id && decisions[id]) return currentDecisionText(id, card);
+        const bits = [
+          card.querySelector('.ap-sug-h')?.textContent,
+          card.querySelector('.ap-sug-body')?.textContent,
+          card.querySelector('.ap-sug-dir')?.textContent
+        ].filter(Boolean).map(t => t.trim());
+        return bits.join('\n');
+      }
+      function setLiveCopyStatus(message) {
+        const status = document.getElementById('copy-status');
+        if (status) status.textContent = message;
+      }
+      function showCopyFeedback(card, message) {
+        const feedback = card.querySelector('[data-copy-feedback]');
+        if (!feedback) return;
+        feedback.innerHTML = `${icon.check}<span>${L.esc(message)}</span>`;
+        feedback.hidden = false;
+        card.classList.add('has-copy-feedback');
+        setLiveCopyStatus(message);
+      }
+      function clearCopyFeedback(card) {
+        const feedback = card.querySelector('[data-copy-feedback]');
+        if (feedback) {
+          feedback.hidden = true;
+          feedback.innerHTML = '';
+        }
+        card.classList.remove('has-copy-feedback');
+      }
+      function copyToClipboard(text, done) {
+        const fallback = () => {
+          const ta = document.createElement('textarea');
+          ta.value = text || '';
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.top = '-9999px';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch (err) {}
+          document.body.removeChild(ta);
+          done();
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(fallback);
+        } else {
+          fallback();
+        }
+      }
       function validationIssueFor(id, value, opts) {
         const d = decisions[id];
         if (!d) return '';
         const text = String(value == null ? '' : value).trim();
         const confirmed = !!(opts && opts.confirmed) || d.state === 'edited' || d.editedText != null;
 
-        if (!text) return 'Dylan blocks this: the final field cannot be empty.';
+        if (!text) return 'Add a final field value before accepting.';
 
         if (d.field === 'title') {
           const max = d.maxChars || 200;
           if (text.length > max) {
-            return `Dylan blocks this: Title is ${text.length}/${max} characters. Trim it before accepting.`;
+            return `Title is ${text.length}/${max} characters. Trim it before accepting.`;
           }
         }
 
@@ -1152,21 +1201,21 @@
           const limit = d.byteLimit || 250;
           const bytes = byteLen(text);
           if (bytes > limit) {
-            return `Dylan blocks this: Search Terms are ${bytes}/${limit} bytes. Trim the backend block before accepting.`;
+            return `Search Terms are ${bytes}/${limit} bytes. Trim them before accepting.`;
           }
           const lower = text.toLowerCase();
           const hit = (d.bannedWords || []).find(w => lower.indexOf(String(w).toLowerCase()) !== -1);
           if (hit) {
-            return `Dylan blocks this: remove restricted term "${hit}" before accepting.`;
+            return `Remove restricted term "${hit}" before accepting.`;
           }
         }
 
         if (hasConfirmToken(text)) {
-          return 'Aiden blocks this: replace every [confirm ...] placeholder with seller-confirmed facts before accepting.';
+          return 'Replace every [confirm ...] placeholder with seller-confirmed facts before accepting.';
         }
 
         if (d.factStatus === 'needs_confirmation' && !confirmed) {
-          return 'Aiden blocks this: this claim is not evidenced yet. Use Edit / confirm to confirm or remove the claim before accepting.';
+          return 'Confirm or remove this claim before accepting.';
         }
 
         return '';
@@ -1192,6 +1241,7 @@
           if (acc) setAcceptBtn(acc, false);
         }
         card.classList.remove('is-accepted');
+        clearCopyFeedback(card);
       }
 
       document.addEventListener('click', (e) => {
@@ -1221,6 +1271,7 @@
             }
           }
 
+          const copyText = acceptCopyText(card);
           card.classList.remove('is-rejected');
           card.classList.add('is-accepted');
           bumpAccepted(1);
@@ -1232,6 +1283,9 @@
           } else {
             setDecisionState(card, 'accepted');
           }
+          copyToClipboard(copyText, () => {
+            showCopyFeedback(card, 'Copied to clipboard.');
+          });
           refreshAnswerability();
         } else if (action === 'reject') {
           // if it was accepted, decrement
@@ -1242,6 +1296,7 @@
           }
           card.classList.remove('is-accepted');
           card.classList.remove('is-edited');
+          clearCopyFeedback(card);
           const nowRejected = !card.classList.contains('is-rejected');
           card.classList.toggle('is-rejected');
           setDecisionState(card, nowRejected ? 'rejected' : 'pending');
@@ -1252,6 +1307,7 @@
           const pane = card.querySelector('.pdp-pane.optimized .diff-text');
           if (pane) {
             clearValidationGate(card);
+            clearCopyFeedback(card);
             pane.setAttribute('contenteditable', 'true');
             pane.style.outline = '2px solid var(--forest-600)';
             pane.style.outlineOffset = '4px';
@@ -1424,7 +1480,7 @@
           countsHtml + specWarn + highWarn +
           copyBlock('Final Title', finalTitle, false) +
           copyBlock('Final Bullets', finalBullets, false) +
-          copyBlock('Search Terms (backend)', finalTerms, true) +
+          copyBlock('Search Terms', finalTerms, true) +
           `<div class="copy-block" style="display:flex;justify-content:flex-start;margin-top:26px">
             <button class="btn btn-primary" id="dl-aplus" type="button">${icon.download} Download A+ revision brief</button>
           </div>`;
