@@ -76,7 +76,7 @@
       <a class="brand" href="index.html"><span class="mark">L</span>Luckee <span style="color:var(--muted);font-weight:400">Listing</span></a>
       <div class="nav-actions">
         <span data-account-slot></span>
-        <a class="btn btn-primary btn-sm" href="audit.html" aria-label="Get my free audit"><span class="cta-full" aria-hidden="true">Get my free audit</span><span class="cta-short" aria-hidden="true">Free audit</span></a>
+        <a class="btn btn-primary btn-sm" href="audit.html" aria-label="Get my free audit" data-nav-free-audit><span class="cta-full" aria-hidden="true">Get my free audit</span><span class="cta-short" aria-hidden="true">Free audit</span></a>
       </div>
     </div></nav>`;
   };
@@ -299,7 +299,18 @@
     document.querySelectorAll("[data-account-slot]").forEach(slot => {
       slot.innerHTML = L.accountWidget();
     });
+    L.refreshNavCtas();
     L.wireAuthActions();
+  };
+
+  L.refreshNavCtas = function () {
+    const state = L.funnel.getState();
+    document.querySelectorAll("[data-nav-free-audit]").forEach(cta => {
+      const signedIn = !!state.signedIn;
+      cta.hidden = signedIn;
+      cta.style.display = signedIn ? "none" : "";
+      cta.setAttribute("aria-hidden", signedIn ? "true" : "false");
+    });
   };
 
   function addParam(href, key, value) {
