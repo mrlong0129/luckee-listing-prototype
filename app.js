@@ -69,16 +69,99 @@
     return `<span style="color:var(--error-600);font-weight:700">○</span>`;
   };
 
-  /* ---- shared chrome ---- */
-  L.topNav = function () {
+  /* ---- shared chrome ----
+     Official luckee.ai top nav, ported to the product's tokens. In production
+     these are same-origin "/..." links; in this standalone preview they point
+     at the live https://luckee.ai/... so the nav genuinely connects to the
+     official site. The "Get my free audit" CTA stays relative (prototype flow). */
+  L.topNav = function (active) {
     return `
     <nav class="nav"><div class="container nav-inner">
-      <a class="brand" href="index.html"><span class="mark">L</span>Luckee <span style="color:var(--muted);font-weight:400">Listing</span></a>
+      <a class="brand" href="https://luckee.ai/" aria-label="Luckee AI home"><span class="mark">L</span>Luckee <span style="color:var(--muted);font-weight:400">Listing</span></a>
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a class="nav-link" href="https://luckee.ai/products/amazon-operation-assistant.html">Products</a>
+          <div class="mega" aria-label="Product links">
+            <a href="https://luckee.ai/products/amazon-operation-assistant.html"><strong>Amazon Operation Assistant</strong><span>Daily Amazon account operations in plain language.</span></a>
+            <a href="https://luckee.ai/products/amazon-ads-workbench.html"><strong>Amazon Ads Workbench</strong><span>Human-approved PPC execution from diagnosis to outcome.</span></a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://luckee.ai/solutions">Solutions</a>
+          <div class="mega" aria-label="Solution links">
+            <a href="https://luckee.ai/solutions/listing-optimizer/"${active === "listing" ? ' aria-current="page"' : ""}><strong>Listing Optimizer</strong><span>Listing copy, A+ content, backend keywords, and answerability.</span></a>
+            <a href="https://luckee.ai/solutions/ads-audit.html"><strong>Ads Audit</strong><span>PPC diagnosis for TACoS, ROAS, CPC, placement, and waste.</span></a>
+            <a href="https://luckee.ai/solutions/ads-automation.html"><strong>Ads Automation</strong><span>Human-approved bid, budget, keyword, and negative changes.</span></a>
+            <a href="https://luckee.ai/solutions/image-generation.html"><strong>E-commerce Image Generation</strong><span>Conversion-focused product, lifestyle, and comparison visuals.</span></a>
+            <a href="https://luckee.ai/solutions/review-analysis.html"><strong>Review Analysis</strong><span>Complaint themes, buyer language, and product improvement signals.</span></a>
+            <a href="https://luckee.ai/solutions/competition-analysis.html"><strong>Competition Analysis</strong><span>Competitor pricing, creatives, keywords, reviews, and market moves.</span></a>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="https://luckee.ai/#loop">How it works</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://luckee.ai/#why">Why Luckee</a></li>
+      </ul>
       <div class="nav-actions">
         <span data-account-slot></span>
+        <a class="btn btn-outline btn-sm nav-see-solutions" href="https://luckee.ai/solutions">See solutions</a>
         <a class="btn btn-primary btn-sm" href="audit.html" aria-label="Get my free audit" data-nav-free-audit><span class="cta-full" aria-hidden="true">Get my free audit</span><span class="cta-short" aria-hidden="true">Free audit</span></a>
+        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="listing-mobile-menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
       </div>
-    </div></nav>`;
+    </div></nav>
+    <div id="listing-mobile-menu" class="mobile-menu" aria-hidden="true">
+      <div class="mobile-menu-panel">
+        <div class="mm-head">
+          <a class="brand" href="https://luckee.ai/"><span class="mark">L</span>Luckee <span style="color:var(--muted);font-weight:400">Listing</span></a>
+          <button class="mm-close" type="button" aria-label="Close menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <span class="mm-group-label">Products</span>
+        <a href="https://luckee.ai/products/amazon-operation-assistant.html">Amazon Operation Assistant</a>
+        <a href="https://luckee.ai/products/amazon-ads-workbench.html">Amazon Ads Workbench</a>
+        <span class="mm-group-label">Solutions</span>
+        <a href="https://luckee.ai/solutions/listing-optimizer/">Listing Optimizer</a>
+        <a href="https://luckee.ai/solutions/ads-audit.html">Ads Audit</a>
+        <a href="https://luckee.ai/solutions/ads-automation.html">Ads Automation</a>
+        <a href="https://luckee.ai/solutions/image-generation.html">E-commerce Image Generation</a>
+        <a href="https://luckee.ai/solutions/review-analysis.html">Review Analysis</a>
+        <a href="https://luckee.ai/solutions/competition-analysis.html">Competition Analysis</a>
+        <span class="mm-group-label">More</span>
+        <a href="https://luckee.ai/#loop">How it works</a>
+        <a href="https://luckee.ai/#why">Why Luckee</a>
+        <div class="mm-actions">
+          <a class="btn btn-outline btn-block" href="https://luckee.ai/solutions">See solutions</a>
+          <a class="btn btn-primary btn-block" href="audit.html" data-nav-free-audit>Get my free audit</a>
+        </div>
+      </div>
+    </div>`;
+  };
+
+  /* Mega hover-intent + mobile drawer wiring. Call after every L.topNav mount. */
+  L.wireMarketingNav = function () {
+    var navItems = document.querySelectorAll('.nav .nav-item');
+    navItems.forEach(function (item) {
+      var mega = item.querySelector('.mega');
+      if (!mega) return;
+      var closeTimer;
+      var openNow = function () { clearTimeout(closeTimer); item.classList.add('mega-open'); };
+      var closeSoon = function () { clearTimeout(closeTimer); closeTimer = setTimeout(function () { item.classList.remove('mega-open'); }, 260); };
+      item.addEventListener('mouseenter', openNow);
+      item.addEventListener('mouseleave', closeSoon);
+      mega.addEventListener('mouseenter', openNow);
+      item.addEventListener('focusout', function (e) { if (!item.contains(e.relatedTarget)) item.classList.remove('mega-open'); });
+    });
+    var toggle = document.querySelector('.nav-toggle');
+    var menu = document.getElementById('listing-mobile-menu');
+    if (toggle && menu && !menu.dataset.wired) {
+      menu.dataset.wired = '1';
+      var open = function () { menu.classList.add('open'); menu.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; toggle.setAttribute('aria-expanded', 'true'); };
+      var close = function () { if (!menu.classList.contains('open')) return; menu.classList.remove('open'); menu.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; toggle.setAttribute('aria-expanded', 'false'); };
+      toggle.addEventListener('click', open);
+      menu.addEventListener('click', function (e) { if (e.target === menu || e.target.closest('.mm-close') || e.target.closest('a')) close(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    }
   };
 
   L.appBar = function (step) {

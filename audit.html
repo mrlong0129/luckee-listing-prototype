@@ -417,7 +417,8 @@
       const L = window.Luckee;
 
       /* ---- inject marketing nav ---- */
-      document.getElementById('nav').innerHTML = L.topNav('');
+      document.getElementById('nav').innerHTML = L.topNav('listing');
+      L.wireMarketingNav();
       L.bootstrapFunnelPage();
 
       /* ---- prefill ASIN from ?asin= ---- */

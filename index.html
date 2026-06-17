@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Luckee Listing · Make your Amazon listing answerable</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="tokens.css?v=footer-fit-20260610">
+  <link rel="stylesheet" href="tokens.css?v=nav-official-20260617">
   <noscript><style>.b-reveal,.b-stagger>*{opacity:1!important;transform:none!important}</style></noscript>
   <style>
     /* ============================================================
@@ -1280,24 +1280,16 @@
   <div id="footer"></div>
 
   <script src="data.js"></script>
-  <script src="app.js?v=footer-fit-20260610"></script>
+  <script src="app.js?v=nav-official-20260617"></script>
   <script>
     (function () {
       const D = window.LUCKEE_DATA;
       const L = window.Luckee;
 
-      /* ---- chrome ---- */
-      function landingNav() {
-        return `
-          <nav class="nav"><div class="container nav-inner">
-            <a class="brand" href="index.html"><span class="mark">L</span>Luckee <span style="color:var(--muted);font-weight:400">Listing</span></a>
-            <div class="nav-actions">
-              <span data-account-slot></span>
-              <a class="btn btn-primary btn-sm" href="audit.html" aria-label="Get my free audit" data-nav-free-audit><span class="cta-full" aria-hidden="true">Get my free audit</span><span class="cta-short" aria-hidden="true">Free audit</span></a>
-            </div>
-          </div></nav>`;
-      }
+      /* ---- chrome (official-style top nav, shared from app.js) ---- */
+      function landingNav() { return L.topNav('listing'); }
       document.getElementById('nav').innerHTML = landingNav();
+      L.wireMarketingNav();
       document.getElementById('footer').innerHTML = L.footer();
       L.bootstrapFunnelPage();
       document.querySelectorAll('#nav a[href^="#"]').forEach(anchor => {
